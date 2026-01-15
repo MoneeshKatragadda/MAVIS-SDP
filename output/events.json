@@ -1,0 +1,1955 @@
+{
+  "meta": {
+    "fps": 24,
+    "total_duration": 192.67
+  },
+  "registry": {
+    "Julian": {
+      "voice": "Neutral",
+      "base_emotion": "Neutral"
+    },
+    "Lena": {
+      "voice": "Neutral",
+      "base_emotion": "Neutral"
+    },
+    "Marcus": {
+      "voice": "Neutral",
+      "base_emotion": "Neutral"
+    },
+    "Silas": {
+      "voice": "Neutral",
+      "base_emotion": "Neutral"
+    }
+  },
+  "timeline": [
+    {
+      "id": "scene_01",
+      "timing": {
+        "global_start": 0.0,
+        "global_end": 8.33,
+        "duration": 8.33
+      },
+      "scene_entities": [
+        {
+          "name": "window",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "rusty",
+          "type": "organization",
+          "role": "background"
+        },
+        {
+          "name": "anchor",
+          "type": "organization",
+          "role": "background"
+        },
+        {
+          "name": "diner",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl.",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [
+          "drum",
+          "rain"
+        ],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl.",
+          "duration": 8.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.648
+          },
+          "semantic": {
+            "subject": "rain",
+            "action": "drum",
+            "object": "rhythm"
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.648",
+          "timing": {
+            "start": 0.0,
+            "end": 8.33,
+            "duration": 8.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_02",
+      "timing": {
+        "global_start": 8.33,
+        "global_end": 13.66,
+        "duration": 5.33
+      },
+      "scene_entities": [
+        {
+          "name": "corner",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "booth",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "Inside, three people sat at the corner booth, the air between them thick with unspoken tension.",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Inside, three people sat at the corner booth, the air between them thick with unspoken tension.",
+          "duration": 5.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.693
+          },
+          "semantic": {
+            "subject": "people",
+            "action": "sit",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.693",
+          "timing": {
+            "start": 0.0,
+            "end": 5.33,
+            "duration": 5.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_03",
+      "timing": {
+        "global_start": 13.66,
+        "global_end": 21.99,
+        "duration": 8.33
+      },
+      "scene_entities": [
+        {
+          "name": "briefcase",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Silas",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Silas took a slow sip of his black coffee, his gaze fixed on the briefcase. \"You\u2019re late, Julian. In this business, late usually means followed.\"",
+        "active_chars": [
+          "Silas"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Silas took a slow sip of his black coffee, his gaze fixed on the briefcase.",
+          "duration": 5.0,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.507
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "take",
+            "object": "sip"
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.507",
+          "timing": {
+            "start": 0.0,
+            "end": 5.0,
+            "duration": 5.0
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "You\u2019re late, Julian. In this business, late usually means followed.",
+          "duration": 3.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.803
+          },
+          "semantic": {
+            "subject": "You",
+            "action": "\u2019re",
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=anger, intensity=0.803",
+          "timing": {
+            "start": 5.0,
+            "end": 8.33,
+            "duration": 3.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_04",
+      "timing": {
+        "global_start": 21.99,
+        "global_end": 29.65,
+        "duration": 7.66
+      },
+      "scene_entities": [
+        {
+          "name": "subway",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "store",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Julian",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Julian swallowed hard, his Adam\u2019s apple bobbing. \"I took three different subways and walked through a department store. I\u2019m clean, Silas. I swear.\"",
+        "active_chars": [
+          "Julian"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Julian swallowed hard, his Adam\u2019s apple bobbing.",
+          "duration": 2.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.8
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "swallow",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.8",
+          "timing": {
+            "start": 0.0,
+            "end": 2.33,
+            "duration": 2.33
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "I took three different subways and walked through a department store. I\u2019m clean, Silas. I swear.",
+          "duration": 5.33,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "I",
+            "action": "take",
+            "object": "subways"
+          },
+          "audio_prompt": "Julian, tone=joy, intensity=0.95",
+          "timing": {
+            "start": 2.33,
+            "end": 7.66,
+            "duration": 5.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_05",
+      "timing": {
+        "global_start": 29.65,
+        "global_end": 42.65,
+        "duration": 13.0
+      },
+      "scene_entities": [
+        {
+          "name": "eye",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "finger",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "screen",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "tablet",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "napkin",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "fence",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "street",
+          "type": "location",
+          "role": "background"
+        },
+        {
+          "name": "station",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin. \"He\u2019s mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You\u2019re welcome.\"",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin.",
+          "duration": 6.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.488
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "roll",
+            "object": "eyes"
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.488",
+          "timing": {
+            "start": 0.0,
+            "end": 6.33,
+            "duration": 6.33
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": null,
+          "text": "He\u2019s mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You\u2019re welcome.",
+          "duration": 6.67,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "He",
+            "action": "\u2019",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=joy, intensity=0.95",
+          "timing": {
+            "start": 6.33,
+            "end": 13.0,
+            "duration": 6.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_06",
+      "timing": {
+        "global_start": 42.65,
+        "global_end": 52.32,
+        "duration": 9.67
+      },
+      "scene_entities": [
+        {
+          "name": "way",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Julian",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"See?\" Julian hissed, leaning in. \"Lena\u2019s got it covered. Can we just do this? I don't like the way the cook is looking at us.\"",
+        "active_chars": [
+          "Julian"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [
+          "hiss"
+        ],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "See?",
+          "duration": 1.5,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.487
+          },
+          "semantic": {
+            "subject": null,
+            "action": null,
+            "object": null
+          },
+          "audio_prompt": "Julian, tone=anger, intensity=0.487",
+          "timing": {
+            "start": 0.0,
+            "end": 1.5,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Julian hissed, leaning in.",
+          "duration": 1.5,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.941
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "hiss",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.941",
+          "timing": {
+            "start": 1.5,
+            "end": 3.0,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "Lena\u2019s got it covered. Can we just do this? I don't like the way the cook is looking at us.",
+          "duration": 6.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.499
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "get",
+            "object": null
+          },
+          "audio_prompt": "Julian, tone=anger, intensity=0.499",
+          "timing": {
+            "start": 3.0,
+            "end": 9.67,
+            "duration": 6.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_07",
+      "timing": {
+        "global_start": 52.32,
+        "global_end": 64.66,
+        "duration": 12.34
+      },
+      "scene_entities": [
+        {
+          "name": "counter",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "man",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "apron",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "bucket",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary. \"The cook is looking at you because you\u2019re sweating enough to fill a bucket. Lean back. Breathe.\"",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary.",
+          "duration": 6.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "glance",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.95",
+          "timing": {
+            "start": 0.0,
+            "end": 6.67,
+            "duration": 6.67
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": null,
+          "text": "The cook is looking at you because you\u2019re sweating enough to fill a bucket. Lean back. Breathe.",
+          "duration": 5.67,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.795
+          },
+          "semantic": {
+            "subject": "cook",
+            "action": "look",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.795",
+          "timing": {
+            "start": 6.67,
+            "end": 12.34,
+            "duration": 5.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_08",
+      "timing": {
+        "global_start": 64.66,
+        "global_end": 73.33,
+        "duration": 8.67
+      },
+      "scene_entities": [
+        {
+          "name": "board",
+          "type": "organization",
+          "role": "background"
+        },
+        {
+          "name": "file",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Julian",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"I can't breathe!\" Julian whispered. \"Do you have any idea what\u2019s in here? If the Board finds out I took these files\u2014\"",
+        "active_chars": [
+          "Julian"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [
+          "whisper"
+        ],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "I can't breathe!",
+          "duration": 1.5,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.59
+          },
+          "semantic": {
+            "subject": "I",
+            "action": "breathe",
+            "object": null
+          },
+          "audio_prompt": "Julian, tone=fear, intensity=0.59",
+          "timing": {
+            "start": 0.0,
+            "end": 1.5,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Julian whispered.",
+          "duration": 1.5,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.84
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "whisper",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.84",
+          "timing": {
+            "start": 1.5,
+            "end": 3.0,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "Do you have any idea what\u2019s in here? If the Board finds out I took these files\u2014",
+          "duration": 5.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.943
+          },
+          "semantic": {
+            "subject": "you",
+            "action": "have",
+            "object": "idea"
+          },
+          "audio_prompt": "Julian, tone=anger, intensity=0.943",
+          "timing": {
+            "start": 3.0,
+            "end": 8.67,
+            "duration": 5.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_09",
+      "timing": {
+        "global_start": 73.33,
+        "global_end": 82.67,
+        "duration": 9.34
+      },
+      "scene_entities": [
+        {
+          "name": "board",
+          "type": "organization",
+          "role": "background"
+        },
+        {
+          "name": "internet",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Lena",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"If the Board finds out,\" Lena interrupted without looking up, \"we\u2019re all moving to a very small island with no internet. Now, stop talking and slide it over.\"",
+        "active_chars": [
+          "Lena"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "If the Board finds out,",
+          "duration": 1.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.632
+          },
+          "semantic": {
+            "subject": "Board",
+            "action": "find",
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=anger, intensity=0.632",
+          "timing": {
+            "start": 0.0,
+            "end": 1.67,
+            "duration": 1.67
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Lena interrupted without looking up,",
+          "duration": 1.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "interrupt",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.95",
+          "timing": {
+            "start": 1.67,
+            "end": 3.34,
+            "duration": 1.67
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "we\u2019re all moving to a very small island with no internet. Now, stop talking and slide it over.",
+          "duration": 6.0,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.941
+          },
+          "semantic": {
+            "subject": "we",
+            "action": "move",
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=anger, intensity=0.941",
+          "timing": {
+            "start": 3.34,
+            "end": 9.34,
+            "duration": 6.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_10",
+      "timing": {
+        "global_start": 82.67,
+        "global_end": 85.67,
+        "duration": 3.0
+      },
+      "scene_entities": [
+        {
+          "name": "Julian",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Julian hesitated. \"Is the money ready?\"",
+        "active_chars": [
+          "Julian"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Julian hesitated.",
+          "duration": 1.5,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.782
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "hesitate",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.782",
+          "timing": {
+            "start": 0.0,
+            "end": 1.5,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "Is the money ready?",
+          "duration": 1.5,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "money",
+            "action": "be",
+            "object": null
+          },
+          "audio_prompt": "Julian, tone=joy, intensity=0.95",
+          "timing": {
+            "start": 1.5,
+            "end": 3.0,
+            "duration": 1.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_11",
+      "timing": {
+        "global_start": 85.67,
+        "global_end": 96.34,
+        "duration": 10.67
+      },
+      "scene_entities": [
+        {
+          "name": "coat",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "envelope",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "table",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "hand",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "top",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "Silas reached into his coat and pulled out a plain white envelope. He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it.",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Silas reached into his coat and pulled out a plain white envelope. He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it.",
+          "duration": 10.67,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.436
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "reach",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.436",
+          "timing": {
+            "start": 0.0,
+            "end": 10.67,
+            "duration": 10.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_12",
+      "timing": {
+        "global_start": 96.34,
+        "global_end": 112.34,
+        "duration": 16.0
+      },
+      "scene_entities": [
+        {
+          "name": "series",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "security",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "side",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "line",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Silas",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"Life is a series of trades, kid,\" Silas said, his voice dropping to a low gravel. \"Information for security. Risk for reward. But the moment you let go of that handle, there\u2019s no going back. Are you sure you want to be on this side of the line?\"",
+        "active_chars": [
+          "Silas"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "Life is a series of trades, kid,",
+          "duration": 2.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.683
+          },
+          "semantic": {
+            "subject": "Life",
+            "action": "be",
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=anger, intensity=0.683",
+          "timing": {
+            "start": 0.0,
+            "end": 2.33,
+            "duration": 2.33
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Silas said, his voice dropping to a low gravel.",
+          "duration": 3.0,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.533
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "say",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.533",
+          "timing": {
+            "start": 2.33,
+            "end": 5.33,
+            "duration": 3.0
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "Information for security. Risk for reward. But the moment you let go of that handle, there\u2019s no going back. Are you sure you want to be on this side of the line?",
+          "duration": 10.67,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "moment",
+            "action": "go",
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=joy, intensity=0.95",
+          "timing": {
+            "start": 5.33,
+            "end": 16.0,
+            "duration": 10.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_13",
+      "timing": {
+        "global_start": 112.34,
+        "global_end": 125.67,
+        "duration": 13.33
+      },
+      "scene_entities": [
+        {
+          "name": "tablet",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "second",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "way",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "door",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "line",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Lena",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Julian looked at Lena, who finally looked up from her tablet. Her expression softened, just for a second. \"It's a one-way door, Julian. But it\u2019s better than working for people who view you as a line item on a spreadsheet.\"",
+        "active_chars": [
+          "Lena"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "joy"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, joy mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Julian looked at Lena, who finally looked up from her tablet. Her expression softened, just for a second.",
+          "duration": 6.0,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.809
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "look",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=joy, intensity=0.809",
+          "timing": {
+            "start": 0.0,
+            "end": 6.0,
+            "duration": 6.0
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "It's a one-way door, Julian. But it\u2019s better than working for people who view you as a line item on a spreadsheet.",
+          "duration": 7.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.52
+          },
+          "semantic": {
+            "subject": "It",
+            "action": "be",
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=anger, intensity=0.52",
+          "timing": {
+            "start": 6.0,
+            "end": 13.33,
+            "duration": 7.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_14",
+      "timing": {
+        "global_start": 125.67,
+        "global_end": 134.34,
+        "duration": 8.67
+      },
+      "scene_entities": [
+        {
+          "name": "briefcase",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "formica",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "tabletop",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "envelope",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "card",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop. Silas swapped it for the envelope with the grace of a card shark.",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop. Silas swapped it for the envelope with the grace of a card shark.",
+          "duration": 8.67,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "slide",
+            "object": "briefcase"
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.95",
+          "timing": {
+            "start": 0.0,
+            "end": 8.67,
+            "duration": 8.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_15",
+      "timing": {
+        "global_start": 134.34,
+        "global_end": 144.01,
+        "duration": 9.67
+      },
+      "scene_entities": [
+        {
+          "name": "back",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "sedan",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "engine",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "driver",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "house",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Silas",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"Go out the back,\" Silas commanded. \"There\u2019s a blue sedan with the engine running. The driver's name is Marcus. He\u2019ll take you to the safe house.\"",
+        "active_chars": [
+          "Silas"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "anger"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, anger mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "Go out the back,",
+          "duration": 1.5,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.876
+          },
+          "semantic": {
+            "subject": null,
+            "action": null,
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=anger, intensity=0.876",
+          "timing": {
+            "start": 0.0,
+            "end": 1.5,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Silas commanded.",
+          "duration": 1.5,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.442
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "command",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=anger, intensity=0.442",
+          "timing": {
+            "start": 1.5,
+            "end": 3.0,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "There\u2019s a blue sedan with the engine running. The driver's name is Marcus. He\u2019ll take you to the safe house.",
+          "duration": 6.67,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.557
+          },
+          "semantic": {
+            "subject": "engine",
+            "action": "run",
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=fear, intensity=0.557",
+          "timing": {
+            "start": 3.0,
+            "end": 9.67,
+            "duration": 6.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_16",
+      "timing": {
+        "global_start": 144.01,
+        "global_end": 150.68,
+        "duration": 6.67
+      },
+      "scene_entities": [
+        {
+          "name": "envelope",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "leg",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "way",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "file",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Julian",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Julian grabbed the envelope and stood up, his legs looking like they might give way. \"What happens to the files?\"",
+        "active_chars": [
+          "Julian"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Julian grabbed the envelope and stood up, his legs looking like they might give way.",
+          "duration": 5.0,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.926
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "grab",
+            "object": "envelope"
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.926",
+          "timing": {
+            "start": 0.0,
+            "end": 5.0,
+            "duration": 5.0
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Julian",
+          "text": "What happens to the files?",
+          "duration": 1.67,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.569
+          },
+          "semantic": {
+            "subject": "What",
+            "action": "happen",
+            "object": null
+          },
+          "audio_prompt": "Julian, tone=anger, intensity=0.569",
+          "timing": {
+            "start": 5.0,
+            "end": 6.67,
+            "duration": 1.67
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_17",
+      "timing": {
+        "global_start": 150.68,
+        "global_end": 160.34,
+        "duration": 9.66
+      },
+      "scene_entities": [
+        {
+          "name": "tablet",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "house",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "board",
+          "type": "organization",
+          "role": "background"
+        },
+        {
+          "name": "bank",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Lena",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Lena snapped her tablet shut and offered a grim smile. \"By the time you reach the safe house, they won't exist anymore. And neither will the Board's bank accounts.\"",
+        "active_chars": [
+          "Lena"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [
+          "snap"
+        ],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Lena snapped her tablet shut and offered a grim smile.",
+          "duration": 3.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.515
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "snap",
+            "object": "tablet"
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.515",
+          "timing": {
+            "start": 0.0,
+            "end": 3.33,
+            "duration": 3.33
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "By the time you reach the safe house, they won't exist anymore. And neither will the Board's bank accounts.",
+          "duration": 6.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.557
+          },
+          "semantic": {
+            "subject": "you",
+            "action": "reach",
+            "object": "house"
+          },
+          "audio_prompt": "Lena, tone=anger, intensity=0.557",
+          "timing": {
+            "start": 3.33,
+            "end": 9.66,
+            "duration": 6.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_18",
+      "timing": {
+        "global_start": 160.34,
+        "global_end": 167.67,
+        "duration": 7.33
+      },
+      "scene_entities": [
+        {
+          "name": "kitchen",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "door",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "briefcase",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "eye",
+          "type": "prop",
+          "role": "background"
+        }
+      ],
+      "script": {
+        "text": "As Julian disappeared through the kitchen doors, Silas opened the briefcase just an inch. A faint blue glow reflected in his eyes.",
+        "active_chars": []
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "As Julian disappeared through the kitchen doors, Silas opened the briefcase just an inch. A faint blue glow reflected in his eyes.",
+          "duration": 7.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "Julian",
+            "action": "disappear",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.95",
+          "timing": {
+            "start": 0.0,
+            "end": 7.33,
+            "duration": 7.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_19",
+      "timing": {
+        "global_start": 167.67,
+        "global_end": 172.84,
+        "duration": 5.17
+      },
+      "scene_entities": [
+        {
+          "name": "gear",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "hair",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Lena",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "\"Well?\" Lena asked, packing her gear. \"Was it worth the gray hairs?\"",
+        "active_chars": [
+          "Lena"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "joy"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, joy mood"
+      },
+      "beats": [
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "Well?",
+          "duration": 1.5,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.768
+          },
+          "semantic": {
+            "subject": null,
+            "action": null,
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=joy, intensity=0.768",
+          "timing": {
+            "start": 0.0,
+            "end": 1.5,
+            "duration": 1.5
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Lena asked, packing her gear.",
+          "duration": 1.67,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.676
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "ask",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.676",
+          "timing": {
+            "start": 1.5,
+            "end": 3.17,
+            "duration": 1.67
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "Was it worth the gray hairs?",
+          "duration": 2.0,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.657
+          },
+          "semantic": {
+            "subject": "it",
+            "action": "be",
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=joy, intensity=0.657",
+          "timing": {
+            "start": 3.17,
+            "end": 5.17,
+            "duration": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_20",
+      "timing": {
+        "global_start": 172.84,
+        "global_end": 183.84,
+        "duration": 11.0
+      },
+      "scene_entities": [
+        {
+          "name": "lid",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "click",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Silas",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Silas closed the lid with a satisfying click. \"Ask me again when we\u2019re on that island, Lena. For now, let\u2019s get out of here. I think the cook is actually a federal agent.\"",
+        "active_chars": [
+          "Silas"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [
+          "click"
+        ],
+        "dialogue_emotion_mood": "joy"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, joy mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Silas closed the lid with a satisfying click.",
+          "duration": 2.67,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.95
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "close",
+            "object": "lid"
+          },
+          "audio_prompt": "Narrator, tone=joy, intensity=0.95",
+          "timing": {
+            "start": 0.0,
+            "end": 2.67,
+            "duration": 2.67
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "Ask me again when we\u2019re on that island, Lena. For now, let\u2019s get out of here. I think the cook is actually a federal agent.",
+          "duration": 8.33,
+          "emotion": {
+            "label": "anger",
+            "intensity": 0.472
+          },
+          "semantic": {
+            "subject": "we",
+            "action": "\u2019re",
+            "object": null
+          },
+          "audio_prompt": "Silas, tone=anger, intensity=0.472",
+          "timing": {
+            "start": 2.67,
+            "end": 11.0,
+            "duration": 8.33
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_21",
+      "timing": {
+        "global_start": 183.84,
+        "global_end": 187.67,
+        "duration": 3.83
+      },
+      "scene_entities": [
+        {
+          "name": "hand",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "bag",
+          "type": "prop",
+          "role": "background"
+        },
+        {
+          "name": "Lena",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Lena paused, her hand on her bag. \"Wait, really?\"",
+        "active_chars": [
+          "Lena"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "fear"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, fear mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Lena paused, her hand on her bag.",
+          "duration": 2.33,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.619
+          },
+          "semantic": {
+            "subject": "Lena",
+            "action": "pause",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=fear, intensity=0.619",
+          "timing": {
+            "start": 0.0,
+            "end": 2.33,
+            "duration": 2.33
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Lena",
+          "text": "Wait, really?",
+          "duration": 1.5,
+          "emotion": {
+            "label": "fear",
+            "intensity": 0.517
+          },
+          "semantic": {
+            "subject": null,
+            "action": null,
+            "object": null
+          },
+          "audio_prompt": "Lena, tone=fear, intensity=0.517",
+          "timing": {
+            "start": 2.33,
+            "end": 3.83,
+            "duration": 1.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "scene_22",
+      "timing": {
+        "global_start": 187.67,
+        "global_end": 192.67,
+        "duration": 5.0
+      },
+      "scene_entities": [
+        {
+          "name": "Silas",
+          "type": "character",
+          "role": "foreground"
+        }
+      ],
+      "script": {
+        "text": "Silas stood up and winked. \"No. But he does make a terrible omelet. Let\u2019s go.\"",
+        "active_chars": [
+          "Silas"
+        ]
+      },
+      "audio": {
+        "bgm": "Suspense",
+        "sfx": [],
+        "dialogue_emotion_mood": "joy"
+      },
+      "visuals": {
+        "camera": "Static Medium Shot",
+        "prompt": "Cinematic shot, joy mood"
+      },
+      "beats": [
+        {
+          "type": "narration",
+          "text": "Silas stood up and winked.",
+          "duration": 1.67,
+          "emotion": {
+            "label": "joy",
+            "intensity": 0.939
+          },
+          "semantic": {
+            "subject": "Silas",
+            "action": "stand",
+            "object": null
+          },
+          "audio_prompt": "Narrator, tone=joy, intensity=0.939",
+          "timing": {
+            "start": 0.0,
+            "end": 1.67,
+            "duration": 1.67
+          }
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Silas",
+          "text": "No. But he does make a terrible omelet. Let\u2019s go.",
+          "duration": 3.33,
+          "emotion": {
+            "label": "sadness",
+            "intensity": 0.943
+          },
+          "semantic": {
+            "subject": "he",
+            "action": "make",
+            "object": "omelet"
+          },
+          "audio_prompt": "Silas, tone=sadness, intensity=0.943",
+          "timing": {
+            "start": 1.67,
+            "end": 5.0,
+            "duration": 3.33
+          }
+        }
+      ]
+    }
+  ]
+}
