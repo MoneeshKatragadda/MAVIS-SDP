@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from llama_cpp import Llama
 import json
+import re
 
 class LLMReasoner:
     def __init__(self, config):
         m = config["models"]
-        # Load local GGUF model
         self.llm = Llama(
             model_path=m["llm_model_path"],
             n_ctx=m.get("llm_context_window", 2048),
@@ -13,49 +13,61 @@ class LLMReasoner:
             verbose=False
         )
 
-    def analyze_scene_intent(self, scene_text, scene_emotion):
-        # Focused prompt for Video/Audio metadata
-        prompt = f"""[INST] Analyze the scene.
-Scene: "{scene_text}"
-Emotion: {scene_emotion['dominant_emotion']}
-
-Output format:
-BGM: [Genre like Suspense, Jazz, Cyberpunk]
-CAMERA: [Angle like Low Angle, Tracking Shot, Close Up]
-[/INST]"""
-        
-        out = self.llm(prompt, max_tokens=64, stop=["\n"])
-        text = out["choices"][0]["text"].strip().lower()
-        
-        bgm = "Suspense"
-        camera = "Static Medium Shot"
-        
-        for line in text.splitlines():
-            if "bgm:" in line: bgm = line.split("bgm:")[1].strip().title()
-            if "camera:" in line: camera = line.split("camera:")[1].strip().title()
-            
-        return {"bgm": bgm, "camera": camera}
-
-    def generate_registry(self, characters, full_text):
-        char_list = ", ".join(characters)
-        # Generate Character Voice Registry
-        prompt = f"""[INST] Assign voice archetypes to: {char_list}.
-Context: "{full_text[:800]}..."
-
-Format JSON:
-{{ "Name": {{ "voice": "Deep/Soft/Gravelly", "base_emotion": "Calm/Anxious" }} }}
-[/INST]"""
-
-        out = self.llm(prompt, max_tokens=256)
+    def _clean_json(self, text):
         try:
-            text = out["choices"][0]["text"]
-            # Extract JSON from response
-            s = text.find("{")
-            e = text.rfind("}") + 1
-            if s != -1 and e != -1:
-                return json.loads(text[s:e])
+            start = text.find("{")
+            end = text.rfind("}") + 1
+            if start == -1 or end == -1: return {}
+            return json.loads(text[start:end])
         except:
-            pass
-            
-        # Fallback if LLM parsing fails
-        return {c: {"voice": "Neutral", "base_emotion": "Neutral"} for c in characters}
+            return {}
+
+    def analyze_scene_production(self, scene_text, prev_loc, emotions):
+        # Enriched Prompt for Visuals
+        prompt = f"""[INST] You are a Video Director. Analyze this scene for production.
+Scene: "{scene_text}"
+Context: Previous loc: {prev_loc}. Mood: {emotions['dominant_emotion']}.
+
+Output JSON with:
+1. "visual_prompt": A detailed Stable Diffusion prompt (Subject, Action, Lighting, Style).
+2. "bgm": Genre.
+3. "camera": Shot type.
+4. "transition": Cut type.
+
+JSON:
+{{
+  "visual_prompt": "string",
+  "bgm": "string",
+  "camera": "string",
+  "transition": "string"
+}}
+[/INST]"""
+        
+        out = self.llm(prompt, max_tokens=200)
+        data = self._clean_json(out["choices"][0]["text"])
+        
+        # Fallback if LLM fails
+        return {
+            "visual_prompt": data.get("visual_prompt", f"Cinematic shot, {emotions['dominant_emotion']} atmosphere, {scene_text[:30]}..."),
+            "bgm": data.get("bgm", "Ambient"),
+            "camera": data.get("camera", "Static Medium"),
+            "transition": data.get("transition", "Hard Cut")
+        }
+
+    def generate_rich_registry(self, characters, summary):
+        char_list = ", ".join(characters)
+        prompt = f"""[INST] Create a Character Registry for: {char_list}.
+Story Context: {summary[:500]}...
+
+Assign:
+1. 'voice_model_id': A specific TTS identifier string.
+2. 'archetype': Personality description.
+
+JSON Format:
+{{
+  "Name": {{ "voice_model_id": "string", "archetype": "string" }}
+}}
+[/INST]"""
+
+        out = self.llm(prompt, max_tokens=512)
+        return self._clean_json(out["choices"][0]["text"])
