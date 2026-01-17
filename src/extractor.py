@@ -7,15 +7,12 @@ from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 
-# Ensure NLTK resources
-try:
-    nltk.data.find('vader_lexicon')
-except LookupError:
-    nltk.download('vader_lexicon', quiet=True)
-try:
-    nltk.data.find('wordnet')
-except LookupError:
-    nltk.download('wordnet', quiet=True)
+try: nltk.data.find('vader_lexicon')
+except LookupError: nltk.download('vader_lexicon', quiet=True)
+try: nltk.data.find('wordnet')
+except LookupError: nltk.download('wordnet', quiet=True)
+try: nltk.data.find('omw-1.4')
+except LookupError: nltk.download('omw-1.4', quiet=True)
 
 class NLPExtractor:
     def __init__(self, config):
@@ -30,15 +27,27 @@ class NLPExtractor:
             "slap", "gulp", "swallow", "breath", "step", "clatter", "buzz", "engine", "run"
         }
 
-        # Blocklist for abstract non-visual nouns common in scripts
         self.entity_blocklist = {
             "way", "time", "idea", "series", "security", "side", "line", 
             "business", "risk", "reward", "moment", "hair", "hairs", "grace",
             "name", "internet", "signal", "fence", "air", "tension", "rhythm",
-            "aggression", "bucket", "life", "spreadsheet", "account", "glow"
+            "aggression", "bucket", "life", "spreadsheet", "account", "glow",
+            "door", "handle", "something", "anything", "nothing", "everything",
+            "one", "two", "three", "four", "five", "first", "second", "third",
+            "detail", "bit", "lot", "bunch", "kind", "part"
+        }
+        
+        self.BODY_ACTION_MAP = {
+            "voice": "speak", "eyes": "look", "gaze": "look", "hand": "gesture",
+            "finger": "touch", "legs": "stand", "head": "turn", "face": "express"
+        }
+        
+        self.NOUN_ACTION_MAP = {
+            "breath": "breathe", "sigh": "sigh", "step": "walk",
+            "look": "look", "glance": "look", "smile": "smile", "nod": "nod"
         }
 
-    # ---------------- Emotion & Tone ----------------
+    # ---------------- Emotion ----------------
     def load_emotion_model(self):
         if self._emotion_pipe is None:
             device = 0 if torch.cuda.is_available() else -1
@@ -58,97 +67,188 @@ class NLPExtractor:
         label = max(scores, key=scores.get)
         intensity = min(float(scores[label]), 0.98)
 
-        # --- GENRE-AWARE RE-MAPPING ---
-        # In a Thriller/Noir context, "Joy" is rarely genuine joy.
         if label == "joy":
             sentiment = self.sia.polarity_scores(text)
             if sentiment['compound'] < 0.1: 
-                # If sentiment is negative or neutral, 'joy' is a model error for 'relief' or 'manic'
-                # Map to 'relief' if intensity is low, 'manic' if high, or fallback to 'neutral'
                 label = "relief" if intensity < 0.8 else "manic"
             else:
-                # Genuine positive sentiment in noir is usually 'satisfaction'
                 label = "satisfaction"
-        
-        if label == "sadness":
-            # Map 'sadness' to genre-appropriate 'resignation' or 'melancholy'
+        elif label == "sadness":
             label = "melancholy"
+        elif label == "fear" and intensity < 0.5:
+            label = "tension"
+        elif "clean" in text.lower() and label == "satisfaction":
+             label = "relief"
 
         return {"label": label, "intensity": round(intensity, 3)}
 
     # ---------------- SFX & Semantics ----------------
     def extract_sfx(self, text):
         doc = self.nlp(text)
-        sfx_triggers = []
+        sfx = []
         for t in doc:
             if t.lemma_.lower() in self.sound_lemmas:
-                sfx_triggers.append(t.lemma_.lower())
-            elif t.ent_type_ == "EVENT" or t.text.lower() in ["rain", "thunder", "silence", "noise", "wind"]:
-                 sfx_triggers.append(t.text.lower())
-        return sorted(list(set(sfx_triggers)))
+                sfx.append(t.lemma_.lower())
+            elif t.text.lower() in ["rain", "thunder", "silence", "noise", "wind"]:
+                 sfx.append(t.text.lower())
+        return sorted(list(set(sfx)))
 
-    def extract_svo(self, text):
+    def extract_svo(self, text, context_subject=None):
         doc = self.nlp(text)
+        
         for t in doc:
             if t.dep_ == "nsubj":
-                action_token = t.head
-                verb = action_token.lemma_
-                
-                # Semantic normalization for aux verbs
-                if action_token.text.lower() in ["'re", "'m", "'s", "'ve"]:
-                    if action_token.lemma_ == "be": verb = "is/are"
-                
-                # If verb is auxiliary, check if it's the main root
-                if action_token.dep_ == "aux":
-                    verb = action_token.head.lemma_
+                verb = t.head.lemma_
+                if t.head.dep_ == "aux": verb = t.head.head.lemma_
+                if verb == "be" and t.head.text.lower() in ["'s", "'re"]: verb = "is/are"
 
+                subject = t.text
                 obj = None
-                # Check for direct objects, prepositional objects, or attributes (for "be" verbs)
-                for c in action_token.children:
+                for c in t.head.children:
                     if c.dep_ in {"dobj", "pobj", "attr", "acomp"}:
-                        obj = c.text
-                        break
+                        obj = c.text; break
                 
-                return {"subject": t.text, "action": verb, "object": obj}
-        return {"subject": None, "action": None, "object": None}
+                if subject.lower() in self.BODY_ACTION_MAP:
+                    if context_subject:
+                        subject = context_subject
+                        verb = self.BODY_ACTION_MAP.get(t.text.lower(), verb)
 
-    # ---------------- Speaker Resolution ----------------
+                if t.pos_ == "PRON" and context_subject:
+                    subject = context_subject
+
+                return {"subject": subject, "action": verb, "object": obj}
+
+        for t in doc:
+            if t.pos_ == "NOUN" and t.lemma_ in self.NOUN_ACTION_MAP:
+                action = self.NOUN_ACTION_MAP[t.lemma_]
+                return {"subject": context_subject, "action": action, "object": None}
+
+        # Use "react" instead of "exist" for better visual prompts
+        return {"subject": context_subject, "action": "react", "object": None} if context_subject else {"subject": None, "action": None, "object": None}
+
+    # ---------------- Parsing & Segmentation ----------------
     def parse_scene_structure(self, text, characters):
         beats = []
         parts = re.split(r'(".*?")', text)
         last_speaker = None
-        last_narration_subject = None # Track who acted in the last narration
-        
+        last_narration_subject = None
+        local_scene_cast = set()
+
         for p in parts:
             if not p.strip(): continue
 
             if p.startswith('"') and p.endswith('"'):
                 clean_text = p.strip('"')
-                # Pass the last narration subject as a strong hint
-                speaker = self._resolve_speaker(text, p, characters, last_speaker, last_narration_subject)
+                speaker = self._resolve_speaker(text, p, characters, last_speaker, last_narration_subject, local_scene_cast)
                 
+                if speaker and speaker != "Unknown":
+                    last_speaker = speaker
+                    local_scene_cast.add(speaker)
+
                 beats.append({
                     "type": "dialogue",
                     "speaker": speaker, 
                     "text": clean_text,
                     "duration": self._duration(clean_text, 2.5)
                 })
-                if speaker and speaker != "Unknown":
-                    last_speaker = speaker
-                last_narration_subject = None # Reset after dialogue
             else:
-                # Narration: Find the subject (Actor)
-                subj = self._find_narration_subject(p, characters)
-                if subj: last_narration_subject = subj
-                
-                beats.append({
-                    "type": "narration",
-                    "text": p.strip(),
-                    "duration": self._duration(p, 2.0)
-                })
+                # NEW: Pass characters to enable multi-character split logic
+                sub_parts = self._split_complex_sentences(p.strip(), characters)
+                for sub_text in sub_parts:
+                    if not sub_text.strip(): continue
+                    subj = self._find_narration_subject(sub_text, characters)
+                    if subj: 
+                        last_narration_subject = subj
+                        local_scene_cast.add(subj)
+                    
+                    beats.append({
+                        "type": "narration",
+                        "text": sub_text,
+                        "duration": self._duration(sub_text, 2.0)
+                    })
 
-        active_chars = sorted({b["speaker"] for b in beats if b.get("speaker") and b["speaker"] in characters})
-        return {"beats": beats, "active_chars": active_chars}
+        return {"beats": beats, "active_chars": sorted(list(local_scene_cast))}
+
+    def _split_complex_sentences(self, text, characters):
+        """
+        Smart Splitter:
+        1. Keeps sentences whole by default (prevents "Silas said" stutter).
+        2. Splits ONLY if it detects 2+ DISTINCT characters performing actions in one sentence.
+        """
+        doc = self.nlp(text)
+        final_splits = []
+        
+        for sent in doc.sents:
+            # Check for multiple character subjects
+            char_subjects = set()
+            for t in sent:
+                if t.dep_ == "nsubj" and t.text in characters:
+                    char_subjects.add(t.text)
+            
+            # If < 2 distinct characters, do not split deep (fixes SC_012 stutter)
+            if len(char_subjects) < 2:
+                final_splits.append(sent.text.strip())
+                continue
+
+            # If >= 2 distinct characters, find the split point (fixes SC_018/SC_019 overlap)
+            sub_segments = self._segment_multi_char_sentence(sent, characters)
+            final_splits.extend(sub_segments)
+            
+        return [s.strip(" ,.") for s in final_splits if len(s.strip()) > 2]
+
+    def _segment_multi_char_sentence(self, sent, characters):
+        """
+        Splits a sentence like 'As Julian left, Silas entered' into two beats.
+        """
+        tokens = list(sent)
+        
+        # Map indices to character names
+        subj_map = {} 
+        for i, t in enumerate(tokens):
+            if t.dep_ == "nsubj" and t.text in characters:
+                subj_map[i] = t.text
+
+        sorted_subj_indices = sorted(subj_map.keys())
+        
+        if len(sorted_subj_indices) < 2:
+            return [sent.text]
+
+        current_start = 0
+        segments = []
+
+        # Iterate through pairs of subjects
+        for i in range(len(sorted_subj_indices) - 1):
+            idx_a = sorted_subj_indices[i]
+            idx_b = sorted_subj_indices[i+1]
+            char_a = subj_map[idx_a]
+            char_b = subj_map[idx_b]
+
+            # Only split if characters are DIFFERENT
+            if char_a != char_b:
+                best_split = -1
+                
+                # Look for comma or conjunction between them
+                for k in range(idx_a + 1, idx_b):
+                    if tokens[k].text == "," or tokens[k].text == ";":
+                        best_split = k + 1 # Split after comma
+                        break
+                    elif tokens[k].pos_ == "CCONJ" or tokens[k].text.lower() in ["while", "as", "but"]:
+                        best_split = k # Split before conjunction
+                        if k > 0 and tokens[k-1].text == ",":
+                            best_split = k-1
+                        break
+                
+                if best_split != -1:
+                    seg_text = sent[current_start:best_split].text.strip()
+                    if len(seg_text) > 2:
+                        segments.append(seg_text)
+                    current_start = best_split 
+
+        last_seg = sent[current_start:].text.strip()
+        if len(last_seg) > 2:
+            segments.append(last_seg)
+            
+        return segments if segments else [sent.text]
 
     def _find_narration_subject(self, text, characters):
         doc = self.nlp(text)
@@ -157,119 +257,95 @@ class NLPExtractor:
                 return t.text
         return None
 
-    def _resolve_speaker(self, full_text, quote, characters, last_speaker, last_narration_subject):
+    def _resolve_speaker(self, full_text, quote, characters, last_speaker, last_narration_subject, local_scene_cast):
+        doc = self.nlp(quote.strip('"'))
+        addressed = [e.text for e in doc.ents if e.text in characters]
+        
         idx = full_text.find(quote)
-        if idx == -1: return last_speaker
-        
-        pre = full_text[max(0, idx-100):idx]
-        post = full_text[idx+len(quote):min(len(full_text), idx+len(quote)+100)]
-        
-        combined_context = pre + " ... " + post
-        doc = self.nlp(combined_context)
-        
-        speech_verbs = {"say", "ask", "whisper", "shout", "hiss", "mutter", "yell", "interrupt", "command", "reply", "warn", "snap"}
-        
-        # 1. Grammar Check: Subject of a speech verb in context
-        for t in doc:
-            if t.lemma_ in speech_verbs:
-                for child in t.children:
-                    if child.dep_ == "nsubj" and child.text in characters:
-                        return child.text
+        candidate = None
+        if idx != -1:
+            pre = full_text[max(0, idx-100):idx]
+            post = full_text[idx+len(quote):min(len(full_text), idx+len(quote)+100)]
+            context_doc = self.nlp(pre + " ... " + post)
+            
+            speech_verbs = {
+                "say", "ask", "whisper", "shout", "hiss", "mutter", "yell", 
+                "interrupt", "reply", "warn", "command", "tell", "snap", "continue", "add"
+            }
+            
+            for t in context_doc:
+                if t.lemma_ in speech_verbs:
+                    for child in t.children:
+                        if child.dep_ == "nsubj" and child.text in characters:
+                            candidate = child.text
 
-        # 2. Preceding Action Heuristic (The "Silas took a sip" fix)
-        # If the narration immediately before this quote had a character subject, they are likely speaking.
-        if last_narration_subject:
-            return last_narration_subject
+        speaker = candidate or last_narration_subject or last_speaker or "Unknown"
 
-        # 3. Proximity Check (Nearest character in pre-text)
-        pre_doc = self.nlp(pre)
-        for ent in reversed(pre_doc.ents):
-            if ent.text in characters:
-                return ent.text
+        if speaker == "Unknown" and len(local_scene_cast) == 1:
+            speaker = list(local_scene_cast)[0]
 
-        return last_speaker or "Unknown"
+        if speaker in addressed and len(characters) > 1:
+            alts = [c for c in characters if c != speaker]
+            return alts[0] if alts else "Unknown"
+
+        return speaker
 
     # ---------------- Entity Extraction ----------------
     def extract_scene_entities(self, text, characters):
         doc = self.nlp(text)
         entities = []
-        
         for ent in doc.ents:
             if ent.text in characters: continue
-            
-            # --- STRICT FILTER ---
             if ent.text.lower() in self.entity_blocklist: continue
-            
-            role = "background"
             etype = "prop"
-            
-            if ent.label_ in {"GPE", "LOC", "FAC"}:
-                etype = "location"
-            elif ent.label_ == "ORG":
-                etype = "organization" 
-            elif ent.label_ in {"PRODUCT", "WORK_OF_ART"}:
-                etype = "prop"
-            else:
-                continue
+            if ent.label_ in {"GPE", "LOC", "FAC"}: etype = "location"
+            elif ent.label_ == "ORG": etype = "organization" 
+            entities.append({"name": ent.text, "type": etype, "role": "background"})
 
-            entities.append({"name": ent.text, "type": etype, "role": role})
-
-        # WordNet fallback with Abstract Filter
         for t in doc:
             if t.text.lower() in self.entity_blocklist: continue
             if len(t.text) < 3: continue
-            
             if t.pos_ == "NOUN" and not t.ent_type_:
+                if t.text.isdigit(): continue
                 synsets = wn.synsets(t.lemma_, pos=wn.NOUN)
                 is_phys = False
                 is_abstract = False
-                
                 for s in synsets:
                     hypernyms = [p.name() for p in s.lowest_common_hypernyms(wn.synset('entity.n.01'))]
-                    if "artifact.n.01" in hypernyms or "physical_entity.n.01" in hypernyms:
-                        is_phys = True
-                    if "abstraction.n.06" in hypernyms or "attribute.n.02" in hypernyms:
-                        is_abstract = True
-                
-                # Only include if Physical AND NOT Abstract
+                    if "artifact.n.01" in hypernyms or "physical_entity.n.01" in hypernyms: is_phys = True
+                    if "abstraction.n.06" in hypernyms: is_abstract = True
                 if is_phys and not is_abstract:
                     entities.append({"name": t.text.lower(), "type": "prop", "role": "background"})
 
-        unique_entities = []
-        seen = set()
-        for e in entities:
-            key = (e['name'].lower(), e['type'])
-            if key not in seen:
-                unique_entities.append(e)
-                seen.add(key)
-                
-        return unique_entities
+        unique = {}
+        for e in entities: unique[e['name'].lower()] = e
+        return list(unique.values())
 
     def extract_characters_from_text(self, text):
         doc = self.nlp(text)
         candidates = set()
         BLOCKLIST = {"Board", "Formica", "Teflon", "Monday", "Sunday", "Rusty Anchor", "Anchor", "Adam", "Street", "Station"}
-        active_deps = {"nsubj", "nsubjpass", "dobj", "iobj", "attr", "vocative", "appos"}
-        
+        active_deps = {"nsubj", "nsubjpass", "dobj", "iobj", "vocative"}
         for t in doc:
             if t.pos_ == "PROPN":
                 clean_name = t.text.strip().strip('"').strip("'")
                 if clean_name in BLOCKLIST: continue
-                if t.ent_type_ in {"ORG", "GPE", "LOC", "FAC", "PRODUCT", "DATE", "TIME"}: continue
-                
+                if t.ent_type_ in {"ORG", "GPE", "LOC", "FAC", "PRODUCT", "DATE", "TIME", "CARDINAL", "ORDINAL"}: continue
                 if t.dep_ in active_deps:
                     if len(clean_name) > 2 and clean_name[0].isupper():
                         candidates.add(clean_name)
                 elif t.ent_type_ == "PERSON":
-                    if t.dep_ not in {"poss", "compound", "amod"}:
+                    if t.dep_ not in {"poss", "compound"}:
                          if len(clean_name) > 2 and clean_name[0].isupper():
                             candidates.add(clean_name)
-
         return sorted(list(candidates))
 
     def build_audio_prompt(self, beat, emo):
         speaker = beat.get("speaker", "Narrator") or "Narrator"
         return f"{speaker}, tone={emo['label']}, intensity={emo['intensity']}"
+
+    def strip_dialogue(self, text):
+        return re.sub(r'".*?"', '', text).strip()
 
     def _duration(self, text, speed_factor):
         return round(max(1.0, len(text.split()) / speed_factor), 2)

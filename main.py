@@ -18,13 +18,12 @@ def aggregate_scene_emotion(beats):
     return {"dominant_emotion": common[0], "intensity": 0.8}
 
 def main():
-    logger.info("Initializing MAVIS Pipeline 2.2 (Refined Entities & Visuals)")
+    logger.info("Initializing MAVIS Pipeline 2.9 (Smart Multi-Char Split)")
     cfg = load_config()
     
     with open(cfg["paths"]["input_file"], "r", encoding="utf-8") as f:
         raw = f.read()
         clean_text = re.sub(r'\\', '', raw).strip()
-        # Clean smart quotes
         replacements = {"’": "'", "‘": "'", "“": '"', "”": '"', "–": "-", "—": "-"}
         for k, v in replacements.items():
             clean_text = clean_text.replace(k, v)
@@ -42,6 +41,7 @@ def main():
     global_cursor = 0.0
     global_assets = {"locations": set(), "props": set()}
     last_location = "Start"
+    total_beats_count = 0
 
     for i, s_text in enumerate(scenes_text, 1):
         logger.info(f"Processing Scene {i}")
@@ -55,10 +55,27 @@ def main():
             
         scene_duration = 0.0
         beats = []
-        for beat in struct['beats']:
+        
+        current_active_char = None
+        if struct['active_chars']:
+            current_active_char = struct['active_chars'][0]
+
+        for b_idx, beat in enumerate(struct['beats'], 1):
+            if beat.get('speaker') and beat['speaker'] != "Unknown":
+                current_active_char = beat['speaker']
+
             beat['emotion'] = nlp.get_emotion(beat['text'], beat['type'])
-            beat['semantic'] = nlp.extract_svo(beat['text'])
+            beat['semantic'] = nlp.extract_svo(beat['text'], context_subject=current_active_char)
+            beat['audio_prompt'] = nlp.build_audio_prompt(beat, beat['emotion'])
+            beat['sub_scene_id'] = f"SC_{i:03d}_{b_idx:02d}"
             
+            # Visual Prompt Generation
+            if beat['type'] == 'narration':
+                vis_text = nlp.strip_dialogue(beat['text'])
+                beat['visual_prompt'] = llm.generate_visual_prompt_for_beat(vis_text, beat['emotion']['label'], characters)
+            else:
+                beat['visual_prompt'] = f"Close-up of {beat['speaker']} speaking, {beat['emotion']['label']} expression, noir lighting."
+
             beat_dur = beat['duration']
             beat['timing'] = {
                 "rel_start": round(scene_duration, 2),
@@ -66,9 +83,9 @@ def main():
                 "global_start": round(global_cursor + scene_duration, 2),
                 "global_end": round(global_cursor + scene_duration + beat_dur, 2)
             }
-            beat['audio_prompt'] = nlp.build_audio_prompt(beat, beat['emotion'])
             beats.append(beat)
             scene_duration += beat_dur
+            total_beats_count += 1
 
         scene_emo = aggregate_scene_emotion(beats)
         prod_meta = llm.analyze_scene_production(s_text, last_location, scene_emo)
@@ -93,10 +110,6 @@ def main():
                 "lighting": f"{scene_emo['dominant_emotion']} lighting"
             },
             "entities": entities,
-            "visuals": {
-                # New Field
-                "visual_prompt": prod_meta['visual_prompt']
-            },
             "beats": beats
         }
         
@@ -109,11 +122,20 @@ def main():
     logger.info("Generating Global Registry...")
     registry = llm.generate_rich_registry(characters, clean_text)
     
+    for char in characters:
+        if char not in registry:
+            registry[char] = {
+                "voice_model_id": f"en_us_generic_{char.lower()}", 
+                "archetype": "Standard"
+            }
+
     final_output = {
         "project_meta": {
             "title": "MAVIS_Project", 
             "fps": 24, 
-            "total_duration": round(global_cursor, 2)
+            "total_duration": round(global_cursor, 2),
+            "total_beats": total_beats_count,
+            "validation_status": "Passed" if total_beats_count > 0 else "Failed"
         },
         "global_assets": {
             "locations": sorted(list(global_assets['locations'])),
@@ -127,7 +149,7 @@ def main():
     with open(cfg["paths"]["output_file"], "w", encoding="utf-8") as f:
         json.dump(final_output, f, indent=2, ensure_ascii=False)
     
-    logger.info("Success.")
+    logger.info(f"Success. Total Beats: {total_beats_count}")
 
 if __name__ == "__main__":
     main()

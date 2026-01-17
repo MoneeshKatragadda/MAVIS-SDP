@@ -23,51 +23,80 @@ class LLMReasoner:
             return {}
 
     def analyze_scene_production(self, scene_text, prev_loc, emotions):
-        # Enriched Prompt for Visuals
-        prompt = f"""[INST] You are a Video Director. Analyze this scene for production.
-Scene: "{scene_text}"
-Context: Previous loc: {prev_loc}. Mood: {emotions['dominant_emotion']}.
+        prompt = f"""[INST] Director Mode.
+Scene: "{scene_text[:500]}"
+Mood: {emotions['dominant_emotion']}
 
-Output JSON with:
-1. "visual_prompt": A detailed Stable Diffusion prompt (Subject, Action, Lighting, Style).
-2. "bgm": Genre.
-3. "camera": Shot type.
-4. "transition": Cut type.
-
-JSON:
+JSON (bgm, camera, transition):
 {{
-  "visual_prompt": "string",
   "bgm": "string",
   "camera": "string",
   "transition": "string"
 }}
 [/INST]"""
         
-        out = self.llm(prompt, max_tokens=200)
-        data = self._clean_json(out["choices"][0]["text"])
+        out = self.llm(prompt, max_tokens=100, stop=["}"])
+        raw = "{" + out["choices"][0]["text"] + "}"
+        data = self._clean_json(raw)
         
-        # Fallback if LLM fails
         return {
-            "visual_prompt": data.get("visual_prompt", f"Cinematic shot, {emotions['dominant_emotion']} atmosphere, {scene_text[:30]}..."),
             "bgm": data.get("bgm", "Ambient"),
             "camera": data.get("camera", "Static Medium"),
             "transition": data.get("transition", "Hard Cut")
         }
 
+    def generate_visual_prompt_for_beat(self, beat_text, emotion, allowed_cast):
+        cast_str = ", ".join(allowed_cast)
+        prompt = f"""[INST] Describe image.
+Action: {beat_text}
+Mood: {emotion}
+Allowed Characters: {cast_str}
+Constraint: Visuals only. Max 12 words. No dialogue.
+
+Description: [/INST]"""
+        
+        out = self.llm(prompt, max_tokens=48, stop=["\n", ".", '"'])
+        vis = out["choices"][0]["text"].strip()
+        
+        # Validation: Check for hallucinated names
+        words = vis.split()
+        safe_vis = vis
+        
+        for w in words:
+            clean_w = w.strip(",.")
+            if clean_w[0].isupper() and clean_w not in allowed_cast and clean_w.lower() not in ["cinematic", "noir", "the", "a", "an"]:
+                safe_vis = None # Found hallucination, revert to fallback
+                break
+
+        # Fallback Logic (Updated to avoid 30 char slicing)
+        if not safe_vis or len(safe_vis) < 5 or "import" in safe_vis:
+            clean_beat = beat_text.replace('"', '').strip()
+            # Limit to 15 words to ensure video generator context without overflow
+            truncated_beat = " ".join(clean_beat.split()[:15])
+            safe_vis = f"Cinematic shot of {truncated_beat}, {emotion} lighting."
+            
+        return safe_vis
+
     def generate_rich_registry(self, characters, summary):
         char_list = ", ".join(characters)
-        prompt = f"""[INST] Create a Character Registry for: {char_list}.
-Story Context: {summary[:500]}...
+        prompt = f"""[INST] Assign Voices.
+Characters: {char_list}
+Context: {summary[:400]}...
 
-Assign:
-1. 'voice_model_id': A specific TTS identifier string.
-2. 'archetype': Personality description.
+Format: Name: VoiceID | Archetype
+Output: [/INST]"""
 
-JSON Format:
-{{
-  "Name": {{ "voice_model_id": "string", "archetype": "string" }}
-}}
-[/INST]"""
-
-        out = self.llm(prompt, max_tokens=512)
-        return self._clean_json(out["choices"][0]["text"])
+        out = self.llm(prompt, max_tokens=256)
+        raw_text = out["choices"][0]["text"]
+        
+        registry = {}
+        for line in raw_text.splitlines():
+            match = re.search(r"(\w+):\s*([\w_]+)\s*\|\s*(.+)", line)
+            if match:
+                name, voice, arch = match.groups()
+                if name in characters:
+                    registry[name] = {
+                        "voice_model_id": voice.strip(),
+                        "archetype": arch.strip()
+                    }
+        return registry
