@@ -7,6 +7,7 @@ from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 
+# NLTK Downloads (Quietly)
 try: nltk.data.find('vader_lexicon')
 except LookupError: nltk.download('vader_lexicon', quiet=True)
 try: nltk.data.find('wordnet')
@@ -54,32 +55,38 @@ class NLPExtractor:
             self._emotion_pipe = pipeline(
                 "text-classification",
                 model=self.emotion_model,
-                top_k=None,
+                top_k=None, # Return ALL scores for "Second Best" logic
                 device=device
             )
 
     def get_emotion(self, text, beat_type):
+        """
+        Extracts Base Emotion using RoBERTa.
+        Uses 'Neutral Suppression' to find hidden feelings in narration.
+        """
         if not text.strip(): 
             return {"label": "neutral", "intensity": 0.0}
             
-        scores = self._emotion_pipe(text[:256])[0]
-        scores = {s["label"].lower(): s["score"] for s in scores}
-        label = max(scores, key=scores.get)
-        intensity = min(float(scores[label]), 0.98)
+        # Run inference
+        results = self._emotion_pipe(text[:512])[0]
+        results = sorted(results, key=lambda x: x["score"], reverse=True)
+        
+        top = results[0]
+        second = results[1]
+        
+        label = top["label"].lower()
+        score = float(top["score"])
 
-        if label == "joy":
-            sentiment = self.sia.polarity_scores(text)
-            if sentiment['compound'] < 0.1: 
-                label = "relief" if intensity < 0.8 else "manic"
-            else:
-                label = "satisfaction"
-        elif label == "sadness":
-            label = "melancholy"
-        elif label == "fear" and intensity < 0.5:
-            label = "tension"
-        elif "clean" in text.lower() and label == "satisfaction":
-             label = "relief"
+        # --- Neutral Suppression (Keep this for Narration) ---
+        # If RoBERTa says "neutral" < 0.85, and 2nd option is strong, pick 2nd.
+        if label == "neutral" and score < 0.85:
+            if second["label"].lower() not in ["approval", "realization"]: 
+                label = second["label"].lower()
+                score = float(second["score"]) * 1.5 
+                if score > 0.9: score = 0.9
 
+        intensity = min(score, 0.99)
+        
         return {"label": label, "intensity": round(intensity, 3)}
 
     # ---------------- SFX & Semantics ----------------
@@ -123,7 +130,6 @@ class NLPExtractor:
                 action = self.NOUN_ACTION_MAP[t.lemma_]
                 return {"subject": context_subject, "action": action, "object": None}
 
-        # Use "react" instead of "exist" for better visual prompts
         return {"subject": context_subject, "action": "react", "object": None} if context_subject else {"subject": None, "action": None, "object": None}
 
     # ---------------- Parsing & Segmentation ----------------
@@ -152,7 +158,6 @@ class NLPExtractor:
                     "duration": self._duration(clean_text, 2.5)
                 })
             else:
-                # NEW: Pass characters to enable multi-character split logic
                 sub_parts = self._split_complex_sentences(p.strip(), characters)
                 for sub_text in sub_parts:
                     if not sub_text.strip(): continue
@@ -170,39 +175,26 @@ class NLPExtractor:
         return {"beats": beats, "active_chars": sorted(list(local_scene_cast))}
 
     def _split_complex_sentences(self, text, characters):
-        """
-        Smart Splitter:
-        1. Keeps sentences whole by default (prevents "Silas said" stutter).
-        2. Splits ONLY if it detects 2+ DISTINCT characters performing actions in one sentence.
-        """
         doc = self.nlp(text)
         final_splits = []
         
         for sent in doc.sents:
-            # Check for multiple character subjects
             char_subjects = set()
             for t in sent:
                 if t.dep_ == "nsubj" and t.text in characters:
                     char_subjects.add(t.text)
             
-            # If < 2 distinct characters, do not split deep (fixes SC_012 stutter)
             if len(char_subjects) < 2:
                 final_splits.append(sent.text.strip())
                 continue
 
-            # If >= 2 distinct characters, find the split point (fixes SC_018/SC_019 overlap)
             sub_segments = self._segment_multi_char_sentence(sent, characters)
             final_splits.extend(sub_segments)
             
         return [s.strip(" ,.") for s in final_splits if len(s.strip()) > 2]
 
     def _segment_multi_char_sentence(self, sent, characters):
-        """
-        Splits a sentence like 'As Julian left, Silas entered' into two beats.
-        """
         tokens = list(sent)
-        
-        # Map indices to character names
         subj_map = {} 
         for i, t in enumerate(tokens):
             if t.dep_ == "nsubj" and t.text in characters:
@@ -216,24 +208,20 @@ class NLPExtractor:
         current_start = 0
         segments = []
 
-        # Iterate through pairs of subjects
         for i in range(len(sorted_subj_indices) - 1):
             idx_a = sorted_subj_indices[i]
             idx_b = sorted_subj_indices[i+1]
             char_a = subj_map[idx_a]
             char_b = subj_map[idx_b]
 
-            # Only split if characters are DIFFERENT
             if char_a != char_b:
                 best_split = -1
-                
-                # Look for comma or conjunction between them
                 for k in range(idx_a + 1, idx_b):
                     if tokens[k].text == "," or tokens[k].text == ";":
-                        best_split = k + 1 # Split after comma
+                        best_split = k + 1 
                         break
                     elif tokens[k].pos_ == "CCONJ" or tokens[k].text.lower() in ["while", "as", "but"]:
-                        best_split = k # Split before conjunction
+                        best_split = k 
                         if k > 0 and tokens[k-1].text == ",":
                             best_split = k-1
                         break

@@ -1,10 +1,23 @@
 # -*- coding: utf-8 -*-
 import yaml, json, re, logging
-from collections import Counter
+import warnings
+import os
+from collections import Counter, deque
+
+# Silence library noise
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+
 from src.extractor import NLPExtractor
 from src.llm_reasoner import LLMReasoner
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
+# Configure Logging
+logging.basicConfig(
+    level=logging.INFO, 
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler()]
+)
 logger = logging.getLogger("MAVIS_CORE")
 
 def load_config():
@@ -18,15 +31,12 @@ def aggregate_scene_emotion(beats):
     return {"dominant_emotion": common[0], "intensity": 0.8}
 
 def main():
-    logger.info("Initializing MAVIS Pipeline 2.9 (Smart Multi-Char Split)")
+    logger.info("Initializing MAVIS Pipeline 3.3 (Visual Hallucination Fix)")
     cfg = load_config()
     
     with open(cfg["paths"]["input_file"], "r", encoding="utf-8") as f:
         raw = f.read()
-        clean_text = re.sub(r'\\', '', raw).strip()
-        replacements = {"’": "'", "‘": "'", "“": '"', "”": '"', "–": "-", "—": "-"}
-        for k, v in replacements.items():
-            clean_text = clean_text.replace(k, v)
+        clean_text = raw.replace('\\', '').replace('’', "'").replace('“', '"').replace('”', '"')
         
     scenes_text = [s.strip() for s in clean_text.split("\n\n") if s.strip()]
     
@@ -34,8 +44,13 @@ def main():
     nlp.load_emotion_model()
     llm = LLMReasoner(cfg)
 
+    # 1. Identify Cast
     characters = nlp.extract_characters_from_text(clean_text)
-    logger.info(f"Cast: {characters}")
+    logger.info(f"Cast identified: {characters}")
+
+    # 2. Dynamic Profiling
+    logger.info("Analyzing character archetypes...")
+    cast_profiles = llm.analyze_cast_profiles(clean_text, characters)
 
     timeline = []
     global_cursor = 0.0
@@ -43,8 +58,10 @@ def main():
     last_location = "Start"
     total_beats_count = 0
 
+    context_buffer = deque(maxlen=3) 
+
     for i, s_text in enumerate(scenes_text, 1):
-        logger.info(f"Processing Scene {i}")
+        logger.info(f"--- Processing Scene {i} ---")
         
         struct = nlp.parse_scene_structure(s_text, characters)
         entities = nlp.extract_scene_entities(s_text, characters)
@@ -64,17 +81,42 @@ def main():
             if beat.get('speaker') and beat['speaker'] != "Unknown":
                 current_active_char = beat['speaker']
 
-            beat['emotion'] = nlp.get_emotion(beat['text'], beat['type'])
+            # 1. Base Emotion (LOCKED)
+            base_emotion = nlp.get_emotion(beat['text'], beat['type'])
+            beat['emotion'] = base_emotion 
+            
+            # 2. LLM Refinement (LOCKED)
+            if beat['type'] == 'dialogue' and beat['speaker'] in cast_profiles:
+                context_str = " | ".join(list(context_buffer)) if context_buffer else "Start of scene"
+                archetype = cast_profiles[beat['speaker']]
+                
+                refined_emotion = llm.refine_dialogue_emotion(
+                    speaker=beat['speaker'],
+                    text=beat['text'],
+                    archetype=archetype,
+                    context_window=context_str,
+                    base_emotion=base_emotion['label']
+                )
+                beat['emotion'] = refined_emotion
+                context_buffer.append(f"{beat['speaker']}: {beat['text']}")
+
+            # 3. Attributes
             beat['semantic'] = nlp.extract_svo(beat['text'], context_subject=current_active_char)
             beat['audio_prompt'] = nlp.build_audio_prompt(beat, beat['emotion'])
             beat['sub_scene_id'] = f"SC_{i:03d}_{b_idx:02d}"
             
-            # Visual Prompt Generation
+            # 4. Visual Prompt (UPDATED: Fix Hallucinations)
             if beat['type'] == 'narration':
                 vis_text = nlp.strip_dialogue(beat['text'])
-                beat['visual_prompt'] = llm.generate_visual_prompt_for_beat(vis_text, beat['emotion']['label'], characters)
+                # 🔽 CHANGED: Pass struct['active_chars'] (Scene Specific) instead of characters (Global)
+                # This prevents the model from inserting people who aren't in the scene.
+                beat['visual_prompt'] = llm.generate_visual_prompt_for_beat(
+                    vis_text, 
+                    beat['emotion']['label'], 
+                    struct['active_chars'] 
+                )
             else:
-                beat['visual_prompt'] = f"Close-up of {beat['speaker']} speaking, {beat['emotion']['label']} expression, noir lighting."
+                beat['visual_prompt'] = f"Close-up of {beat['speaker']}, {beat['emotion']['label']} expression, noir lighting."
 
             beat_dur = beat['duration']
             beat['timing'] = {
@@ -120,14 +162,7 @@ def main():
         if locs: last_location = locs[0]
 
     logger.info("Generating Global Registry...")
-    registry = llm.generate_rich_registry(characters, clean_text)
-    
-    for char in characters:
-        if char not in registry:
-            registry[char] = {
-                "voice_model_id": f"en_us_generic_{char.lower()}", 
-                "archetype": "Standard"
-            }
+    registry = llm.generate_rich_registry(characters, cast_profiles)
 
     final_output = {
         "project_meta": {

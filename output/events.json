@@ -12,7 +12,8 @@
     ],
     "props": [
       "Adam",
-      "Formica"
+      "Formica",
+      "The Rusty Anchor"
     ],
     "cast": [
       "Julian",
@@ -24,19 +25,19 @@
   "character_registry": {
     "Julian": {
       "voice_model_id": "en_us_generic_julian",
-      "archetype": "Standard"
+      "archetype": "Noir Character, Stoic"
     },
     "Lena": {
       "voice_model_id": "en_us_generic_lena",
-      "archetype": "Standard"
+      "archetype": "Noir Character, Nervous"
     },
     "Marcus": {
       "voice_model_id": "en_us_generic_marcus",
-      "archetype": "Standard"
+      "archetype": "Noir Character, Femme Fatale"
     },
     "Silas": {
       "voice_model_id": "en_us_generic_silas",
-      "archetype": "Standard"
+      "archetype": "Noir Character, Enforcer"
     }
   },
   "timeline": [
@@ -53,18 +54,18 @@
         "active_cast": []
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "A",
+        "camera": "Close",
         "sfx_cues": [
           "drum",
           "rain"
         ],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [
         {
           "name": "The Rusty Anchor",
-          "type": "organization",
+          "type": "prop",
           "role": "background"
         }
       ],
@@ -74,17 +75,17 @@
           "text": "The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl",
           "duration": 12.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.673
+            "label": "neutral",
+            "intensity": 0.812
           },
           "semantic": {
             "subject": "rain",
             "action": "drum",
             "object": "rhythm"
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.673",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.812",
           "sub_scene_id": "SC_001_01",
-          "visual_prompt": "Cinematic shot of The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of a small diner with rain pouring outside, with steam rising from coffee cups and vinyl records spinning on a jukebox.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 12.5,
@@ -107,10 +108,10 @@
         "active_cast": []
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -119,17 +120,17 @@
           "text": "Inside, three people sat at the corner booth, the air between them thick with unspoken tension",
           "duration": 8.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.569
+            "label": "neutral",
+            "intensity": 0.938
           },
           "semantic": {
             "subject": "people",
             "action": "sit",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.569",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.938",
           "sub_scene_id": "SC_002_01",
-          "visual_prompt": "Cinematic shot of Inside, three people sat at the corner booth, the air between them thick with unspoken, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit bar with a corner booth, three people sitting inside, and a thick air of tension between them. The camera pans from the booth to the three people, capturing their expressions and body language. The shot is in black and white, with a shadowy atmosphere.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 8.0,
@@ -154,10 +155,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -166,17 +167,17 @@
           "text": "Silas took a slow sip of his black coffee, his gaze fixed on the briefcase",
           "duration": 7.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.562
+            "label": "neutral",
+            "intensity": 0.935
           },
           "semantic": {
             "subject": "Silas",
             "action": "take",
             "object": "sip"
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.562",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.935",
           "sub_scene_id": "SC_003_01",
-          "visual_prompt": "Cinematic shot of Silas took a slow sip of his black coffee, his gaze fixed on the briefcase, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas sitting at a dimly lit table in a coffee shop, looking out the window at the street. He takes a slow sip of his black coffee, his gaze fixed on the briefcase in front of him. The camera pans out to show the busy street outside, with cars and people rushing",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -190,17 +191,17 @@
           "text": "You're late, Julian. In this business, late usually means followed.",
           "duration": 4.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.819
+            "label": "annoyance",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "is/are",
             "object": "late"
           },
-          "audio_prompt": "Silas, tone=anger, intensity=0.819",
+          "audio_prompt": "Silas, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_003_02",
-          "visual_prompt": "Close-up of Silas speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, annoyance expression, noir lighting.",
           "timing": {
             "rel_start": 7.5,
             "rel_end": 11.5,
@@ -225,12 +226,12 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "Music",
         "sfx_cues": [
           "swallow"
         ],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [
         {
@@ -245,17 +246,17 @@
           "text": "Julian swallowed hard, his Adam's apple bobbing",
           "duration": 3.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.755
+            "label": "neutral",
+            "intensity": 0.942
           },
           "semantic": {
             "subject": "Julian",
             "action": "swallow",
-            "object": null
+            "object": "bobbing"
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.755",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.942",
           "sub_scene_id": "SC_004_01",
-          "visual_prompt": "Cinematic shot of Julian swallowed hard, his Adam's apple bobbing, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian, a man in his late 30s, sitting at a bar. He is visibly nervous, his hands shaking as he takes a sip of his drink. His Adams apple is bobbing up and down, adding to his discomfort. The bar is dimly lit, with shadows dancing on the",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -269,17 +270,17 @@
           "text": "I took three different subways and walked through a department store. I'm clean, Silas. I swear.",
           "duration": 6.4,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.968
+            "label": "defensive",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "take",
             "object": "subways"
           },
-          "audio_prompt": "Julian, tone=satisfaction, intensity=0.968",
+          "audio_prompt": "Julian, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_004_02",
-          "visual_prompt": "Close-up of Julian speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, defensive expression, noir lighting.",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 9.9,
@@ -304,10 +305,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles.",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [
         {
@@ -322,17 +323,17 @@
           "text": "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin",
           "duration": 9.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.501
+            "label": "neutral",
+            "intensity": 0.903
           },
           "semantic": {
             "subject": "Lena",
             "action": "roll",
             "object": "eyes"
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.501",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.903",
           "sub_scene_id": "SC_005_01",
-          "visual_prompt": "Marcus and Lena were at the cafe, and Marcus wanted to know what Lena was looking at",
+          "visual_prompt": "A noir cinematic shot of Lena sitting at a table in a dimly lit restaurant, her eyes focused on the tablet in front of her. The tablet is covered with a napkin, partially obscuring the screen. Lenas fingers move quickly across the screen, tapping and swiping with a sense of urgency. The camera pans",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 9.5,
@@ -346,17 +347,17 @@
           "text": "He's mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You're welcome.",
           "duration": 8.0,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.98
+            "label": "defensive",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "is/are",
             "object": "clean"
           },
-          "audio_prompt": "Lena, tone=satisfaction, intensity=0.98",
+          "audio_prompt": "Lena, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_005_02",
-          "visual_prompt": "Close-up of Lena speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, defensive expression, noir lighting.",
           "timing": {
             "rel_start": 9.5,
             "rel_end": 17.5,
@@ -381,12 +382,12 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "is",
+        "camera": "angle",
         "sfx_cues": [
           "hiss"
         ],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -396,17 +397,17 @@
           "text": "See?",
           "duration": 1.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.487
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Julian, tone=anger, intensity=0.487",
+          "audio_prompt": "Julian, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_006_01",
-          "visual_prompt": "Close-up of Julian speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, neutral expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -419,17 +420,17 @@
           "text": "Julian hissed, leaning in",
           "duration": 2.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.964
+            "label": "neutral",
+            "intensity": 0.969
           },
           "semantic": {
             "subject": "Julian",
             "action": "hiss",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.964",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.969",
           "sub_scene_id": "SC_006_02",
-          "visual_prompt": "Cinematic shot of Julian hissed, leaning in, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian hissing, leaning in towards the camera. The shot is in black and white, with a dimly lit background. The camera angle is low, making Julian appear larger than life.",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.0,
@@ -443,17 +444,17 @@
           "text": "Lena's got it covered. Can we just do this? I don't like the way the cook is looking at us.",
           "duration": 8.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.53
+            "label": "disapproval",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "get",
             "object": null
           },
-          "audio_prompt": "Julian, tone=anger, intensity=0.53",
+          "audio_prompt": "Julian, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_006_03",
-          "visual_prompt": "Close-up of Julian speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, disapproval expression, noir lighting.",
           "timing": {
             "rel_start": 3.0,
             "rel_end": 11.0,
@@ -478,10 +479,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "CAMERA",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -490,17 +491,17 @@
           "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
           "duration": 10.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.98
+            "label": "neutral",
+            "intensity": 0.927
           },
           "semantic": {
             "subject": "Silas",
             "action": "glance",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.98",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.927",
           "sub_scene_id": "SC_007_01",
-          "visual_prompt": "Cinematic shot of Silas glanced toward the counter where a man in a greasy apron was flipping burgers, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit diner with a man flipping burgers in the background. The camera pans to the counter where Silas is sitting, looking at the man with a neutral expression. The mans apron is stained with grease and he looks agitated. The diner is empty except for a few customers sitting at",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 10.0,
@@ -514,17 +515,17 @@
           "text": "The cook is looking at you because you're sweating enough to fill a bucket. Lean back. Breathe.",
           "duration": 6.8,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.769
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "cook",
             "action": "look",
             "object": null
           },
-          "audio_prompt": "Silas, tone=fear, intensity=0.769",
+          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_007_02",
-          "visual_prompt": "Close-up of Silas speaking, fear expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
           "timing": {
             "rel_start": 10.0,
             "rel_end": 16.8,
@@ -543,18 +544,18 @@
         "transition_to_next": "Hard Cut"
       },
       "script": {
-        "text": "\"I can't breathe!\" Julian whispered. \"Do you have any idea what's in here? If the Board finds out I took these files-\"",
+        "text": "\"I can't breathe!\" Julian whispered. \"Do you have any idea what's in here? If the Board finds out I took these files—\"",
         "active_cast": [
           "Julian"
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "and",
+        "camera": "angle",
         "sfx_cues": [
           "whisper"
         ],
-        "lighting": "fear lighting"
+        "lighting": "sadness lighting"
       },
       "entities": [
         {
@@ -570,17 +571,17 @@
           "text": "I can't breathe!",
           "duration": 1.2,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.59
+            "label": "sadness",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "breathe",
             "object": null
           },
-          "audio_prompt": "Julian, tone=fear, intensity=0.59",
+          "audio_prompt": "Julian, tone=sadness, intensity=0.8",
           "sub_scene_id": "SC_008_01",
-          "visual_prompt": "Close-up of Julian speaking, fear expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, sadness expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.2,
@@ -593,17 +594,17 @@
           "text": "Julian whispered",
           "duration": 1.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.763
+            "label": "neutral",
+            "intensity": 0.967
           },
           "semantic": {
             "subject": "Julian",
             "action": "whisper",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.763",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_008_02",
-          "visual_prompt": "Cinematic shot of Julian whispered, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian whispering into a phone, with shadows and a dimly lit background.",
           "timing": {
             "rel_start": 1.2,
             "rel_end": 2.2,
@@ -614,20 +615,20 @@
         {
           "type": "dialogue",
           "speaker": "Julian",
-          "text": "Do you have any idea what's in here? If the Board finds out I took these files-",
+          "text": "Do you have any idea what's in here? If the Board finds out I took these files—",
           "duration": 6.8,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.956
+            "label": "curiosity",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "have",
             "object": "idea"
           },
-          "audio_prompt": "Julian, tone=anger, intensity=0.956",
+          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_008_03",
-          "visual_prompt": "Close-up of Julian speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 2.2,
             "rel_end": 9.0,
@@ -652,10 +653,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles.",
         "sfx_cues": [],
-        "lighting": "anger lighting"
+        "lighting": "sarcastic lighting"
       },
       "entities": [
         {
@@ -671,17 +672,17 @@
           "text": "If the Board finds out,",
           "duration": 2.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.632
+            "label": "sarcastic",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Board",
             "action": "find",
             "object": null
           },
-          "audio_prompt": "Lena, tone=anger, intensity=0.632",
+          "audio_prompt": "Lena, tone=sarcastic, intensity=0.5",
           "sub_scene_id": "SC_009_01",
-          "visual_prompt": "Close-up of Lena speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, sarcastic expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.0,
@@ -694,17 +695,17 @@
           "text": "Lena interrupted without looking up",
           "duration": 2.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.963
+            "label": "neutral",
+            "intensity": 0.949
           },
           "semantic": {
             "subject": "Lena",
             "action": "interrupt",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.963",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_009_02",
-          "visual_prompt": "Cinematic shot of Lena interrupted without looking up, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Lena sitting at a table in a dimly lit room. She is looking at her phone and typing on it. Her hand is on the table and she is tapping the screen. The camera is close-up and the lighting is low.",
           "timing": {
             "rel_start": 2.0,
             "rel_end": 4.5,
@@ -718,17 +719,17 @@
           "text": "we're all moving to a very small island with no internet. Now, stop talking and slide it over.",
           "duration": 7.2,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.943
+            "label": "annoyance",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "move",
             "object": null
           },
-          "audio_prompt": "Lena, tone=anger, intensity=0.943",
+          "audio_prompt": "Lena, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_009_03",
-          "visual_prompt": "Close-up of Lena speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, annoyance expression, noir lighting.",
           "timing": {
             "rel_start": 4.5,
             "rel_end": 11.7,
@@ -753,10 +754,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -765,17 +766,17 @@
           "text": "Julian hesitated",
           "duration": 1.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.706
+            "label": "neutral",
+            "intensity": 0.949
           },
           "semantic": {
             "subject": "Julian",
             "action": "hesitate",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.706",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_010_01",
-          "visual_prompt": "Cinematic shot of Julian hesitated, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian standing in a dimly lit room, looking at a door. He looks hesitant and unsure of what to do.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -789,17 +790,17 @@
           "text": "Is the money ready?",
           "duration": 1.6,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.956
+            "label": "curiosity",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "money",
             "action": "be",
-            "object": null
+            "object": "ready"
           },
-          "audio_prompt": "Julian, tone=satisfaction, intensity=0.956",
+          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_010_02",
-          "visual_prompt": "Close-up of Julian speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 2.6,
@@ -824,10 +825,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "focuses",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -836,17 +837,17 @@
           "text": "Silas reached into his coat and pulled out a plain white envelope",
           "duration": 6.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.676
+            "label": "neutral",
+            "intensity": 0.961
           },
           "semantic": {
             "subject": "Silas",
             "action": "reach",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.676",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_011_01",
-          "visual_prompt": "Cinematic shot of Silas reached into his coat and pulled out a plain white envelope, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas standing in a dimly lit room, with a plain white envelope in his hand. The room is cluttered with old furniture and papers, and the only light comes from a single lamp in the corner. Silas is looking at the envelope, his face expressionless.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.0,
@@ -859,17 +860,17 @@
           "text": "He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it",
           "duration": 10.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.701
+            "label": "neutral",
+            "intensity": 0.957
           },
           "semantic": {
             "subject": "Silas",
             "action": "hand",
             "object": "it"
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.701",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.957",
           "sub_scene_id": "SC_011_02",
-          "visual_prompt": "Cinematic shot of He didn't hand it over; he simply placed it on the table, keeping his hand, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas, a tall and dark-haired man, standing in a dimly lit room. He is wearing a black suit and a fedora, and he is holding a briefcase. He is facing a table with a briefcase on it, and his hand is on top of it. The",
           "timing": {
             "rel_start": 6.0,
             "rel_end": 16.0,
@@ -894,10 +895,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "match",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -907,17 +908,17 @@
           "text": "Life is a series of trades, kid,",
           "duration": 2.8,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.683
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Life",
             "action": "be",
             "object": "series"
           },
-          "audio_prompt": "Silas, tone=anger, intensity=0.683",
+          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_012_01",
-          "visual_prompt": "Close-up of Silas speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.8,
@@ -930,17 +931,17 @@
           "text": "Silas said, his voice dropping to a low gravel",
           "duration": 4.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.517
+            "label": "neutral",
+            "intensity": 0.93
           },
           "semantic": {
             "subject": "Silas",
             "action": "say",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.517",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.93",
           "sub_scene_id": "SC_012_02",
-          "visual_prompt": "Cinematic shot of Silas said, his voice dropping to a low gravel, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas standing in a dimly lit room, with a single light shining on his face. The room is sparsely furnished with a single chair and a table. Silas is wearing a suit and tie, and his face is serious.",
           "timing": {
             "rel_start": 2.8,
             "rel_end": 7.3,
@@ -954,17 +955,17 @@
           "text": "Information for security. Risk for reward. But the moment you let go of that handle, there's no going back. Are you sure you want to be on this side of the line?",
           "duration": 12.8,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.98
+            "label": "curiosity",
+            "intensity": 0.8
           },
           "semantic": {
-            "subject": "Silas",
-            "action": "let",
+            "subject": "moment",
+            "action": "go",
             "object": null
           },
-          "audio_prompt": "Silas, tone=satisfaction, intensity=0.98",
+          "audio_prompt": "Silas, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_012_03",
-          "visual_prompt": "Close-up of Silas speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 7.3,
             "rel_end": 20.1,
@@ -990,10 +991,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "relief lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1002,17 +1003,17 @@
           "text": "Julian looked at Lena, who finally looked up from her tablet",
           "duration": 5.5,
           "emotion": {
-            "label": "relief",
-            "intensity": 0.544
+            "label": "neutral",
+            "intensity": 0.96
           },
           "semantic": {
             "subject": "Julian",
             "action": "look",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=relief, intensity=0.544",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_013_01",
-          "visual_prompt": "Cinematic shot of Julian looked at Lena, who finally looked up from her tablet, relief lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single window. Julian is sitting on a chair, looking at Lena, who is sitting on the floor, looking at her tablet. The window shows a cloudy sky.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.5,
@@ -1025,17 +1026,17 @@
           "text": "Her expression softened, just for a second",
           "duration": 3.5,
           "emotion": {
-            "label": "relief",
-            "intensity": 0.755
+            "label": "neutral",
+            "intensity": 0.619
           },
           "semantic": {
             "subject": "expression",
             "action": "soften",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=relief, intensity=0.755",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.619",
           "sub_scene_id": "SC_013_02",
-          "visual_prompt": "The room was dimly lit by a single lamp",
+          "visual_prompt": "A noir cinematic shot of a dimly lit room.",
           "timing": {
             "rel_start": 5.5,
             "rel_end": 9.0,
@@ -1049,17 +1050,17 @@
           "text": "It's a one-way door, Julian. But it's better than working for people who view you as a line item on a spreadsheet.",
           "duration": 8.8,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.554
+            "label": "relief",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "is/are",
             "object": "door"
           },
-          "audio_prompt": "Lena, tone=anger, intensity=0.554",
+          "audio_prompt": "Lena, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_013_03",
-          "visual_prompt": "Close-up of Lena speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, relief expression, noir lighting.",
           "timing": {
             "rel_start": 9.0,
             "rel_end": 17.8,
@@ -1085,12 +1086,12 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [
           "breath"
         ],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [
         {
@@ -1105,17 +1106,17 @@
           "text": "With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop",
           "duration": 6.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.98
+            "label": "neutral",
+            "intensity": 0.954
           },
           "semantic": {
             "subject": "Julian",
             "action": "slide",
             "object": "briefcase"
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.98",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.954",
           "sub_scene_id": "SC_014_01",
-          "visual_prompt": "Cinematic shot of With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit office, with a cracked Formica tabletop and a briefcase placed on it. Julian, a tall and lean man, stands at the table, his hands trembling slightly as he slides the briefcase across it. Silas, a shorter and stockier man, sits on the opposite",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.5,
@@ -1128,17 +1129,17 @@
           "text": "Silas swapped it for the envelope with the grace of a card shark",
           "duration": 6.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.619
+            "label": "neutral",
+            "intensity": 0.951
           },
           "semantic": {
             "subject": "Silas",
             "action": "swap",
             "object": "it"
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.619",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.951",
           "sub_scene_id": "SC_014_02",
-          "visual_prompt": "Cinematic shot of Silas swapped it for the envelope with the grace of a card shark, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single spotlight on a table. Julian is sitting at the table, looking at a stack of envelopes. Silas enters the room and approaches the table. He picks up one of the envelopes and examines it. He then reaches for the stack of envelopes and",
           "timing": {
             "rel_start": 6.5,
             "rel_end": 13.0,
@@ -1163,13 +1164,13 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles",
         "sfx_cues": [
           "engine",
           "run"
         ],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1179,17 +1180,17 @@
           "text": "Go out the back,",
           "duration": 1.6,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.876
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Silas, tone=anger, intensity=0.876",
+          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_015_01",
-          "visual_prompt": "Close-up of Silas speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.6,
@@ -1202,17 +1203,17 @@
           "text": "Silas commanded",
           "duration": 1.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.438
+            "label": "neutral",
+            "intensity": 0.96
           },
           "semantic": {
             "subject": "Silas",
             "action": "command",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.438",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_015_02",
-          "visual_prompt": "Cinematic shot of Silas commanded, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas standing in the middle of a dimly lit room, with shadows stretching across the walls. He is tall and lean, with a serious expression on his face. He stands with his hands on his hips, looking around the room with a commanding presence.",
           "timing": {
             "rel_start": 1.6,
             "rel_end": 2.6,
@@ -1226,17 +1227,17 @@
           "text": "There's a blue sedan with the engine running. The driver's name is Marcus. He'll take you to the safe house.",
           "duration": 8.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.573
+            "label": "relief",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "engine",
             "action": "run",
             "object": null
           },
-          "audio_prompt": "Silas, tone=fear, intensity=0.573",
+          "audio_prompt": "Silas, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_015_03",
-          "visual_prompt": "Close-up of Silas speaking, fear expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, relief expression, noir lighting.",
           "timing": {
             "rel_start": 2.6,
             "rel_end": 10.6,
@@ -1261,10 +1262,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1273,17 +1274,17 @@
           "text": "Julian grabbed the envelope and stood up, his legs looking like they might give way",
           "duration": 7.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.859
+            "label": "neutral",
+            "intensity": 0.963
           },
           "semantic": {
             "subject": "Julian",
             "action": "grab",
             "object": "envelope"
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.859",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.963",
           "sub_scene_id": "SC_016_01",
-          "visual_prompt": "The envelope was small and unassuming, with no markings or stamps to suggest its contents",
+          "visual_prompt": "A noir cinematic shot of a dimly lit room, with a single spotlight on Julian as he stands up. The camera moves slowly, highlighting his legs as they look like they might give way. The room is cluttered with papers and books, and the walls are covered in peeling wallpaper. The only sound is the faint",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -1297,17 +1298,17 @@
           "text": "What happens to the files?",
           "duration": 2.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.569
+            "label": "curiosity",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "happen",
             "object": null
           },
-          "audio_prompt": "Julian, tone=anger, intensity=0.569",
+          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_016_02",
-          "visual_prompt": "Close-up of Julian speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 7.5,
             "rel_end": 9.5,
@@ -1332,12 +1333,12 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "is",
+        "camera": "is",
         "sfx_cues": [
           "snap"
         ],
-        "lighting": "anger lighting"
+        "lighting": "amusement lighting"
       },
       "entities": [
         {
@@ -1352,17 +1353,17 @@
           "text": "Lena snapped her tablet shut and offered a grim smile",
           "duration": 5.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.354
+            "label": "amusement",
+            "intensity": 0.135
           },
           "semantic": {
             "subject": "Lena",
             "action": "snap",
             "object": "tablet"
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.354",
+          "audio_prompt": "Narrator, tone=amusement, intensity=0.135",
           "sub_scene_id": "SC_017_01",
-          "visual_prompt": "Cinematic shot of Lena snapped her tablet shut and offered a grim smile, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Lena, a woman with a sly smile, sitting at a table with her tablet closed. The lighting is dim, with shadows casting across her face. The camera pans out to show the empty room around her.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.0,
@@ -1376,17 +1377,17 @@
           "text": "By the time you reach the safe house, they won't exist anymore. And neither will the Board's bank accounts.",
           "duration": 7.6,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.557
+            "label": "disapproval",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "reach",
             "object": "house"
           },
-          "audio_prompt": "Lena, tone=anger, intensity=0.557",
+          "audio_prompt": "Lena, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_017_02",
-          "visual_prompt": "Close-up of Lena speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, disapproval expression, noir lighting.",
           "timing": {
             "rel_start": 5.0,
             "rel_end": 12.6,
@@ -1412,10 +1413,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "fear lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1424,17 +1425,17 @@
           "text": "As Julian disappeared through the kitchen doors",
           "duration": 3.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.879
+            "label": "neutral",
+            "intensity": 0.964
           },
           "semantic": {
             "subject": "Julian",
             "action": "disappear",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.879",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.964",
           "sub_scene_id": "SC_018_01",
-          "visual_prompt": "Cinematic shot of As Julian disappeared through the kitchen doors, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian disappearing through the kitchen doors. The shot is in black and white, with a dimly lit kitchen. The camera slowly pans out to show the kitchen, with a single light source coming from a window. The shot ends with the camera moving away from the kitchen, leaving the viewer with a sense",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1447,17 +1448,17 @@
           "text": "Silas opened the briefcase just an inch",
           "duration": 3.5,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.696
+            "label": "neutral",
+            "intensity": 0.967
           },
           "semantic": {
             "subject": "Silas",
             "action": "open",
             "object": "briefcase"
           },
-          "audio_prompt": "Narrator, tone=fear, intensity=0.696",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_018_02",
-          "visual_prompt": "Cinematic shot of Silas opened the briefcase just an inch, fear lighting.",
+          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single spotlight on a briefcase.",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 7.0,
@@ -1470,17 +1471,17 @@
           "text": "A faint blue glow reflected in his eyes",
           "duration": 4.0,
           "emotion": {
-            "label": "relief",
-            "intensity": 0.628
+            "label": "neutral",
+            "intensity": 0.884
           },
           "semantic": {
             "subject": "glow",
             "action": "reflect",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=relief, intensity=0.628",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.884",
           "sub_scene_id": "SC_018_03",
-          "visual_prompt": "Cinematic shot of A faint blue glow reflected in his eyes, relief lighting.",
+          "visual_prompt": "A noir cinematic shot of Julian, a middle-aged man, sitting in a dimly lit room. He is looking at a small table with a vial of liquid on it. The room is filled with shadows and a faint blue glow is reflected in his eyes.",
           "timing": {
             "rel_start": 7.0,
             "rel_end": 11.0,
@@ -1505,10 +1506,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles",
         "sfx_cues": [],
-        "lighting": "satisfaction lighting"
+        "lighting": "curiosity lighting"
       },
       "entities": [],
       "beats": [
@@ -1518,17 +1519,17 @@
           "text": "Well?",
           "duration": 1.0,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.768
+            "label": "curiosity",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Lena, tone=satisfaction, intensity=0.768",
+          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_019_01",
-          "visual_prompt": "Close-up of Lena speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -1541,17 +1542,17 @@
           "text": "Lena asked, packing her gear",
           "duration": 2.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.469
+            "label": "neutral",
+            "intensity": 0.965
           },
           "semantic": {
             "subject": "Lena",
             "action": "ask",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.469",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.965",
           "sub_scene_id": "SC_019_02",
-          "visual_prompt": "Cinematic shot of Lena asked, packing her gear, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Lena, a woman in her mid-30s, packing her gear into a black leather briefcase. She is standing in front of a dark alley, with the only light coming from a flickering streetlamp. The alley is empty, except for a few stray cats and a dumpster. Lena",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.5,
@@ -1565,17 +1566,17 @@
           "text": "Was it worth the gray hairs?",
           "duration": 2.4,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.657
+            "label": "curiosity",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Lena",
             "action": "be",
             "object": "worth"
           },
-          "audio_prompt": "Lena, tone=satisfaction, intensity=0.657",
+          "audio_prompt": "Lena, tone=curiosity, intensity=0.5",
           "sub_scene_id": "SC_019_03",
-          "visual_prompt": "Close-up of Lena speaking, satisfaction expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, curiosity expression, noir lighting.",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 5.9,
@@ -1600,12 +1601,12 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles",
         "sfx_cues": [
           "click"
         ],
-        "lighting": "satisfaction lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1614,17 +1615,17 @@
           "text": "Silas closed the lid with a satisfying click",
           "duration": 4.0,
           "emotion": {
-            "label": "satisfaction",
-            "intensity": 0.98
+            "label": "neutral",
+            "intensity": 0.936
           },
           "semantic": {
             "subject": "Silas",
             "action": "close",
             "object": "lid"
           },
-          "audio_prompt": "Narrator, tone=satisfaction, intensity=0.98",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.936",
           "sub_scene_id": "SC_020_01",
-          "visual_prompt": "Cinematic shot of Silas closed the lid with a satisfying click, satisfaction lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas closing the lid of a briefcase with a satisfying click. The shot is in black and white, with a dimly lit room in the background. Silas is standing in front of the briefcase, holding it with a serious expression on his face. The briefcase is open, revealing",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 4.0,
@@ -1638,17 +1639,17 @@
           "text": "Ask me again when we're on that island, Lena. For now, let's get out of here. I think the cook is actually a federal agent.",
           "duration": 10.0,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.459
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "is/are",
             "object": null
           },
-          "audio_prompt": "Silas, tone=anger, intensity=0.459",
+          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_020_02",
-          "visual_prompt": "Close-up of Silas speaking, anger expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
           "timing": {
             "rel_start": 4.0,
             "rel_end": 14.0,
@@ -1673,10 +1674,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
+        "bgm": "Suspenseful Drone",
         "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "anger lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -1685,17 +1686,17 @@
           "text": "Lena paused, her hand on her bag",
           "duration": 3.5,
           "emotion": {
-            "label": "anger",
-            "intensity": 0.547
+            "label": "neutral",
+            "intensity": 0.961
           },
           "semantic": {
             "subject": "Lena",
             "action": "pause",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=anger, intensity=0.547",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_021_01",
-          "visual_prompt": "Cinematic shot of Lena paused, her hand on her bag, anger lighting.",
+          "visual_prompt": "A noir cinematic shot of Lena standing in a dimly lit alleyway, her hand on her bag. The camera pans out to show the empty streets and the distant neon lights of the city. The shot is in black and white, with a grainy texture.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1709,17 +1710,17 @@
           "text": "Wait, really?",
           "duration": 1.0,
           "emotion": {
-            "label": "fear",
-            "intensity": 0.517
+            "label": "surprise",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Lena, tone=fear, intensity=0.517",
+          "audio_prompt": "Lena, tone=surprise, intensity=0.8",
           "sub_scene_id": "SC_021_02",
-          "visual_prompt": "Close-up of Lena speaking, fear expression, noir lighting.",
+          "visual_prompt": "Close-up of Lena, surprise expression, noir lighting.",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 4.5,
@@ -1744,10 +1745,10 @@
         ]
       },
       "production": {
-        "bgm": "Ambient",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles",
         "sfx_cues": [],
-        "lighting": "manic lighting"
+        "lighting": "joy lighting"
       },
       "entities": [],
       "beats": [
@@ -1756,17 +1757,17 @@
           "text": "Silas stood up and winked",
           "duration": 2.5,
           "emotion": {
-            "label": "manic",
-            "intensity": 0.916
+            "label": "joy",
+            "intensity": 0.221
           },
           "semantic": {
             "subject": "Silas",
             "action": "stand",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=manic, intensity=0.916",
+          "audio_prompt": "Narrator, tone=joy, intensity=0.221",
           "sub_scene_id": "SC_022_01",
-          "visual_prompt": "Cinematic shot of Silas stood up and winked, manic lighting.",
+          "visual_prompt": "A noir cinematic shot of Silas standing up from his seat, with a sly smile on his face. He looks around the dimly lit room, taking in the shadows and the flickering light. He then turns to face the camera, his eyes twinkling with mischief. He leans in close to the camera, and w",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.5,
@@ -1780,17 +1781,17 @@
           "text": "No. But he does make a terrible omelet. Let's go.",
           "duration": 4.0,
           "emotion": {
-            "label": "melancholy",
-            "intensity": 0.951
+            "label": "disapproval",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "make",
             "object": "omelet"
           },
-          "audio_prompt": "Silas, tone=melancholy, intensity=0.951",
+          "audio_prompt": "Silas, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_022_02",
-          "visual_prompt": "Close-up of Silas speaking, melancholy expression, noir lighting.",
+          "visual_prompt": "Close-up of Silas, disapproval expression, noir lighting.",
           "timing": {
             "rel_start": 2.5,
             "rel_end": 6.5,

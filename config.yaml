@@ -3,12 +3,13 @@ paths:
   output_file: output/events.json
 
 models:
-  spacy_model: en_core_web_sm
-  emotion_model: bhadresh-savani/distilbert-base-uncased-emotion
+  spacy_model: en_core_web_lg
+  # Research-Grade Emotion Model (28 labels)
+  emotion_model: SamLowe/roberta-base-go_emotions
 
-  # 🔽 ADD THIS
+  # Your Local LLM
   llm_model_path: models/phi-2.Q4_K_M.gguf
-  llm_context_window: 512
+  llm_context_window: 2048
   llm_gpu_layers: 20
 
 performance:
