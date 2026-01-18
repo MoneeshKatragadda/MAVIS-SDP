@@ -51,11 +51,14 @@ def main():
     # 2. Dynamic Profiling
     logger.info("Analyzing character archetypes...")
     cast_profiles = llm.analyze_cast_profiles(clean_text, characters)
+    
+    logger.info("Generating consistent character visuals...")
+    llm.analyze_cast_visuals(clean_text, characters)
 
     timeline = []
     global_cursor = 0.0
     global_assets = {"locations": set(), "props": set()}
-    last_location = "Start"
+    last_location = "a dimly lit noir setting"
     total_beats_count = 0
 
     context_buffer = deque(maxlen=3) 
@@ -105,18 +108,13 @@ def main():
             beat['audio_prompt'] = nlp.build_audio_prompt(beat, beat['emotion'])
             beat['sub_scene_id'] = f"SC_{i:03d}_{b_idx:02d}"
             
-            # 4. Visual Prompt (UPDATED: Fix Hallucinations)
-            if beat['type'] == 'narration':
-                vis_text = nlp.strip_dialogue(beat['text'])
-                # 🔽 CHANGED: Pass struct['active_chars'] (Scene Specific) instead of characters (Global)
-                # This prevents the model from inserting people who aren't in the scene.
-                beat['visual_prompt'] = llm.generate_visual_prompt_for_beat(
-                    vis_text, 
-                    beat['emotion']['label'], 
-                    struct['active_chars'] 
-                )
-            else:
-                beat['visual_prompt'] = f"Close-up of {beat['speaker']}, {beat['emotion']['label']} expression, noir lighting."
+            # 4. Visual Prompt (UPDATED: Strict Consistency)
+            # Use the new v2 method which handles templates and consistency
+            beat['visual_prompt'] = llm.generate_visual_prompt_v2(
+                beat_data=beat,
+                location=last_location,
+                active_cast=struct['active_chars']
+            )
 
             beat_dur = beat['duration']
             beat['timing'] = {
@@ -158,8 +156,8 @@ def main():
         timeline.append(event)
         global_cursor += scene_duration
         
-        locs = [e['name'] for e in entities if e['type'] == 'location']
-        if locs: last_location = locs[0]
+        # locs = [e['name'] for e in entities if e['type'] == 'location']
+        # if locs: last_location = locs[0]
 
     logger.info("Generating Global Registry...")
     registry = llm.generate_rich_registry(characters, cast_profiles)

@@ -25,19 +25,27 @@
   "character_registry": {
     "Julian": {
       "voice_model_id": "en_us_generic_julian",
-      "archetype": "Noir Character, Stoic"
+      "archetype": "Noir Character, Stoic",
+      "gender": "Male",
+      "clothing_style": "Detective"
     },
     "Lena": {
       "voice_model_id": "en_us_generic_lena",
-      "archetype": "Noir Character, Nervous"
+      "archetype": "Noir Character, Nervous",
+      "gender": "Female",
+      "clothing_style": "Elegant"
     },
     "Marcus": {
       "voice_model_id": "en_us_generic_marcus",
-      "archetype": "Noir Character, Femme Fatale"
+      "archetype": "Noir Character, Femme Fatale",
+      "gender": "Male",
+      "clothing_style": "Disheveled"
     },
     "Silas": {
       "voice_model_id": "en_us_generic_silas",
-      "archetype": "Noir Character, Enforcer"
+      "archetype": "Noir Character, Enforcer",
+      "gender": "Male",
+      "clothing_style": "Tough"
     }
   },
   "timeline": [
@@ -54,8 +62,8 @@
         "active_cast": []
       },
       "production": {
-        "bgm": "A",
-        "camera": "Close",
+        "bgm": "Suspenseful Drone",
+        "camera": "Angle",
         "sfx_cues": [
           "drum",
           "rain"
@@ -85,7 +93,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.812",
           "sub_scene_id": "SC_001_01",
-          "visual_prompt": "A noir cinematic shot of a small diner with rain pouring outside, with steam rising from coffee cups and vinyl records spinning on a jukebox.",
+          "visual_prompt": "A dimly lit noir setting with a close-up shot of a diners fogged windows. The rain is falling heavily against the windows, and the sound can be heard. The diner has a burnt coffee smell, and old vinyl records are scattered on the tables. The room is dimly lit with a single spotlight illuminating the diner counter.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 12.5,
@@ -109,7 +117,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
+        "camera": "angle",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -130,7 +138,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.938",
           "sub_scene_id": "SC_002_01",
-          "visual_prompt": "A noir cinematic shot of a dimly lit bar with a corner booth, three people sitting inside, and a thick air of tension between them. The camera pans from the booth to the three people, capturing their expressions and body language. The shot is in black and white, with a shadowy atmosphere.",
+          "visual_prompt": "A low angle shot of a dimly lit noir setting with three silhouettes sitting at a corner booth. The air between them is thick with unspoken tension. The booth is empty, and the light is coming from a neon sign outside. The floor is dirty, and theres a few scraps of paper on the table.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 8.0,
@@ -177,7 +185,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.935",
           "sub_scene_id": "SC_003_01",
-          "visual_prompt": "A noir cinematic shot of Silas sitting at a dimly lit table in a coffee shop, looking out the window at the street. He takes a slow sip of his black coffee, his gaze fixed on the briefcase in front of him. The camera pans out to show the busy street outside, with cars and people rushing",
+          "visual_prompt": "Cinematic color shot of Silas hand slowly takes a sip of his black coffee, his intense gaze fixed on the briefcase, with his jacket making shadows that look like he is in deep thought.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -201,7 +209,7 @@
           },
           "audio_prompt": "Silas, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_003_02",
-          "visual_prompt": "Close-up of Silas, annoyance expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with annoyance expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 7.5,
             "rel_end": 11.5,
@@ -226,8 +234,8 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Music",
+        "bgm": "CAMERA",
+        "camera": "4.",
         "sfx_cues": [
           "swallow"
         ],
@@ -256,7 +264,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.942",
           "sub_scene_id": "SC_004_01",
-          "visual_prompt": "A noir cinematic shot of Julian, a man in his late 30s, sitting at a bar. He is visibly nervous, his hands shaking as he takes a sip of his drink. His Adams apple is bobbing up and down, adding to his discomfort. The bar is dimly lit, with shadows dancing on the",
+          "visual_prompt": "Cinematic color shot of Julian (Julian, wearing a trench coat and fedora, sharp facial features,",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -280,7 +288,7 @@
           },
           "audio_prompt": "Julian, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_004_02",
-          "visual_prompt": "Close-up of Julian, defensive expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with defensive expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 9.9,
@@ -306,7 +314,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "angles.",
+        "camera": "Low",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -333,7 +341,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.903",
           "sub_scene_id": "SC_005_01",
-          "visual_prompt": "A noir cinematic shot of Lena sitting at a table in a dimly lit restaurant, her eyes focused on the tablet in front of her. The tablet is covered with a napkin, partially obscuring the screen. Lenas fingers move quickly across the screen, tapping and swiping with a sense of urgency. The camera pans",
+          "visual_prompt": "Cinematic color shot of Lena  is sitting at a dimly lit table in a noir setting. She rolls her eyes and her fingers are shown dancing across the screen of a tablet that is hidden under a napkin. There are shadows casting long shapes on the table and the character looks away. The lighting is dim and the camera is at a low angle.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 9.5,
@@ -357,7 +365,7 @@
           },
           "audio_prompt": "Lena, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_005_02",
-          "visual_prompt": "Close-up of Lena, defensive expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with defensive expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 9.5,
             "rel_end": 17.5,
@@ -382,8 +390,8 @@
         ]
       },
       "production": {
-        "bgm": "is",
-        "camera": "angle",
+        "bgm": "Suspenseful Drone",
+        "camera": "angles",
         "sfx_cues": [
           "hiss"
         ],
@@ -407,7 +415,7 @@
           },
           "audio_prompt": "Julian, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_006_01",
-          "visual_prompt": "Close-up of Julian, neutral expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -430,7 +438,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.969",
           "sub_scene_id": "SC_006_02",
-          "visual_prompt": "A noir cinematic shot of Julian hissing, leaning in towards the camera. The shot is in black and white, with a dimly lit background. The camera angle is low, making Julian appear larger than life.",
+          "visual_prompt": "A low-angle shot of Julians face, his trench coat and fedora, with the blue glow reflected in his eyes. The dimly lit background adds to the noir setting.",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.0,
@@ -454,7 +462,7 @@
           },
           "audio_prompt": "Julian, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_006_03",
-          "visual_prompt": "Close-up of Julian, disapproval expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with disapproval expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 3.0,
             "rel_end": 11.0,
@@ -479,8 +487,8 @@
         ]
       },
       "production": {
-        "bgm": "CAMERA",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angle",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -501,7 +509,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.927",
           "sub_scene_id": "SC_007_01",
-          "visual_prompt": "A noir cinematic shot of a dimly lit diner with a man flipping burgers in the background. The camera pans to the counter where Silas is sitting, looking at the man with a neutral expression. The mans apron is stained with grease and he looks agitated. The diner is empty except for a few customers sitting at",
+          "visual_prompt": "Cinematic shot of Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary, dramatic lighting, noir atmosphere, 4k, highly detailed",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 10.0,
@@ -525,7 +533,7 @@
           },
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_007_02",
-          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 10.0,
             "rel_end": 16.8,
@@ -550,8 +558,8 @@
         ]
       },
       "production": {
-        "bgm": "and",
-        "camera": "angle",
+        "bgm": "CAMERA",
+        "camera": "Exercise",
         "sfx_cues": [
           "whisper"
         ],
@@ -581,7 +589,7 @@
           },
           "audio_prompt": "Julian, tone=sadness, intensity=0.8",
           "sub_scene_id": "SC_008_01",
-          "visual_prompt": "Close-up of Julian, sadness expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with sadness expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.2,
@@ -604,7 +612,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_008_02",
-          "visual_prompt": "A noir cinematic shot of Julian whispering into a phone, with shadows and a dimly lit background.",
+          "visual_prompt": "Julian, wearing a trench coat and fedora, sharp facial features, 30s, standing in a dimly lit noir setting. He is looking away, and his tone is mysterious. Shadows are casting long shapes, and theres a faint blue glow reflecting in his eyes. The camera is in a low angle shot, and theres fog in the background.",
           "timing": {
             "rel_start": 1.2,
             "rel_end": 2.2,
@@ -628,7 +636,7 @@
           },
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_008_03",
-          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 2.2,
             "rel_end": 9.0,
@@ -654,9 +662,9 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "angles.",
+        "camera": "Static Medium",
         "sfx_cues": [],
-        "lighting": "sarcastic lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [
         {
@@ -672,17 +680,17 @@
           "text": "If the Board finds out,",
           "duration": 2.0,
           "emotion": {
-            "label": "sarcastic",
-            "intensity": 0.5
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Board",
             "action": "find",
             "object": null
           },
-          "audio_prompt": "Lena, tone=sarcastic, intensity=0.5",
+          "audio_prompt": "Lena, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_009_01",
-          "visual_prompt": "Close-up of Lena, sarcastic expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.0,
@@ -705,7 +713,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_009_02",
-          "visual_prompt": "A noir cinematic shot of Lena sitting at a table in a dimly lit room. She is looking at her phone and typing on it. Her hand is on the table and she is tapping the screen. The camera is close-up and the lighting is low.",
+          "visual_prompt": "Lena, in a dimly lit noir setting, wearing an elegant evening dress, wavy hair and in her 20s, walks confidently towards a man who is sitting on a couch, smoking a cigarette. She pauses in front of him and speaks without looking up. The room is dimly lit and there is a faint blue glow in the mans eyes. The camera moves in a slow pan as Lena speaks. The atmosphere is tense and the lighting is dramatic.",
           "timing": {
             "rel_start": 2.0,
             "rel_end": 4.5,
@@ -729,7 +737,7 @@
           },
           "audio_prompt": "Lena, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_009_03",
-          "visual_prompt": "Close-up of Lena, annoyance expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with annoyance expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 4.5,
             "rel_end": 11.7,
@@ -776,7 +784,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_010_01",
-          "visual_prompt": "A noir cinematic shot of Julian standing in a dimly lit room, looking at a door. He looks hesitant and unsure of what to do.",
+          "visual_prompt": "Cinematic close up shot of Julians face where his eyes are looking away. The background is dark and has shadows casting long shapes. The camera is moving slowly to the right.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -800,7 +808,7 @@
           },
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_010_02",
-          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 2.6,
@@ -826,7 +834,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "focuses",
+        "camera": "angle",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -847,7 +855,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_011_01",
-          "visual_prompt": "A noir cinematic shot of Silas standing in a dimly lit room, with a plain white envelope in his hand. The room is cluttered with old furniture and papers, and the only light comes from a single lamp in the corner. Silas is looking at the envelope, his face expressionless.",
+          "visual_prompt": "A slow pan shot of Silas reaching into his coat, his jacket rustling. The envelope is plain white, and Silas hand is steady and precise as he pulls it out. The camera moves up and down, showing the texture of the envelope and the creases in Silas coat. The lighting is dim, and the background is shadowy, adding to the noir atmosphere.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.0,
@@ -870,7 +878,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.957",
           "sub_scene_id": "SC_011_02",
-          "visual_prompt": "A noir cinematic shot of Silas, a tall and dark-haired man, standing in a dimly lit room. He is wearing a black suit and a fedora, and he is holding a briefcase. He is facing a table with a briefcase on it, and his hand is on top of it. The",
+          "visual_prompt": "Cinematic color shot of The scene is set in a dimly lit noir setting. Silas is wearing a leather jacket and has an intense gaze. He is sitting in a dimly lit room with a table in the center. Silas places an object on the table, and he firmly holds his hand on top of it. The room is shrouded in shadows, and the air is heavy with the smell of cigarette smoke. The camera moves slowly, capturing the intensity of the moment.",
           "timing": {
             "rel_start": 6.0,
             "rel_end": 16.0,
@@ -895,8 +903,8 @@
         ]
       },
       "production": {
-        "bgm": "match",
-        "camera": "Static Medium",
+        "bgm": "Suspenseful Drone",
+        "camera": "angle",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -918,7 +926,7 @@
           },
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_012_01",
-          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.8,
@@ -941,7 +949,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.93",
           "sub_scene_id": "SC_012_02",
-          "visual_prompt": "A noir cinematic shot of Silas standing in a dimly lit room, with a single light shining on his face. The room is sparsely furnished with a single chair and a table. Silas is wearing a suit and tie, and his face is serious.",
+          "visual_prompt": "Cinematic close up shot of Silas with a serious look on his face. He is standing in a dimly lit noir setting with shadows casting long shapes. The camera slowly pans to the right, revealing a gritty, urban background with a low angle shot. Smoke is coming from a cigarette, and the sound of rain can be heard in the distance.",
           "timing": {
             "rel_start": 2.8,
             "rel_end": 7.3,
@@ -965,7 +973,7 @@
           },
           "audio_prompt": "Silas, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_012_03",
-          "visual_prompt": "Close-up of Silas, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 7.3,
             "rel_end": 20.1,
@@ -1013,7 +1021,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_013_01",
-          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single window. Julian is sitting on a chair, looking at Lena, who is sitting on the floor, looking at her tablet. The window shows a cloudy sky.",
+          "visual_prompt": "Cinematic color shot of Julian and Lena are sitting in a dimly lit noir setting, with shadows casting long shapes on the walls. Lena is wearing an elegant evening dress, wavy hair, and is looking up from her tablet. Julian is wearing a trench coat and fedora, sharp facial features, and is looking directly at Lena. The camera is at a low angle, focusing on their faces. The lighting is dim, and theres a faint blue glow reflected in Silas eyes, making the atmosphere moody and mysterious.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.5,
@@ -1036,7 +1044,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.619",
           "sub_scene_id": "SC_013_02",
-          "visual_prompt": "A noir cinematic shot of a dimly lit room.",
+          "visual_prompt": "Wide shot of the dimly lit noir setting where two characters, Julian and Lena, are standing. The lighting is soft and there is a slight haze in the air. Lenas expression softens for a moment and her eyes briefly meet Julians.",
           "timing": {
             "rel_start": 5.5,
             "rel_end": 9.0,
@@ -1060,7 +1068,7 @@
           },
           "audio_prompt": "Lena, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_013_03",
-          "visual_prompt": "Close-up of Lena, relief expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with relief expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 9.0,
             "rel_end": 17.8,
@@ -1116,7 +1124,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.954",
           "sub_scene_id": "SC_014_01",
-          "visual_prompt": "A noir cinematic shot of a dimly lit office, with a cracked Formica tabletop and a briefcase placed on it. Julian, a tall and lean man, stands at the table, his hands trembling slightly as he slides the briefcase across it. Silas, a shorter and stockier man, sits on the opposite",
+          "visual_prompt": "Cinematic color shot of Julian in a trench coat and fedora, with a tense expression, walks with a shaky breath. He approaches a cracked Formica tabletop, holding a briefcase. He slowly and carefully slides the briefcase across the tabletop. Shadows cast long shapes on the tabletop, and the surface is uneven with cracks.  Response:",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.5,
@@ -1139,7 +1147,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.951",
           "sub_scene_id": "SC_014_02",
-          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single spotlight on a table. Julian is sitting at the table, looking at a stack of envelopes. Silas enters the room and approaches the table. He picks up one of the envelopes and examines it. He then reaches for the stack of envelopes and",
+          "visual_prompt": "A close up shot of Silas hands moving with the grace of a card shark. The dimly lit background has a hint of smoke.",
           "timing": {
             "rel_start": 6.5,
             "rel_end": 13.0,
@@ -1165,7 +1173,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "angles",
+        "camera": "Angle",
         "sfx_cues": [
           "engine",
           "run"
@@ -1190,7 +1198,7 @@
           },
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_015_01",
-          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.6,
@@ -1213,7 +1221,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_015_02",
-          "visual_prompt": "A noir cinematic shot of Silas standing in the middle of a dimly lit room, with shadows stretching across the walls. He is tall and lean, with a serious expression on his face. He stands with his hands on his hips, looking around the room with a commanding presence.",
+          "visual_prompt": "Cinematic color shot of Silas (Silas, wearing a leather jacket, intense gaze,",
           "timing": {
             "rel_start": 1.6,
             "rel_end": 2.6,
@@ -1237,7 +1245,7 @@
           },
           "audio_prompt": "Silas, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_015_03",
-          "visual_prompt": "Close-up of Silas, relief expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with relief expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 2.6,
             "rel_end": 10.6,
@@ -1284,7 +1292,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.963",
           "sub_scene_id": "SC_016_01",
-          "visual_prompt": "A noir cinematic shot of a dimly lit room, with a single spotlight on Julian as he stands up. The camera moves slowly, highlighting his legs as they look like they might give way. The room is cluttered with papers and books, and the walls are covered in peeling wallpaper. The only sound is the faint",
+          "visual_prompt": "Julian, wearing a trench coat and fedora, stands up, his legs are spindly and his coat is rumpled. The dimly lit noir setting is in the background. The camera is low angle, giving the shot a sinister feel. The atmosphere is tense and foreboding. The envelope is lying on the floor, covered in dust.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -1308,7 +1316,7 @@
           },
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_016_02",
-          "visual_prompt": "Close-up of Julian, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 7.5,
             "rel_end": 9.5,
@@ -1333,8 +1341,8 @@
         ]
       },
       "production": {
-        "bgm": "is",
-        "camera": "is",
+        "bgm": "and",
+        "camera": "angles",
         "sfx_cues": [
           "snap"
         ],
@@ -1363,7 +1371,7 @@
           },
           "audio_prompt": "Narrator, tone=amusement, intensity=0.135",
           "sub_scene_id": "SC_017_01",
-          "visual_prompt": "A noir cinematic shot of Lena, a woman with a sly smile, sitting at a table with her tablet closed. The lighting is dim, with shadows casting across her face. The camera pans out to show the empty room around her.",
+          "visual_prompt": "Cinematic color shot of Lena (Lena, wearing an elegant evening dress, wavy hair,",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.0,
@@ -1387,7 +1395,7 @@
           },
           "audio_prompt": "Lena, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_017_02",
-          "visual_prompt": "Close-up of Lena, disapproval expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with disapproval expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 5.0,
             "rel_end": 12.6,
@@ -1435,7 +1443,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.964",
           "sub_scene_id": "SC_018_01",
-          "visual_prompt": "A noir cinematic shot of Julian disappearing through the kitchen doors. The shot is in black and white, with a dimly lit kitchen. The camera slowly pans out to show the kitchen, with a single light source coming from a window. The shot ends with the camera moving away from the kitchen, leaving the viewer with a sense",
+          "visual_prompt": "A high angle shot of the kitchen doors opening to reveal a dimly lit noir setting. Silas is standing in the doorway, holding a knife and looking directly into the camera. The kitchen is filled with shadows and there is a faint blue glow reflecting in Julians eyes.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1458,7 +1466,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_018_02",
-          "visual_prompt": "A noir cinematic shot of a dimly lit room with a single spotlight on a briefcase.",
+          "visual_prompt": "Cinematic color shot of Julian, a tall and lanky figure in a trench coat and fedora, walks slowly into the dimly lit room. He stops in front of a table and opens a briefcase. Silas, a shorter and more muscular figure in a leather jacket and intense gaze, watches as Julian opens the briefcase. The briefcase is opened just an inch, revealing a small object inside. The room is filled with a sense of tension and suspense.",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 7.0,
@@ -1481,7 +1489,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.884",
           "sub_scene_id": "SC_018_03",
-          "visual_prompt": "A noir cinematic shot of Julian, a middle-aged man, sitting in a dimly lit room. He is looking at a small table with a vial of liquid on it. The room is filled with shadows and a faint blue glow is reflected in his eyes.",
+          "visual_prompt": "A slow pan shot of Julians eyes where a faint blue glow reflected. He is standing in a dimly lit alley with a leather jacket and fedora. Silas is standing a few feet away with a similar leather jacket and intense gaze. The alley is covered in smoky haze and raindrops fall from the grey sky.",
           "timing": {
             "rel_start": 7.0,
             "rel_end": 11.0,
@@ -1507,7 +1515,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "angles",
+        "camera": "angle",
         "sfx_cues": [],
         "lighting": "curiosity lighting"
       },
@@ -1520,16 +1528,16 @@
           "duration": 1.0,
           "emotion": {
             "label": "curiosity",
-            "intensity": 0.8
+            "intensity": 0.2
           },
           "semantic": {
             "subject": "Lena",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
+          "audio_prompt": "Lena, tone=curiosity, intensity=0.2",
           "sub_scene_id": "SC_019_01",
-          "visual_prompt": "Close-up of Lena, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -1552,7 +1560,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.965",
           "sub_scene_id": "SC_019_02",
-          "visual_prompt": "A noir cinematic shot of Lena, a woman in her mid-30s, packing her gear into a black leather briefcase. She is standing in front of a dark alley, with the only light coming from a flickering streetlamp. The alley is empty, except for a few stray cats and a dumpster. Lena",
+          "visual_prompt": "A slow pan shot of Lena in a dimly lit noir setting, walking towards her car. She is wearing an elegant evening dress, with her hair in loose waves. She is looking around, and her face is showing a hint of tension.",
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.5,
@@ -1567,16 +1575,16 @@
           "duration": 2.4,
           "emotion": {
             "label": "curiosity",
-            "intensity": 0.5
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "be",
             "object": "worth"
           },
-          "audio_prompt": "Lena, tone=curiosity, intensity=0.5",
+          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_019_03",
-          "visual_prompt": "Close-up of Lena, curiosity expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 5.9,
@@ -1601,8 +1609,8 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angles",
+        "bgm": "CAMERA",
+        "camera": "The",
         "sfx_cues": [
           "click"
         ],
@@ -1625,7 +1633,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.936",
           "sub_scene_id": "SC_020_01",
-          "visual_prompt": "A noir cinematic shot of Silas closing the lid of a briefcase with a satisfying click. The shot is in black and white, with a dimly lit room in the background. Silas is standing in front of the briefcase, holding it with a serious expression on his face. The briefcase is open, revealing",
+          "visual_prompt": "Cinematic color shot of Silas, wearing a leather jacket, has a determined and intense gaze. Hes holding a metal box with a red and black design. As he lifts the lid, a loud click can be heard. The box emits a soft blue glow and a faint humming noise. The shadows cast by the box create a mysterious and eerie atmosphere.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 4.0,
@@ -1649,7 +1657,7 @@
           },
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_020_02",
-          "visual_prompt": "Close-up of Silas, neutral expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 4.0,
             "rel_end": 14.0,
@@ -1675,7 +1683,7 @@
       },
       "production": {
         "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
+        "camera": "work",
         "sfx_cues": [],
         "lighting": "neutral lighting"
       },
@@ -1696,7 +1704,7 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_021_01",
-          "visual_prompt": "A noir cinematic shot of Lena standing in a dimly lit alleyway, her hand on her bag. The camera pans out to show the empty streets and the distant neon lights of the city. The shot is in black and white, with a grainy texture.",
+          "visual_prompt": "Cinematic color shot of Lena is standing in a dimly lit noir setting, looking away from the camera. She is wearing an elegant evening dress, her hair is wavy and her face is serious. She is holding her bag, with one hand on it. The camera moves slowly to show the reflection of her bag on the blue light.",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1720,7 +1728,7 @@
           },
           "audio_prompt": "Lena, tone=surprise, intensity=0.8",
           "sub_scene_id": "SC_021_02",
-          "visual_prompt": "Close-up of Lena, surprise expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with surprise expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 3.5,
             "rel_end": 4.5,
@@ -1745,8 +1753,8 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angles",
+        "bgm": "CAMERA",
+        "camera": "Static Medium",
         "sfx_cues": [],
         "lighting": "joy lighting"
       },
@@ -1767,7 +1775,7 @@
           },
           "audio_prompt": "Narrator, tone=joy, intensity=0.221",
           "sub_scene_id": "SC_022_01",
-          "visual_prompt": "A noir cinematic shot of Silas standing up from his seat, with a sly smile on his face. He looks around the dimly lit room, taking in the shadows and the flickering light. He then turns to face the camera, his eyes twinkling with mischief. He leans in close to the camera, and w",
+          "visual_prompt": "Cinematic color shot of Silas (Silas, wearing a leather jacket, intense gaze,",
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.5,
@@ -1791,7 +1799,7 @@
           },
           "audio_prompt": "Silas, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_022_02",
-          "visual_prompt": "Close-up of Silas, disapproval expression, noir lighting.",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with disapproval expression with blurry background of a dimly lit noir setting",
           "timing": {
             "rel_start": 2.5,
             "rel_end": 6.5,

@@ -15,6 +15,9 @@ class LLMReasoner:
             verbose=False
         )
         
+        self.character_visuals = {} # Store consistency profiles
+        self.character_metadata = {} # Store gender and style
+
         self.VALID_EMOTIONS = {
             "suspicion", "paranoia", "dread", "calculating", "cynical", 
             "defensive", "threatening", "desperate", "sarcastic", "cold",
@@ -84,6 +87,70 @@ Response:
                 profiles[c] = f"Noir Character, {defaults[i % len(defaults)]}"
                 
         return profiles
+
+    def analyze_cast_visuals(self, story_text, characters):
+        """Generates consistent visual descriptions for characters (Face, Clothes)."""
+        char_list = ", ".join(characters)
+        intro_text = story_text[:1500].replace("\n", " ")
+        
+        prompt = f"""Instruction: Create a specific, consistent VIDEO GENERATION visual description for each character.
+Story Context: {intro_text}...
+Characters: {char_list}
+
+Rules:
+1. Include Ethnicity, Age, Gender, Hair Style, Facial Features, and Clothing.
+2. Clothing must fit a Noir/Detective setting.
+3. Keep it to 1 sentence per character.
+4. Keep the character style and facial features consistent throughout the story.
+
+Format:
+Name | Gender | Clothing Style | [Visual Description]
+
+Response:
+"""
+        out = self.llm(prompt, max_tokens=300, stop=["Instruction:", "Story:"], temperature=0.7)
+        raw_text = out["choices"][0]["text"]
+        
+        visuals = {}
+        metadata = {}
+
+        for line in raw_text.split("\n"):
+            if "|" in line:
+                parts = [p.strip() for p in line.split("|")]
+                if len(parts) >= 4:
+                    name = parts[0]
+                    gender = parts[1]
+                    style = parts[2]
+                    desc = parts[3]
+                
+                    if not desc.strip(): continue
+                    
+                    # Fuzzy match name
+                    for c in characters:
+                        if c in name:
+                            visuals[c] = desc
+                            metadata[c] = {"gender": gender, "style": style}
+                            break
+        
+        # Defaults
+        default_looks = [
+            ("Male", "Detective", "wearing a trench coat and fedora, sharp facial features, 30s"),
+            ("Female", "Elegant", "wearing an elegant evening dress, wavy hair, 20s"),
+            ("Male", "Disheveled", "wearing a crumpled suit, tired expression, 40s"),
+            ("Male", "Tough", "wearing a leather jacket, intense gaze, 30s")
+        ]
+        
+        for i, c in enumerate(characters):
+            if c not in visuals:
+                # Assign a stable default implementation based on index
+                gender, style, look = default_looks[i % len(default_looks)]
+                visuals[c] = f"{c}, {look}"
+                metadata[c] = {"gender": gender, "style": style}
+        
+        self.character_visuals = visuals
+        self.character_metadata = metadata
+        logger.info(f"Generated Visual Profiles: {visuals}")
+        return visuals
 
     def refine_dialogue_emotion(self, speaker, text, archetype, context_window, base_emotion):
         prompt = f"""Instruction: Identify the hidden Noir subtext.
@@ -163,50 +230,91 @@ Response:
             "transition": "Hard Cut"
         }
 
-    # 🔽 UPDATED: Visual Prompt Generator (Anti-Hallucination)
-    def generate_visual_prompt_for_beat(self, beat_text, emotion, allowed_cast):
-        # Handle empty cast list for narration beats
-        if not allowed_cast:
-            cast_context = "No specific characters"
-        else:
-            cast_context = ", ".join(allowed_cast)
+    def generate_visual_prompt_v2(self, beat_data, location, active_cast):
+        """
+        New handler for strict visual prompts.
+        beat_data: dict containing 'type', 'text', 'speaker', 'emotion'
+        location: str current location name/desc
+        active_cast: list of char names present in scene
+        """
+        b_type = beat_data['type']
+        text = beat_data['text']
+        emotion = beat_data.get('emotion', {}).get('label', 'neutral')
         
-        # We use a "Completion Prompt" starting with 'Visual:' to force the model
-        prompt = f"""Task: Describe a single cinematic shot.
-Input: "{beat_text}"
-Mood: {emotion}
-Characters present: {cast_context}
+        # Resolve Characters
+        # For dialogue, focus on speaker
+        if b_type == 'dialogue':
+            speaker = beat_data.get('speaker', 'Unknown')
+            
+            # Robust lookup
+            char_desc = self.character_visuals.get(speaker, "")
+            if not char_desc:
+                # If lookup fails, fallback to name+noir text
+                char_desc = f"{speaker}, a noir character in detective attire"
+            
+            # Strict Template
+            # ensure no empty description
+            if not char_desc.strip(): char_desc = f"{speaker}, a noir character"
+
+            # "Cinematic close up shot of <character> with <emotion> expression with blurry backround of dimly lit dinner"
+            prompt = f"Cinematic close up shot of {char_desc} with {emotion} expression with blurry background of {location}"
+            return prompt
+
+        # For Narration
+        else:
+            # Construct context of who is visible
+            visible_people = ", ".join([f"{c} ({self.character_visuals.get(c, 'Noir figure')})" for c in active_cast])
+            if not visible_people: visible_people = "No specific characters, focus on environment"
+
+            prompt = f"""Task: Convert the Narration into a detailed Visual Description for Video Generation.
+Narration: "{text}"
+Location: {location}
+Characters: {visible_people}
 
 Instructions:
-- Describe ONLY what is written in the Input.
-- Do NOT include characters unless they are mentioned in the Input.
-- No meta-text like "Output:" or "Input:".
+1. Describe the VISUAL ACTION and ENVIRONMENT in detail.
+2. Replace abstract words (like "tension" or "sadness") with visual cues (e.g., "shadows casting long shapes", "characters looking away").
+3. Specify camera movement or angle (e.g., "Slow pan", "Low angle", "Wide shot").
+4. Add atmospheric details (lighting, smoke, fog, rain).
+5. Output A SINGLE DESCRIPTIVE SENTENCE.
 
-Visual: A noir cinematic shot of"""
+Example:
+Narration: "A faint blue glow reflected in his eyes."
+Visual Description: Cinematic close up shot of Silas eyes where a faint blue glow reflected. His background is blurry and dimly lit. 
 
-        # Generate (Temperature 0.3 for creativity but control)
-        out = self.llm(prompt, max_tokens=60, stop=["\n", "Task:", "Input:"], temperature=0.3)
-        generated_suffix = out["choices"][0]["text"].strip()
-        
-        # Combine prefix + generation
-        full_vis = f"A noir cinematic shot of {generated_suffix}"
-        
-        # Clean up artifacts
-        clean_vis = self._clean_visual_output(full_vis)
-        
-        # Fallback: If cleaning killed the prompt or it's too short
-        if len(clean_vis) < 15:
-            # Safe Fallback
-            clean_beat = beat_text.replace('"', '')
-            clean_vis = f"A noir cinematic shot of {clean_beat}, {emotion} lighting."
+Narration: "{text}"
+Visual Description:"""
             
-        return clean_vis
+            out = self.llm(prompt, max_tokens=200, stop=["\n", "Narration:", "Task:"], temperature=0.7)
+            gen = out["choices"][0]["text"].strip()
+            
+            # Clean
+            gen = self._clean_visual_output(gen)
+            
+            # Improved Fallback
+            if not gen: 
+                 # Fallback: Use the text but dress it up visually, stripping common non-visual openers
+                 clean_text = text
+                 for prefix in ["Inside, ", "Outside, ", "Suddenly, ", "Meanwhile, "]:
+                     if clean_text.startswith(prefix):
+                         clean_text = clean_text[len(prefix):]
+                 gen = f"Cinematic shot of {clean_text}, dramatic lighting, noir atmosphere, 4k, highly detailed"
+            
+            # Prefix check - Ensure it starts with a camera shot type or Cinematic
+            lower_gen = gen.lower()
+            if not any(x in lower_gen for x in ["cinematic", "shot", "close up", "wide", "view", "pan", "zoom"]):
+                 gen = f"Cinematic color shot of {gen}"
+                 
+            return gen
 
     def generate_rich_registry(self, characters, profiles):
         registry = {}
         for char in characters:
+            meta = self.character_metadata.get(char, {"gender": "Unknown", "style": "Noir"})
             registry[char] = {
                 "voice_model_id": f"en_us_generic_{char.lower()}",
-                "archetype": profiles.get(char, "Standard")
+                "archetype": profiles.get(char, "Standard"),
+                "gender": meta.get("gender", "Unknown"),
+                "clothing_style": meta.get("style", "Noir Standard")
             }
         return registry
