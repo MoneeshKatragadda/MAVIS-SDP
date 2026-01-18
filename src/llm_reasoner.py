@@ -266,26 +266,26 @@ Response:
             visible_people = ", ".join([f"{c} ({self.character_visuals.get(c, 'Noir figure')})" for c in active_cast])
             if not visible_people: visible_people = "No specific characters, focus on environment"
 
-            prompt = f"""Task: Convert the Narration into a detailed Visual Description for Video Generation.
+            prompt = f"""Task: Convert the Narration into a precise Visual Description for Video Generation.
 Narration: "{text}"
 Location: {location}
 Characters: {visible_people}
 
 Instructions:
-1. Describe the VISUAL ACTION and ENVIRONMENT in detail.
-2. Replace abstract words (like "tension" or "sadness") with visual cues (e.g., "shadows casting long shapes", "characters looking away").
-3. Specify camera movement or angle (e.g., "Slow pan", "Low angle", "Wide shot").
-4. Add atmospheric details (lighting, smoke, fog, rain).
-5. Output A SINGLE DESCRIPTIVE SENTENCE.
+1. STRICTLY adhere to the actions in the text. Do NOT add movement (walking, standing, entering) unless explicitly stated.
+2. If no action is described, assume characters are STATIONARY (sitting).
+3. PRESERVE specific object names (e.g., "briefcase", "envelope") exactly. Do not change them to generic items like "box".
+4. Replace abstract atmosphere (e.g., "tense") with visual lighting details (e.g., "sharp shadows", "dim lighting").
+5. Describe the scene visually but DO NOT invent new narrative events.
 
 Example:
-Narration: "A faint blue glow reflected in his eyes."
-Visual Description: Cinematic close up shot of Silas eyes where a faint blue glow reflected. His background is blurry and dimly lit. 
+Narration: "Silas closed the lid."
+Visual Description: Cinematic close up shot of Silas closing the lid of the briefcase, his hands steady, under a dim overhead light.
 
 Narration: "{text}"
 Visual Description:"""
             
-            out = self.llm(prompt, max_tokens=200, stop=["\n", "Narration:", "Task:"], temperature=0.7)
+            out = self.llm(prompt, max_tokens=150, stop=["\n", "Narration:", "Task:"], temperature=0.3)
             gen = out["choices"][0]["text"].strip()
             
             # Clean
@@ -293,12 +293,12 @@ Visual Description:"""
             
             # Improved Fallback
             if not gen: 
-                 # Fallback: Use the text but dress it up visually, stripping common non-visual openers
+                 # Fallback: Use the text but dress it up visually
                  clean_text = text
                  for prefix in ["Inside, ", "Outside, ", "Suddenly, ", "Meanwhile, "]:
                      if clean_text.startswith(prefix):
                          clean_text = clean_text[len(prefix):]
-                 gen = f"Cinematic shot of {clean_text}, dramatic lighting, noir atmosphere, 4k, highly detailed"
+                 gen = f"Cinematic shot of {clean_text}"
             
             # Prefix check - Ensure it starts with a camera shot type or Cinematic
             lower_gen = gen.lower()
