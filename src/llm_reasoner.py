@@ -93,18 +93,17 @@ Response:
         char_list = ", ".join(characters)
         intro_text = story_text[:1500].replace("\n", " ")
         
-        prompt = f"""Instruction: Create a specific, consistent VIDEO GENERATION visual description for each character.
+        prompt = f"""Instruction: Create specific visual profiles for video generation.
 Story Context: {intro_text}...
 Characters: {char_list}
 
 Rules:
-1. Include Ethnicity, Age, Gender, Hair Style, Facial Features, and Clothing.
-2. Clothing must fit a Noir/Detective setting.
-3. Keep it to 1 sentence per character.
-4. Keep the character style and facial features consistent throughout the story.
+1. Describe specific appearances (Ethnicity, Age, Gender, Hair, Face).
+2. Assign a "Signature Clothing" item (e.g., Trench Coat, Leather Jacket, Silk Dress, Crumpled Suit).
+3. Visual Description must be 1 detailed sentence.
 
 Format:
-Name | Gender | Clothing Style | [Visual Description]
+Name | Gender | Signature Clothing | [Visual Description]
 
 Response:
 """
@@ -120,7 +119,7 @@ Response:
                 if len(parts) >= 4:
                     name = parts[0]
                     gender = parts[1]
-                    style = parts[2]
+                    clothing = parts[2] # Now captures "Leather Jacket", "Trench Coat" etc
                     desc = parts[3]
                 
                     if not desc.strip(): continue
@@ -129,15 +128,15 @@ Response:
                     for c in characters:
                         if c in name:
                             visuals[c] = desc
-                            metadata[c] = {"gender": gender, "style": style}
+                            metadata[c] = {"gender": gender, "style": clothing}
                             break
         
         # Defaults
         default_looks = [
-            ("Male", "Detective", "wearing a trench coat and fedora, sharp facial features, 30s"),
-            ("Female", "Elegant", "wearing an elegant evening dress, wavy hair, 20s"),
-            ("Male", "Disheveled", "wearing a crumpled suit, tired expression, 40s"),
-            ("Male", "Tough", "wearing a leather jacket, intense gaze, 30s")
+            ("Male", "Trench Coat & Fedora", "wearing a trench coat and fedora, sharp facial features, 30s"),
+            ("Female", "Evening Gown", "wearing an elegant evening dress, wavy hair, 20s"),
+            ("Male", "Crumpled Suit", "wearing a crumpled suit, tired expression, 40s"),
+            ("Male", "Leather Jacket", "wearing a leather jacket, intense gaze, 30s")
         ]
         
         for i, c in enumerate(characters):
@@ -204,31 +203,7 @@ Response:
 
         return {"label": final_label, "intensity": final_score}
 
-    def analyze_scene_production(self, scene_text, prev_loc, emotions):
-        prompt = f"""Instruction: Noir Production Design.
-Scene: {scene_text[:200]}...
-Mood: {emotions['dominant_emotion']}
 
-Format:
-BGM: [Music Style]
-CAMERA: [Angle]
-
-Response:
-"""
-        out = self.llm(prompt, max_tokens=100, stop=["Instruction:"])
-        raw = out["choices"][0]["text"]
-        
-        bgm = self._parse_key_value(raw, "BGM") or "Suspenseful Drone"
-        cam = self._parse_key_value(raw, "CAMERA") or "Static Medium"
-        
-        bgm = bgm.replace('"', '')
-        cam = cam.replace('"', '')
-
-        return {
-            "bgm": bgm,
-            "camera": cam,
-            "transition": "Hard Cut"
-        }
 
     def generate_visual_prompt_v2(self, beat_data, location, active_cast):
         """
@@ -272,20 +247,16 @@ Location: {location}
 Characters: {visible_people}
 
 Instructions:
-1. STRICTLY adhere to the actions in the text. Do NOT add movement (walking, standing, entering) unless explicitly stated.
-2. If no action is described, assume characters are STATIONARY (sitting).
-3. PRESERVE specific object names (e.g., "briefcase", "envelope") exactly. Do not change them to generic items like "box".
-4. Replace abstract atmosphere (e.g., "tense") with visual lighting details (e.g., "sharp shadows", "dim lighting").
-5. Describe the scene visually but DO NOT invent new narrative events.
-
-Example:
-Narration: "Silas closed the lid."
-Visual Description: Cinematic close up shot of Silas closing the lid of the briefcase, his hands steady, under a dim overhead light.
+1. Elloborate the text visually for a video generation model.
+2. DO NOT add "looking around", "heart pounding", "placing items" unless explicitly in the text.
+3. Start with a camera angle (e.g., "Close up shot of...", "Wide shot of...").
+4. DO NOT add additional objects unless explicitly in the text.
+5. Give consistent prompts. Current prompt should be relatable and continuation of previous prompt.
 
 Narration: "{text}"
 Visual Description:"""
             
-            out = self.llm(prompt, max_tokens=150, stop=["\n", "Narration:", "Task:"], temperature=0.3)
+            out = self.llm(prompt, max_tokens=60, stop=["\n", "Narration:", "Task:"], temperature=0.0)
             gen = out["choices"][0]["text"].strip()
             
             # Clean
@@ -306,6 +277,80 @@ Visual Description:"""
                  gen = f"Cinematic color shot of {gen}"
                  
             return gen
+
+    def analyze_beat_production(self, beat_data):
+        """
+        Determines BGM and SFX for a specific beat.
+        BGM: Narration only. Defaults to 'Suspenseful Drone' if not specified or adaptable.
+        SFX: Narration only, inferred from text.
+        """
+        text = beat_data['text']
+        b_type = beat_data['type']
+        
+        # Defaults
+        bgm_style = None
+        bgm_vol = 0.0
+        sfx_list = []
+
+        if b_type == 'narration':
+            # Default BGM for all narration
+            bgm_style = "Suspenseful Drone" 
+            import random
+            bgm_vol = round(random.uniform(0.10, 0.15), 2)
+
+            prompt = f"""Instruction: Analyze SFX and BGM adaptation.
+Text: "{text}"
+
+Tasks:
+1. BGM: Defaults to "Suspenseful Drone". Change ONLY if text demands specific change (e.g. "Silence fell" -> Silence, "Music started" -> Jazz).
+2. SFX: List audible sounds using SIMPLE labels.
+   - Text: "Rain drummed" -> SFX: Rain
+   - Text: "Sipped coffee" -> SFX: Sipping
+   - Text: "Fingers dancing on tablet" -> SFX: Tapping
+   - Text: "He looked" -> SFX: None
+   - Text: "She thought" -> SFX: None
+
+Format:
+BGM: [Style]
+SFX: [SoundName]
+
+Response:
+"""
+            out = self.llm(prompt, max_tokens=50, stop=["Instruction:", "Text:"], temperature=0.1)
+            raw = out["choices"][0]["text"].strip()
+            
+            # 1. Parse BGM Adaptation
+            bgm_match = re.search(r"BGM:(.*?)(?:\n|$)", raw, re.IGNORECASE)
+            if bgm_match:
+                style = bgm_match.group(1).strip()
+                if style.lower() not in ["none", "suspenseful drone", ""]:
+                    bgm_style = style
+            
+            # 2. Parse SFX (Simplified)
+            if "SFX:" in raw:
+                try:
+                    raw_sfx = raw.split("SFX:")[1].split("\n")[0].strip()
+                    if raw_sfx.lower() != "none":
+                        # Split by comma
+                        items = [x.strip() for x in raw_sfx.split(",")]
+                        for item in items:
+                            # Clean up
+                            name = re.sub(r"\(.*?\)", "", item).strip() # Remove any hallucinated parens
+                            if name and name.lower() != "none":
+                                sfx_list.append({
+                                    "name": name,
+                                    "timing": {"start": 0.1, "end": 0.9} # Default full beat coverage
+                                })
+                except Exception as e:
+                    logger.error(f"SFX Parsing Error: {e}")
+
+        return {
+            "bgm": {
+                "style": bgm_style,
+                "volume": bgm_vol
+            },
+            "sfx": sfx_list
+        }
 
     def generate_rich_registry(self, characters, profiles):
         registry = {}

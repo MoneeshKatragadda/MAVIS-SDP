@@ -108,13 +108,16 @@ def main():
             beat['audio_prompt'] = nlp.build_audio_prompt(beat, beat['emotion'])
             beat['sub_scene_id'] = f"SC_{i:03d}_{b_idx:02d}"
             
-            # 4. Visual Prompt (UPDATED: Strict Consistency)
-            # Use the new v2 method which handles templates and consistency
+            # 4. Visual Prompt (UPDATED: Strict Consistency + Locked)
             beat['visual_prompt'] = llm.generate_visual_prompt_v2(
                 beat_data=beat,
                 location=last_location,
                 active_cast=struct['active_chars']
             )
+
+            # 5. Production Attributes (Beat Level)
+            prod_attrs = llm.analyze_beat_production(beat)
+            beat['production'] = prod_attrs
 
             beat_dur = beat['duration']
             beat['timing'] = {
@@ -127,26 +130,23 @@ def main():
             scene_duration += beat_dur
             total_beats_count += 1
 
+        # Scene Level Aggregation (Mood for lighting only)
         scene_emo = aggregate_scene_emotion(beats)
-        prod_meta = llm.analyze_scene_production(s_text, last_location, scene_emo)
-        sfx_triggers = nlp.extract_sfx(s_text)
-
+        
         event = {
             "id": f"SC_{i:03d}",
             "meta": {
                 "global_start": round(global_cursor, 2),
                 "global_end": round(global_cursor + scene_duration, 2),
                 "duration": round(scene_duration, 2),
-                "transition_to_next": prod_meta['transition']
+                "transition_to_next": "Hard Cut"
             },
             "script": {
                 "text": s_text,
                 "active_cast": struct['active_chars']
             },
             "production": {
-                "bgm": prod_meta['bgm'],
-                "camera": prod_meta['camera'],
-                "sfx_cues": sfx_triggers,
+                # scene-level BGM/SFX removed, now in beats
                 "lighting": f"{scene_emo['dominant_emotion']} lighting"
             },
             "entities": entities,

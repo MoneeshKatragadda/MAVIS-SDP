@@ -27,25 +27,25 @@
       "voice_model_id": "en_us_generic_julian",
       "archetype": "Noir Character, Stoic",
       "gender": "Male",
-      "clothing_style": "Detective"
+      "clothing_style": "Trench Coat & Fedora"
     },
     "Lena": {
       "voice_model_id": "en_us_generic_lena",
       "archetype": "Noir Character, Nervous",
       "gender": "Female",
-      "clothing_style": "Elegant"
+      "clothing_style": "Evening Gown"
     },
     "Marcus": {
       "voice_model_id": "en_us_generic_marcus",
       "archetype": "Noir Character, Femme Fatale",
       "gender": "Male",
-      "clothing_style": "Disheveled"
+      "clothing_style": "Crumpled Suit"
     },
     "Silas": {
       "voice_model_id": "en_us_generic_silas",
       "archetype": "Noir Character, Enforcer",
       "gender": "Male",
-      "clothing_style": "Tough"
+      "clothing_style": "Leather Jacket"
     }
   },
   "timeline": [
@@ -62,12 +62,6 @@
         "active_cast": []
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Angle",
-        "sfx_cues": [
-          "drum",
-          "rain"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [
@@ -93,7 +87,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.812",
           "sub_scene_id": "SC_001_01",
-          "visual_prompt": "A close-up shot of the fogged windows, raindrops creating a rhythmic pattern against the glass, with the diners interior in the background. The diners interior is dimly lit, with the smell of burnt coffee and old vinyl in the air.",
+          "visual_prompt": "Cinematic shot of The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.15
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 12.5,
@@ -116,9 +139,6 @@
         "active_cast": []
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angle",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -138,7 +158,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.938",
           "sub_scene_id": "SC_002_01",
-          "visual_prompt": "Cinematic color shot of A dimly lit noir setting with a corner booth, three people seated, their silhouettes casting long shadows on the dark walls. The air is heavy with tension, as if a storm is brewing, and the dim lighting creates a sense of mystery and unease.",
+          "visual_prompt": "Cinematic shot of three people sat at the corner booth, the air between them thick with unspoken tension",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.11
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 8.0,
@@ -163,9 +190,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -185,7 +209,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.935",
           "sub_scene_id": "SC_003_01",
-          "visual_prompt": "Close-up shot of Silas taking a slow sip of his black coffee, his lips pursed, the steam rising from the cup, his eyes fixed on the briefcase, a brief pause before he takes another sip. The dim lighting casts long shadows on the table, emphasizing the intensity of the moment.",
+          "visual_prompt": "Cinematic shot of Silas took a slow sip of his black coffee, his gaze fixed on the briefcase",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -210,6 +241,13 @@
           "audio_prompt": "Silas, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_003_02",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with annoyance expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 7.5,
             "rel_end": 11.5,
@@ -234,11 +272,6 @@
         ]
       },
       "production": {
-        "bgm": "CAMERA",
-        "camera": "4.",
-        "sfx_cues": [
-          "swallow"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [
@@ -264,7 +297,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.942",
           "sub_scene_id": "SC_004_01",
-          "visual_prompt": "Close-up shot of Julian swallowing a pill, his Adams apple visibly moving in his throat, the dimly lit noir setting casting sharp shadows on his face.",
+          "visual_prompt": "Cinematic shot of Julian swallowed hard, his Adam's apple bobbing",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.14
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -289,6 +351,13 @@
           "audio_prompt": "Julian, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_004_02",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with defensive expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 3.5,
             "rel_end": 9.9,
@@ -313,9 +382,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Low",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [
@@ -341,7 +407,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.903",
           "sub_scene_id": "SC_005_01",
-          "visual_prompt": "Close-up shot of Lenas fingers moving rapidly across the tablet screen, her eyes rolling back in annoyance, as she hides the tablet under a napkin. The tablet is a sleek, black device with a glossy finish. The napkin is a white, folded square, with a hint of red on the edge. The lighting is dim, with shadows cast on the table and Lenas face.",
+          "visual_prompt": "Cinematic shot of Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 9.5,
@@ -366,6 +461,13 @@
           "audio_prompt": "Lena, tone=defensive, intensity=0.8",
           "sub_scene_id": "SC_005_02",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with defensive expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 9.5,
             "rel_end": 17.5,
@@ -390,11 +492,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angles",
-        "sfx_cues": [
-          "hiss"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -416,6 +513,13 @@
           "audio_prompt": "Julian, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_006_01",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -438,7 +542,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.969",
           "sub_scene_id": "SC_006_02",
-          "visual_prompt": "Close-up shot of Julian, his face contorted in anger, leaning in towards the other person, with a dimly lit noir setting in the background.",
+          "visual_prompt": "Cinematic shot of Julian hissed, leaning in",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.0,
@@ -463,6 +574,13 @@
           "audio_prompt": "Julian, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_006_03",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with disapproval expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 3.0,
             "rel_end": 11.0,
@@ -487,9 +605,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angle",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -509,7 +624,22 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.927",
           "sub_scene_id": "SC_007_01",
-          "visual_prompt": "Silass intense gaze is captured in a close-up shot, his leather jacket adding to the noir atmosphere. The man in the greasy apron is shown flipping burgers with a forceful motion, the dim lighting casting sharp shadows on his face.",
+          "visual_prompt": "Cinematic shot of Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
+          "production": {
+            "bgm": {
+              "style": "[BGM]",
+              "volume": 0.13
+            },
+            "sfx": [
+              {
+                "name": "[SFX]",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 10.0,
@@ -523,17 +653,24 @@
           "text": "The cook is looking at you because you're sweating enough to fill a bucket. Lean back. Breathe.",
           "duration": 6.8,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.8
+            "label": "sarcastic",
+            "intensity": 0.2
           },
           "semantic": {
             "subject": "cook",
             "action": "look",
             "object": null
           },
-          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
+          "audio_prompt": "Silas, tone=sarcastic, intensity=0.2",
           "sub_scene_id": "SC_007_02",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with sarcastic expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 10.0,
             "rel_end": 16.8,
@@ -558,11 +695,6 @@
         ]
       },
       "production": {
-        "bgm": "CAMERA",
-        "camera": "Exercise",
-        "sfx_cues": [
-          "whisper"
-        ],
         "lighting": "sadness lighting"
       },
       "entities": [
@@ -590,6 +722,13 @@
           "audio_prompt": "Julian, tone=sadness, intensity=0.8",
           "sub_scene_id": "SC_008_01",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with sadness expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.2,
@@ -612,7 +751,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_008_02",
-          "visual_prompt": "Cinematic color shot of Julian, wearing a trench coat and fedora, standing in a dimly lit noir setting, his face hidden in shadow, whispers into the briefcase.",
+          "visual_prompt": "Cinematic shot of Julian whispered",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 1.2,
             "rel_end": 2.2,
@@ -637,6 +805,13 @@
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_008_03",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 2.2,
             "rel_end": 9.0,
@@ -661,9 +836,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [
@@ -691,6 +863,13 @@
           "audio_prompt": "Lena, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_009_01",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with neutral expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.0,
@@ -713,7 +892,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_009_02",
-          "visual_prompt": "Cinematic color shot of Lena, dressed in an elegant evening dress, sits at a dimly lit table, her eyes focused on the briefcase. She abruptly stands up and walks towards the briefcase, her movements sharp and purposeful. She closes the lid without looking up, her expression determined. The dim lighting creates a sense of mystery and tension.",
+          "visual_prompt": "Cinematic shot of Lena interrupted without looking up",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.11
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 2.0,
             "rel_end": 4.5,
@@ -738,6 +946,13 @@
           "audio_prompt": "Lena, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_009_03",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with annoyance expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 4.5,
             "rel_end": 11.7,
@@ -762,9 +977,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -784,7 +996,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
           "sub_scene_id": "SC_010_01",
-          "visual_prompt": "Cinematic color shot of Julian, wearing a trench coat and fedora, standing in a dimly lit noir setting, his hands on his hips, his sharp facial features illuminated by a single spotlight, as he contemplates his next move.",
+          "visual_prompt": "Cinematic shot of Julian hesitated",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -809,6 +1050,13 @@
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_010_02",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 1.0,
             "rel_end": 2.6,
@@ -833,9 +1081,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angle",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -855,7 +1100,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_011_01",
-          "visual_prompt": "Cinematic color shot of Silas, wearing a leather jacket, reaches into the coat pocket and pulls out a plain white envelope. The envelope is held with a firm grip, and the white envelope stands out against the dark background.",
+          "visual_prompt": "Cinematic shot of Silas reached into his coat and pulled out a plain white envelope",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.0,
@@ -878,7 +1130,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.957",
           "sub_scene_id": "SC_011_02",
-          "visual_prompt": "A close-up shot of Silas placing the briefcase on the table, his hand gripping it tightly, with a dimly lit background and a shadowy figure standing in the corner.",
+          "visual_prompt": "Cinematic shot of He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.14
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 6.0,
             "rel_end": 16.0,
@@ -903,9 +1184,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angle",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -927,6 +1205,13 @@
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_012_01",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.8,
@@ -949,7 +1234,22 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.93",
           "sub_scene_id": "SC_012_02",
-          "visual_prompt": "Cinematic color shot of Silas, wearing a leather jacket, stands in the dimly lit noir setting, his intense gaze fixed on the briefcase. The lighting casts sharp shadows on his face, emphasizing the gravel in his voice.",
+          "visual_prompt": "Cinematic shot of Silas said, his voice dropping to a low gravel",
+          "production": {
+            "bgm": {
+              "style": "[BGM]",
+              "volume": 0.11
+            },
+            "sfx": [
+              {
+                "name": "[SFX]",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 2.8,
             "rel_end": 7.3,
@@ -974,6 +1274,13 @@
           "audio_prompt": "Silas, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_012_03",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 7.3,
             "rel_end": 20.1,
@@ -999,9 +1306,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1021,7 +1325,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_013_01",
-          "visual_prompt": "Cinematic color shot of Julian (Julian, wearing a trench coat and fedora, sharp facial features,",
+          "visual_prompt": "Cinematic shot of Julian looked at Lena, who finally looked up from her tablet",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.5,
@@ -1044,7 +1377,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.619",
           "sub_scene_id": "SC_013_02",
-          "visual_prompt": "A close-up shot of Lenas face as she gazes into the distance, her eyes softening momentarily, in a dimly lit noir setting.",
+          "visual_prompt": "Cinematic shot of Her expression softened, just for a second",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 5.5,
             "rel_end": 9.0,
@@ -1069,6 +1431,13 @@
           "audio_prompt": "Lena, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_013_03",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with relief expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 9.0,
             "rel_end": 17.8,
@@ -1094,11 +1463,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [
-          "breath"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [
@@ -1124,7 +1488,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.954",
           "sub_scene_id": "SC_014_01",
-          "visual_prompt": "Close-up shot of Julians hand sliding the briefcase across the cracked Formica tabletop, the light reflecting off the surface, creating a sharp contrast.",
+          "visual_prompt": "Cinematic shot of With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 6.5,
@@ -1147,7 +1518,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.951",
           "sub_scene_id": "SC_014_02",
-          "visual_prompt": "Close-up shot of Silas exchanging the briefcase for the envelope, his hands moving swiftly and confidently, the dim lighting casting sharp shadows on his face.",
+          "visual_prompt": "Cinematic shot of Silas swapped it for the envelope with the grace of a card shark",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 6.5,
             "rel_end": 13.0,
@@ -1172,12 +1550,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Angle",
-        "sfx_cues": [
-          "engine",
-          "run"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1199,6 +1571,13 @@
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_015_01",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.6,
@@ -1221,7 +1600,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
           "sub_scene_id": "SC_015_02",
-          "visual_prompt": "Silas, wearing a leather jacket, stands in the dimly lit noir setting, his intense gaze fixed on the briefcase. The camera pans to show the briefcase in Silas hands, and he firmly commands it.",
+          "visual_prompt": "Cinematic shot of Silas commanded",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.11
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 1.6,
             "rel_end": 2.6,
@@ -1246,6 +1654,13 @@
           "audio_prompt": "Silas, tone=relief, intensity=0.8",
           "sub_scene_id": "SC_015_03",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with relief expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 2.6,
             "rel_end": 10.6,
@@ -1270,9 +1685,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1292,7 +1704,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.963",
           "sub_scene_id": "SC_016_01",
-          "visual_prompt": "Cinematic color shot of Julian, wearing a trench coat and fedora, standing in a dimly lit noir setting, his legs slightly trembling, as he holds a briefcase. The shadows cast by the briefcase create a sense of mystery and tension.",
+          "visual_prompt": "Cinematic shot of Julian grabbed the envelope and stood up, his legs looking like they might give way",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 7.5,
@@ -1317,6 +1736,13 @@
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_016_02",
           "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 7.5,
             "rel_end": 9.5,
@@ -1341,11 +1767,6 @@
         ]
       },
       "production": {
-        "bgm": "and",
-        "camera": "angles",
-        "sfx_cues": [
-          "snap"
-        ],
         "lighting": "amusement lighting"
       },
       "entities": [
@@ -1371,7 +1792,14 @@
           },
           "audio_prompt": "Narrator, tone=amusement, intensity=0.135",
           "sub_scene_id": "SC_017_01",
-          "visual_prompt": "Cinematic color shot of Lena, wearing an elegant evening dress, wavy hair, 20s, sits in a dimly lit noir setting. She closes her tablet with a swift motion, revealing a grim smile on her face. The dim lighting casts sharp shadows on her face, emphasizing her expression.",
+          "visual_prompt": "Cinematic shot of Lena snapped her tablet shut and offered a grim smile",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 5.0,
@@ -1396,6 +1824,13 @@
           "audio_prompt": "Lena, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_017_02",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with disapproval expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 5.0,
             "rel_end": 12.6,
@@ -1421,9 +1856,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1443,7 +1875,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.964",
           "sub_scene_id": "SC_018_01",
-          "visual_prompt": "A close-up shot of Julian disappearing through the kitchen doors, his trench coat billowing behind him, the dimly lit noir setting casting sharp shadows on the walls. Silas, wearing a leather jacket, stands at the doorway, his intense gaze fixed on the disappearing figure.",
+          "visual_prompt": "Cinematic shot of As Julian disappeared through the kitchen doors",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1466,7 +1927,14 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
           "sub_scene_id": "SC_018_02",
-          "visual_prompt": "A close up shot of Silas slowly opening the briefcase, his eyes focused on the contents, the dim lighting casting sharp shadows on his face.",
+          "visual_prompt": "Cinematic shot of Silas opened the briefcase just an inch",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.14
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 3.5,
             "rel_end": 7.0,
@@ -1489,7 +1957,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.884",
           "sub_scene_id": "SC_018_03",
-          "visual_prompt": "A close-up shot of Julians eyes, with a faint blue glow reflected in them, as he gazes into the dimly lit noir setting.",
+          "visual_prompt": "Cinematic shot of A faint blue glow reflected in his eyes",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.13
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 7.0,
             "rel_end": 11.0,
@@ -1514,9 +2011,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "angle",
-        "sfx_cues": [],
         "lighting": "curiosity lighting"
       },
       "entities": [],
@@ -1528,16 +2022,23 @@
           "duration": 1.0,
           "emotion": {
             "label": "curiosity",
-            "intensity": 0.2
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Lena, tone=curiosity, intensity=0.2",
+          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_019_01",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 1.0,
@@ -1560,7 +2061,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.965",
           "sub_scene_id": "SC_019_02",
-          "visual_prompt": "Close-up shot of Lena holding a small envelope, her fingers delicately moving the contents inside, as she looks up at the dimly lit room, her elegant evening dress flowing around her.",
+          "visual_prompt": "Cinematic shot of Lena asked, packing her gear",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.12
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 1.0,
             "rel_end": 3.5,
@@ -1585,6 +2115,13 @@
           "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_019_03",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 3.5,
             "rel_end": 5.9,
@@ -1609,11 +2146,6 @@
         ]
       },
       "production": {
-        "bgm": "CAMERA",
-        "camera": "The",
-        "sfx_cues": [
-          "click"
-        ],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1633,7 +2165,22 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.936",
           "sub_scene_id": "SC_020_01",
-          "visual_prompt": "Cinematic color shot of Silas firmly closing the lid of the briefcase, his fingers pressing down on the latch, the sound of the click echoing in the dimly lit room.",
+          "visual_prompt": "Cinematic shot of Silas closed the lid with a satisfying click",
+          "production": {
+            "bgm": {
+              "style": "[BGM]",
+              "volume": 0.12
+            },
+            "sfx": [
+              {
+                "name": "[SFX]",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 4.0,
@@ -1658,6 +2205,13 @@
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_020_02",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 4.0,
             "rel_end": 14.0,
@@ -1682,9 +2236,6 @@
         ]
       },
       "production": {
-        "bgm": "Suspenseful Drone",
-        "camera": "work",
-        "sfx_cues": [],
         "lighting": "neutral lighting"
       },
       "entities": [],
@@ -1704,7 +2255,36 @@
           },
           "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
           "sub_scene_id": "SC_021_01",
-          "visual_prompt": "Cinematic color shot of Lena, wearing an elegant evening dress, wavy hair, standing in a dimly lit noir setting, with her hand resting on her bag, her eyes scanning the room.",
+          "visual_prompt": "Cinematic shot of Lena paused, her hand on her bag",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.14
+            },
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 3.5,
@@ -1729,6 +2309,13 @@
           "audio_prompt": "Lena, tone=surprise, intensity=0.8",
           "sub_scene_id": "SC_021_02",
           "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with surprise expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 3.5,
             "rel_end": 4.5,
@@ -1753,9 +2340,6 @@
         ]
       },
       "production": {
-        "bgm": "CAMERA",
-        "camera": "Static Medium",
-        "sfx_cues": [],
         "lighting": "joy lighting"
       },
       "entities": [],
@@ -1775,7 +2359,14 @@
           },
           "audio_prompt": "Narrator, tone=joy, intensity=0.221",
           "sub_scene_id": "SC_022_01",
-          "visual_prompt": "Cinematic color shot of Silas, dressed in a leather jacket, stands up from a dark corner of the dimly lit room. He glances around, his intense gaze meeting the camera, and then he playfully winks.",
+          "visual_prompt": "Cinematic shot of Silas stood up and winked",
+          "production": {
+            "bgm": {
+              "style": "Suspenseful Drone",
+              "volume": 0.1
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 0.0,
             "rel_end": 2.5,
@@ -1800,6 +2391,13 @@
           "audio_prompt": "Silas, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_022_02",
           "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with disapproval expression with blurry background of a dimly lit noir setting",
+          "production": {
+            "bgm": {
+              "style": null,
+              "volume": 0.0
+            },
+            "sfx": []
+          },
           "timing": {
             "rel_start": 2.5,
             "rel_end": 6.5,
