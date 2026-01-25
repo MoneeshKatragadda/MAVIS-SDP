@@ -87,11 +87,35 @@ class NLPExtractor:
     def extract_sfx(self, text):
         doc = self.nlp(text)
         sfx = []
+        
+        # Explicit lists for POS-based filtering
+        active_verbs = {
+            "drum", "hiss", "snap", "click", "scream", "whisper", "shout", 
+            "thud", "bang", "crash", "creak", "rustle", "beep", 
+            "slap", "gulp", "swallow", "step", "clatter", "buzz", "run",
+            "sip", "drink", "tap", "type", "knock", "rattle", "sizzle", "hum", 
+            "whir", "laugh", "cry", "sob", "gasp", "groan", "choke", "breathe", "sigh"
+        }
+        
+        # Nouns that inherently imply sound
+        sound_nouns = {
+            "rain", "thunder", "wind", "storm", "siren", "explosion", 
+            "gunshot", "scream", "laughter", "applause", "silence", "noise", 
+            "footsteps", "voice", "clamor", "uproar"
+        }
+
         for t in doc:
-            if t.lemma_.lower() in self.sound_lemmas:
-                sfx.append(t.lemma_.lower())
-            elif t.text.lower() in ["rain", "thunder", "silence", "noise", "wind", "storm"]:
-                 sfx.append(t.text.lower())
+            lemma = t.lemma_.lower()
+            
+            # Verbs: Must be an action
+            if t.pos_ == "VERB" and lemma in active_verbs:
+                sfx.append(lemma)
+            
+            # Nouns: Must be an explicit sound source
+            elif t.pos_ == "NOUN" and (lemma in sound_nouns or lemma in active_verbs):
+                # checking 'lemma in active_verbs' handles "a tap", "a click"
+                sfx.append(lemma)
+                
         return sorted(list(set(sfx)))
 
     def extract_svo(self, text, context_subject=None):

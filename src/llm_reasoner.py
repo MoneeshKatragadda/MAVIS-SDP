@@ -333,65 +333,79 @@ Output:"""
     def analyze_beat_production(self, beat_data):
         """
         Determines BGM and SFX for a specific beat.
-        BGM: Narration only. Defaults to 'Suspenseful Drone' if not specified or adaptable.
-        SFX: Narration only, inferred from text.
+        BGM: specific to the scene emotion/context.
+        SFX: strictly derived from text actions.
         """
         text = beat_data['text']
         b_type = beat_data['type']
+        emotion_label = beat_data.get('emotion', {}).get('label', 'neutral')
         
         # Defaults
-        bgm_style = None
+        bgm_style = "Silence"
         bgm_vol = 0.0
         sfx_list = []
 
         if b_type == 'narration':
-            # Default BGM for all narration
-            bgm_style = "Suspenseful Drone" 
-            import random
-            bgm_vol = round(random.uniform(0.10, 0.15), 2)
+            # --- BGM LOGIC ---
+            # Map emotions to Noir BGM styles
+            noir_scores = {
+                "neutral": "Low Hum / City Ambience",
+                "ominous": "Dark Suspense Drone",
+                "fear": "Tense Industrial Pulse",
+                "desperate": "Rapid Heartbeat / High Strings",
+                "sadness": "Melancholic Saxophone & Rain",
+                "joy": "Light Jazz", # Rare in Noir
+                "anger": "Aggressive Bass Drone",
+                "approval": "Smooth Jazz",
+                "curiosity": "Mystery Piano"
+            }
+            
+            # Default based on emotion
+            bgm_style = noir_scores.get(emotion_label, "Suspenseful Drone")
+            if "rain" in text.lower() or "storm" in text.lower():
+                bgm_style = "Rainy Noir Ambience"
 
-            prompt = f"""Instruction: Analyze SFX and BGM adaptation.
+            import random
+            bgm_vol = round(random.uniform(0.12, 0.18), 2)
+
+            # --- SFX LOGIC ---
+            # Strict prompt to prevent object-association hallucinations (e.g. coffee -> sipping)
+            prompt = f"""Instruction: Identify explicit sound effects from the text.
 Text: "{text}"
 
-Tasks:
-1. BGM: Defaults to "Suspenseful Drone". Change ONLY if text demands specific change (e.g. "Silence fell" -> Silence, "Music started" -> Jazz).
-2. SFX: List audible sounds using SIMPLE labels.
-   - Text: "Rain drummed" -> SFX: Rain
-   - Text: "Sipped coffee" -> SFX: Sipping
-   - Text: "Fingers dancing on tablet" -> SFX: Tapping
-   - Text: "He looked" -> SFX: None
-   - Text: "She thought" -> SFX: None
+Rules:
+1. ONLY list sounds caused by an ACTIVE VERB in the text.
+2. DO NOT list sounds for static objects (e.g. "He held the coffee" -> NO Sipping).
+3. DO NOT list ambient sounds (Rain, Wind) unless explicitly mentioned in THIS sentence.
+4. Output 'SFX: None' if no specific action makes sound.
+
+Examples:
+Text: "The rain drummed on the roof." -> SFX: Rain, Drumming
+Text: "He smelled the burnt coffee." -> SFX: None
+Text: "She sipped the tea." -> SFX: Sipping
+Text: "Fingers dancing on the screen." -> SFX: Tapping
+Text: "The car sat in the driveway." -> SFX: None
 
 Format:
-BGM: [Style]
-SFX: [SoundName]
+SFX: [Sound1, Sound2] OR None
 
 Response:
 """
-            out = self.llm(prompt, max_tokens=50, stop=["Instruction:", "Text:"], temperature=0.1)
+            out = self.llm(prompt, max_tokens=40, stop=["Instruction:", "Text:"], temperature=0.1)
             raw = out["choices"][0]["text"].strip()
             
-            # 1. Parse BGM Adaptation
-            bgm_match = re.search(r"BGM:(.*?)(?:\n|$)", raw, re.IGNORECASE)
-            if bgm_match:
-                style = bgm_match.group(1).strip()
-                if style.lower() not in ["none", "suspenseful drone", ""]:
-                    bgm_style = style
-            
-            # 2. Parse SFX (Simplified)
+            # Parse SFX
             if "SFX:" in raw:
                 try:
                     raw_sfx = raw.split("SFX:")[1].split("\n")[0].strip()
                     if raw_sfx.lower() != "none":
-                        # Split by comma
                         items = [x.strip() for x in raw_sfx.split(",")]
                         for item in items:
-                            # Clean up
-                            name = re.sub(r"\(.*?\)", "", item).strip() # Remove any hallucinated parens
+                            name = re.sub(r"\(.*?\)", "", item).strip()
                             if name and name.lower() != "none":
                                 sfx_list.append({
                                     "name": name,
-                                    "timing": {"start": 0.1, "end": 0.9} # Default full beat coverage
+                                    "timing": {"start": 0.1, "end": 0.9}
                                 })
                 except Exception as e:
                     logger.error(f"SFX Parsing Error: {e}")

@@ -82,32 +82,10 @@
           "visual_prompt": "High quality color cinematic shot of drumming against windows, Rusty Anchor, small diner, burnt coffee, old vinyl., blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
+              "style": "Rainy Noir Ambience",
+              "volume": 0.14
             },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 0.0,
@@ -153,8 +131,8 @@
           "visual_prompt": "High quality color cinematic shot of people, air, tension, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
+              "style": "Dark Suspense Drone",
+              "volume": 0.18
             },
             "sfx": []
           },
@@ -204,18 +182,10 @@
           "visual_prompt": "High quality color cinematic shot of Silas is clean shaven face, sharp jawline, 20s, wearing Grey Suit, sipping black coffee, gaze fixed on briefcase, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "[BGM]",
-              "volume": 0.12
+              "style": "Dark Suspense Drone",
+              "volume": 0.15
             },
-            "sfx": [
-              {
-                "name": "[SFX]",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 0.0,
@@ -243,7 +213,7 @@
           "visual_prompt": "High quality color cinematic shot of clean shaven face, sharp jawline, 20s, wearing Grey Suit, annoyance expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -300,32 +270,10 @@
           "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, swallowing hard, Adam's apple bobbing, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.11
+              "style": "Dark Suspense Drone",
+              "volume": 0.17
             },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 0.0,
@@ -353,7 +301,7 @@
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -410,32 +358,10 @@
           "visual_prompt": "High quality color cinematic shot of Lena is red wavy hair, green eyes, 20s, wearing Red Evening Gown, digits dancing on tablet under napkin, rolling eyes, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.11
+              "style": "Dark Suspense Drone",
+              "volume": 0.18
             },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 0.0,
@@ -463,7 +389,7 @@
           "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -515,7 +441,7 @@
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, neutral expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -545,8 +471,8 @@
           "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, hissing, leaning in, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
+              "style": "Dark Suspense Drone",
+              "volume": 0.14
             },
             "sfx": []
           },
@@ -576,7 +502,7 @@
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, disapproval expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -627,18 +553,10 @@
           "visual_prompt": "High quality color cinematic shot of Silas is clean shaven face, sharp jawline, 20s, wearing Grey Suit, man flipping burgers, counter, Greasy apron, Aggression., blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "[BGM]",
-              "volume": 0.14
+              "style": "Low Hum / City Ambience",
+              "volume": 0.13
             },
-            "sfx": [
-              {
-                "name": "[SFX]",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 0.0,
@@ -666,7 +584,7 @@
           "visual_prompt": "High quality color cinematic shot of clean shaven face, sharp jawline, 20s, wearing Grey Suit, neutral expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -724,7 +642,7 @@
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
@@ -754,32 +672,10 @@
           "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, whispering, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
+              "style": "Low Hum / City Ambience",
+              "volume": 0.16
             },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
+            "sfx": []
           },
           "timing": {
             "rel_start": 1.2,
@@ -807,7 +703,7 @@
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, shaky expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": null,
+              "style": "Silence",
               "volume": 0.0
             },
             "sfx": []
