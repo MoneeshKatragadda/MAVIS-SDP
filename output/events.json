@@ -83,9 +83,38 @@
           "production": {
             "bgm": {
               "style": "Rainy Noir Ambience",
-              "volume": 0.14
+              "volume": 0.16
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Rain",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Drumming",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Rustling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Sizzling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -132,9 +161,24 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.18
+              "volume": 0.17
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Whispers",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Shuffling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -183,9 +227,31 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.15
+              "volume": 0.16
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Sipping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Whistling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              },
+              {
+                "name": "Rustling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -271,9 +337,17 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.17
+              "volume": 0.15
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Swallowing",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -359,9 +433,17 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.18
+              "volume": 0.17
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Tapping",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -376,7 +458,7 @@
           "text": "He's mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You're welcome.",
           "duration": 8.0,
           "emotion": {
-            "label": "desperate",
+            "label": "gratitude",
             "intensity": 0.8
           },
           "semantic": {
@@ -384,9 +466,9 @@
             "action": "is/are",
             "object": "clean"
           },
-          "audio_prompt": "Lena, tone=desperate, intensity=0.8",
+          "audio_prompt": "Lena, tone=gratitude, intensity=0.8",
           "sub_scene_id": "SC_005_02",
-          "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, gratitude expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Silence",
@@ -472,9 +554,17 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.14
+              "volume": 0.16
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Hissing",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 1.0,
@@ -556,7 +646,15 @@
               "style": "Low Hum / City Ambience",
               "volume": 0.13
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Sizzling",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -673,9 +771,17 @@
           "production": {
             "bgm": {
               "style": "Low Hum / City Ambience",
-              "volume": 0.16
+              "volume": 0.14
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "Soft Whispering",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 1.2,

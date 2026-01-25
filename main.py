@@ -30,6 +30,49 @@ def aggregate_scene_emotion(beats):
     common = Counter(labels).most_common(1)[0]
     return {"dominant_emotion": common[0], "intensity": 0.8}
 
+def patch_sfx_only():
+    """Reads existing events.json and updates ONLY the SFX field using LLM."""
+    logger.info("--- Starting SFX Patch (Preserving BGM) ---")
+    cfg = load_config()
+    llm = LLMReasoner(cfg)
+    
+    output_path = cfg["paths"]["output_file"]
+    if not os.path.exists(output_path):
+        logger.error("No events.json found to patch.")
+        return
+
+    with open(output_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    updates = 0
+    timeline = data.get("timeline", [])
+    
+    for scene in timeline:
+        beats = scene.get("beats", [])
+        for beat in beats:
+            # We focus on narration beats as they usually carry the SFX in this style
+            if beat.get("type") == "narration":
+                old_prod = beat.get("production", {})
+                existing_bgm = old_prod.get("bgm", {})
+                
+                # Regenerate Production (which includes SFX)
+                new_prod = llm.analyze_beat_production(beat)
+                new_sfx = new_prod.get("sfx", [])
+                
+                # Update SFX, Keep BGM
+                beat["production"] = {
+                    "bgm": existing_bgm,
+                    "sfx": new_sfx
+                }
+                
+                # logger.info(f"Beat {beat.get('sub_scene_id')} SFX: {new_sfx}")
+                updates += 1
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        
+    logger.info(f"SFX Patch Complete. Updated {updates} beats.")
+
 def main():
     logger.info("Initializing MAVIS Pipeline 3.3 (Visual Hallucination Fix)")
     cfg = load_config()
@@ -195,4 +238,8 @@ def main():
     logger.info(f"Success. Total Beats: {total_beats_count}")
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if "--patch-sfx" in sys.argv:
+        patch_sfx_only()
+    else:
+        main()

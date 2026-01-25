@@ -369,29 +369,22 @@ Output:"""
             bgm_vol = round(random.uniform(0.12, 0.18), 2)
 
             # --- SFX LOGIC ---
-            # Strict prompt to prevent object-association hallucinations (e.g. coffee -> sipping)
-            prompt = f"""Instruction: Identify explicit sound effects from the text.
-Text: "{text}"
-
-Rules:
-1. ONLY list sounds caused by an ACTIVE VERB in the text.
-2. DO NOT list sounds for static objects (e.g. "He held the coffee" -> NO Sipping).
-3. DO NOT list ambient sounds (Rain, Wind) unless explicitly mentioned in THIS sentence.
-4. Output 'SFX: None' if no specific action makes sound.
-
-Examples:
-Text: "The rain drummed on the roof." -> SFX: Rain, Drumming
-Text: "He smelled the burnt coffee." -> SFX: None
-Text: "She sipped the tea." -> SFX: Sipping
-Text: "Fingers dancing on the screen." -> SFX: Tapping
-Text: "The car sat in the driveway." -> SFX: None
-
-Format:
-SFX: [Sound1, Sound2] OR None
-
-Response:
-"""
-            out = self.llm(prompt, max_tokens=40, stop=["Instruction:", "Text:"], temperature=0.1)
+            # Strict few-shot prompt for Phi-2
+            prompt = f"""Task: List audible SFX.
+Input: "The rain drummed on the roof."
+Output: SFX: Rain, Drumming
+Input: "He smelled the coffee."
+Output: SFX: None
+Input: "He sipped the tea."
+Output: SFX: Sipping
+Input: "Fingers dancing on the screen."
+Output: SFX: Tapping
+Input: "Julian hissed."
+Output: SFX: Hissing
+Input: "{text}"
+Output:"""
+            
+            out = self.llm(prompt, max_tokens=20, stop=["Input:", "\n"], temperature=0.1)
             raw = out["choices"][0]["text"].strip()
             
             # Parse SFX
