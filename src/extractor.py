@@ -22,10 +22,12 @@ class NLPExtractor:
         self._emotion_pipe = None
         self.sia = SentimentIntensityAnalyzer()
         
+        # Expanded sound lemmas to catch more varied SFX verbs
         self.sound_lemmas = {
             "drum", "hiss", "snap", "click", "scream", "whisper", "shout", 
             "thud", "bang", "ring", "crash", "creak", "rustle", "beep", "siren", 
-            "slap", "gulp", "swallow", "breath", "step", "clatter", "buzz", "engine", "run"
+            "slap", "gulp", "swallow", "breath", "step", "clatter", "buzz", "engine", "run",
+            "sip", "drink", "tap", "type", "knock", "rattle", "sizzle", "hum", "whir", "laugh"
         }
 
         self.entity_blocklist = {
@@ -55,19 +57,14 @@ class NLPExtractor:
             self._emotion_pipe = pipeline(
                 "text-classification",
                 model=self.emotion_model,
-                top_k=None, # Return ALL scores for "Second Best" logic
+                top_k=None, 
                 device=device
             )
 
     def get_emotion(self, text, beat_type):
-        """
-        Extracts Base Emotion using RoBERTa.
-        Uses 'Neutral Suppression' to find hidden feelings in narration.
-        """
         if not text.strip(): 
             return {"label": "neutral", "intensity": 0.0}
             
-        # Run inference
         results = self._emotion_pipe(text[:512])[0]
         results = sorted(results, key=lambda x: x["score"], reverse=True)
         
@@ -77,8 +74,6 @@ class NLPExtractor:
         label = top["label"].lower()
         score = float(top["score"])
 
-        # --- Neutral Suppression (Keep this for Narration) ---
-        # If RoBERTa says "neutral" < 0.85, and 2nd option is strong, pick 2nd.
         if label == "neutral" and score < 0.85:
             if second["label"].lower() not in ["approval", "realization"]: 
                 label = second["label"].lower()
@@ -86,7 +81,6 @@ class NLPExtractor:
                 if score > 0.9: score = 0.9
 
         intensity = min(score, 0.99)
-        
         return {"label": label, "intensity": round(intensity, 3)}
 
     # ---------------- SFX & Semantics ----------------
@@ -96,7 +90,7 @@ class NLPExtractor:
         for t in doc:
             if t.lemma_.lower() in self.sound_lemmas:
                 sfx.append(t.lemma_.lower())
-            elif t.text.lower() in ["rain", "thunder", "silence", "noise", "wind"]:
+            elif t.text.lower() in ["rain", "thunder", "silence", "noise", "wind", "storm"]:
                  sfx.append(t.text.lower())
         return sorted(list(set(sfx)))
 

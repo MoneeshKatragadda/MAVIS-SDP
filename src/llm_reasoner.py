@@ -112,7 +112,7 @@ Name | Gender | Physical Traits | Signature Outfit
 
 Response:
 """
-        out = self.llm(prompt, max_tokens=400, stop=["Instruction:", "Story:"], temperature=0.7)
+        out = self.llm(prompt, max_tokens=400, stop=["Instruction:", "Story:"], temperature=0.1)
         raw_text = out["choices"][0]["text"]
         
         visuals = {} # name -> {physical, outfit}
@@ -180,7 +180,7 @@ INTENSITY: [0.1 - 1.0]
 
 Response:
 """
-        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Line:"], temperature=0.3)
+        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Line:"], temperature=0.1)
         raw_text = out["choices"][0]["text"]
         
         pred_label = self._parse_key_value(raw_text, "EMOTION")
@@ -219,7 +219,7 @@ INTENSITY: [0.1 - 1.0]
 
 Response:
 """
-        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Narrator Line:"], temperature=0.3)
+        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Narrator Line:"], temperature=0.1)
         raw_text = out["choices"][0]["text"]
         
         tone = "neutral"

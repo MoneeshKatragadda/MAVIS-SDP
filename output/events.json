@@ -83,7 +83,7 @@
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.15
+              "volume": 0.13
             },
             "sfx": [
               {
@@ -141,20 +141,20 @@
           "duration": 8.0,
           "emotion": {
             "label": "ominous",
-            "intensity": 0.7
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "people",
             "action": "sit",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_002_01",
           "visual_prompt": "High quality color cinematic shot of people, air, tension, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.15
+              "volume": 0.12
             },
             "sfx": []
           },
@@ -205,7 +205,7 @@
           "production": {
             "bgm": {
               "style": "[BGM]",
-              "volume": 0.11
+              "volume": 0.12
             },
             "sfx": [
               {
@@ -340,7 +340,7 @@
           "text": "I took three different subways and walked through a department store. I'm clean, Silas. I swear.",
           "duration": 6.4,
           "emotion": {
-            "label": "approval",
+            "label": "desperate",
             "intensity": 0.8
           },
           "semantic": {
@@ -348,9 +348,9 @@
             "action": "take",
             "object": "subways"
           },
-          "audio_prompt": "Julian, tone=approval, intensity=0.8",
+          "audio_prompt": "Julian, tone=desperate, intensity=0.8",
           "sub_scene_id": "SC_004_02",
-          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, approval expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -398,20 +398,20 @@
           "duration": 9.5,
           "emotion": {
             "label": "ominous",
-            "intensity": 0.5
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "roll",
             "object": "eyes"
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.5",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_005_01",
           "visual_prompt": "High quality color cinematic shot of Lena is red wavy hair, green eyes, 20s, wearing Red Evening Gown, digits dancing on tablet under napkin, rolling eyes, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.13
+              "volume": 0.11
             },
             "sfx": [
               {
@@ -450,7 +450,7 @@
           "text": "He's mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You're welcome.",
           "duration": 8.0,
           "emotion": {
-            "label": "gratitude",
+            "label": "desperate",
             "intensity": 0.8
           },
           "semantic": {
@@ -458,9 +458,9 @@
             "action": "is/are",
             "object": "clean"
           },
-          "audio_prompt": "Lena, tone=gratitude, intensity=0.8",
+          "audio_prompt": "Lena, tone=desperate, intensity=0.8",
           "sub_scene_id": "SC_005_02",
-          "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, gratitude expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -492,7 +492,7 @@
         ]
       },
       "production": {
-        "lighting": "desperate lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -502,7 +502,7 @@
           "text": "See?",
           "duration": 1.0,
           "emotion": {
-            "label": "desperate",
+            "label": "neutral",
             "intensity": 0.8
           },
           "semantic": {
@@ -510,9 +510,9 @@
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Julian, tone=desperate, intensity=0.8",
+          "audio_prompt": "Julian, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_006_01",
-          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, neutral expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -533,20 +533,20 @@
           "duration": 2.0,
           "emotion": {
             "label": "ominous",
-            "intensity": 0.7
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "hiss",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_006_02",
           "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, hissing, leaning in, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.15
+              "volume": 0.13
             },
             "sfx": []
           },
@@ -564,14 +564,14 @@
           "duration": 8.0,
           "emotion": {
             "label": "disapproval",
-            "intensity": 0.3
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Lena",
             "action": "get",
             "object": null
           },
-          "audio_prompt": "Julian, tone=disapproval, intensity=0.3",
+          "audio_prompt": "Julian, tone=disapproval, intensity=0.8",
           "sub_scene_id": "SC_006_03",
           "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, disapproval expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
@@ -605,7 +605,7 @@
         ]
       },
       "production": {
-        "lighting": "ominous lighting"
+        "lighting": "neutral lighting"
       },
       "entities": [],
       "beats": [
@@ -614,21 +614,21 @@
           "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
           "duration": 10.0,
           "emotion": {
-            "label": "ominous",
-            "intensity": 0.3
+            "label": "neutral",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Silas",
             "action": "glance",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.3",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.5",
           "sub_scene_id": "SC_007_01",
           "visual_prompt": "High quality color cinematic shot of Silas is clean shaven face, sharp jawline, 20s, wearing Grey Suit, man flipping burgers, counter, Greasy apron, Aggression., blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "[BGM]",
-              "volume": 0.1
+              "volume": 0.14
             },
             "sfx": [
               {
@@ -695,7 +695,7 @@
         ]
       },
       "production": {
-        "lighting": "sadness lighting"
+        "lighting": "desperate lighting"
       },
       "entities": [
         {
@@ -711,17 +711,17 @@
           "text": "I can't breathe!",
           "duration": 1.2,
           "emotion": {
-            "label": "sadness",
-            "intensity": 0.6
+            "label": "desperate",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Julian",
             "action": "breathe",
             "object": null
           },
-          "audio_prompt": "Julian, tone=sadness, intensity=0.6",
+          "audio_prompt": "Julian, tone=desperate, intensity=0.8",
           "sub_scene_id": "SC_008_01",
-          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, sadness expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -741,21 +741,21 @@
           "text": "Julian whispered",
           "duration": 1.0,
           "emotion": {
-            "label": "ominous",
-            "intensity": 0.3
+            "label": "neutral",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Julian",
             "action": "whisper",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.3",
+          "audio_prompt": "Narrator, tone=neutral, intensity=0.5",
           "sub_scene_id": "SC_008_02",
           "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, whispering, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.14
+              "volume": 0.12
             },
             "sfx": [
               {
@@ -794,17 +794,17 @@
           "text": "Do you have any idea what's in here? If the Board finds out I took these files",
           "duration": 6.8,
           "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
+            "label": "shaky",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Julian",
             "action": "have",
             "object": "idea"
           },
-          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
+          "audio_prompt": "Julian, tone=shaky, intensity=0.5",
           "sub_scene_id": "SC_008_03",
-          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, curiosity expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, shaky expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
