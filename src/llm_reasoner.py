@@ -26,9 +26,14 @@ class LLMReasoner:
             "disapproval"
         }
 
-        self.FORBIDDEN_LABELS = {"intensity", "emotion", "score", "value", "label", "tone"}
+        self.FORBIDDEN_LABELS = {
+            "intensity", "emotion", "score", "value", "label", "tone", 
+            "for", "refers", "implies", "suggests", "phrase", "word", 
+            "meaning", "context", "indicates", "shows", "reflects", "is", "a", "the"
+        }
 
     def _parse_key_value(self, text, key):
+        # Improved Regex to stop at newlines or common delimiters
         pattern = rf"{key}[:\-\s]+([a-zA-Z0-9_\.]+)"
         match = re.search(pattern, text, re.IGNORECASE)
         if match:
@@ -89,28 +94,28 @@ Response:
         return profiles
 
     def analyze_cast_visuals(self, story_text, characters):
-        """Generates consistent visual descriptions for characters (Face, Clothes)."""
+        """Generates rigid Visual DNA for characters (Immutable Physical + Signature Outfit)."""
         char_list = ", ".join(characters)
         intro_text = story_text[:1500].replace("\n", " ")
         
-        prompt = f"""Instruction: Create specific visual profiles for video generation.
+        prompt = f"""Instruction: Create rigid Visual DNA for consistent video generation.
 Story Context: {intro_text}...
 Characters: {char_list}
 
 Rules:
-1. Describe specific appearances (Ethnicity, Age, Gender, Hair, Face).
-2. Assign a "Signature Clothing" item (e.g., Trench Coat, Leather Jacket, Silk Dress, Crumpled Suit).
-3. Visual Description must be 1 detailed sentence.
+1. Physical Traits: face, ethnicity, hair, age, build. (Immutable)
+2. Signature Outfit: The specific clothing they wear throughout the scene.
+3. Be descriptive but concise.
 
 Format:
-Name | Gender | Signature Clothing | [Visual Description]
+Name | Gender | Physical Traits | Signature Outfit
 
 Response:
 """
-        out = self.llm(prompt, max_tokens=300, stop=["Instruction:", "Story:"], temperature=0.7)
+        out = self.llm(prompt, max_tokens=400, stop=["Instruction:", "Story:"], temperature=0.7)
         raw_text = out["choices"][0]["text"]
         
-        visuals = {}
+        visuals = {} # name -> {physical, outfit}
         metadata = {}
 
         for line in raw_text.split("\n"):
@@ -119,55 +124,63 @@ Response:
                 if len(parts) >= 4:
                     name = parts[0]
                     gender = parts[1]
-                    clothing = parts[2] # Now captures "Leather Jacket", "Trench Coat" etc
-                    desc = parts[3]
-                
-                    if not desc.strip(): continue
+                    physical = parts[2]
+                    outfit = parts[3]
+                    
+                    if not physical.strip(): continue
                     
                     # Fuzzy match name
                     for c in characters:
                         if c in name:
-                            visuals[c] = desc
-                            metadata[c] = {"gender": gender, "style": clothing}
+                            visuals[c] = {
+                                "physical": physical,
+                                "outfit": outfit,
+                                "full_desc": f"{physical}, wearing {outfit}"
+                            }
+                            metadata[c] = {"gender": gender, "style": outfit}
                             break
         
-        # Defaults
+        # Defaults - User Request: All 20s, No Beards
         default_looks = [
-            ("Male", "Trench Coat & Fedora", "wearing a trench coat and fedora, sharp facial features, 30s"),
-            ("Female", "Evening Gown", "wearing an elegant evening dress, wavy hair, 20s"),
-            ("Male", "Crumpled Suit", "wearing a crumpled suit, tired expression, 40s"),
-            ("Male", "Leather Jacket", "wearing a leather jacket, intense gaze, 30s")
+            ("Male", "short black hair, blue eyes, clean shaven, 20s", "Brown Trench Coat"),
+            ("Female", "red wavy hair, green eyes, 20s", "Red Evening Gown"),
+            ("Male", "clean shaven face, sharp jawline, 20s", "Grey Suit"),
+            ("Male", "buzz cut, clean shaven, 20s", "Black Leather Jacket")
         ]
         
         for i, c in enumerate(characters):
             if c not in visuals:
-                # Assign a stable default implementation based on index
-                gender, style, look = default_looks[i % len(default_looks)]
-                visuals[c] = f"{c}, {look}"
-                metadata[c] = {"gender": gender, "style": style}
+                gender, phys, outf = default_looks[i % len(default_looks)]
+                visuals[c] = {
+                    "physical": phys,
+                    "outfit": outf,
+                    "full_desc": f"{phys}, wearing {outf}"
+                }
+                metadata[c] = {"gender": gender, "style": outf}
         
         self.character_visuals = visuals
         self.character_metadata = metadata
-        logger.info(f"Generated Visual Profiles: {visuals}")
+        logger.info(f"Generated Visual DNA: {visuals}")
         return visuals
 
     def refine_dialogue_emotion(self, speaker, text, archetype, context_window, base_emotion):
-        prompt = f"""Instruction: Identify the hidden Noir subtext.
+        prompt = f"""Instruction: Act as a Noir Film Director. Define the EMOTION and DELIVERY.
 Character: {speaker} ({archetype})
 Line: "{text}"
 Context: {context_window}
 Surface Emotion: {base_emotion}
 
-Task: Ignore surface meaning. If text is "I'm clean" or "You're welcome", find the dark subtext (Defensive, Sarcastic).
-Valid Options: Suspicion, Paranoia, Dread, Defensive, Sarcastic, Threatening, Desperate.
+Task: Choose a specific, evocative adjective for how this line is spoken.
+Examples: Sarcastic, Fearful, Angry, Hesitant, Flirtatious, Cold, Desperate, Commanding, Shaky, Breathless.
+Avoid "Neutral" if possible.
 
 Format:
-EMOTION: [One word]
-INTENSITY: [0.0 - 1.0]
+EMOTION: [Adjective]
+INTENSITY: [0.1 - 1.0]
 
 Response:
 """
-        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Line:"], temperature=0.1)
+        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Line:"], temperature=0.3)
         raw_text = out["choices"][0]["text"]
         
         pred_label = self._parse_key_value(raw_text, "EMOTION")
@@ -178,30 +191,56 @@ Response:
 
         if pred_label:
             clean_label = pred_label.lower().strip()
-            if clean_label in self.FORBIDDEN_LABELS:
-                pass
-            elif clean_label in self.VALID_EMOTIONS:
+            # Allow any reasonable word, just filter garbage
+            if clean_label not in self.FORBIDDEN_LABELS and len(clean_label) > 2:
                 final_label = clean_label
-            elif len(clean_label) > 2:
-                final_label = clean_label
-
-        if final_label in ["approval", "joy", "gratitude", "caring"]:
-            lower_text = text.lower()
-            if "clean" in lower_text or "swear" in lower_text:
-                final_label = "defensive"
-            elif "welcome" in lower_text or "thanks" in lower_text:
-                final_label = "sarcastic"
-            else:
-                final_label = "relief"
 
         if pred_score:
             try:
                 val = float(pred_score)
-                final_score = min(max(val, 0.0), 1.0)
+                final_score = min(max(val, 0.1), 1.0)
             except ValueError:
                 final_score = 0.8
 
         return {"label": final_label, "intensity": final_score}
+
+    def analyze_narration_tone(self, text, context_window):
+        prompt = f"""Instruction: Act as a Noir Film Director. Define the ATMOSPHERE and TONE for this narration.
+Context: {context_window}
+Narrator Line: "{text}"
+
+Task: Choose a specific, evocative adjective to describe the narration style.
+Examples: Ominous, Melancholic, Urgent, Detached, Cynical, Whispering, Harsh, Reflective, Suspenseful, Gloomy.
+Avoid "Neutral".
+
+Format:
+TONE: [Adjective]
+INTENSITY: [0.1 - 1.0]
+
+Response:
+"""
+        out = self.llm(prompt, max_tokens=60, stop=["Instruction:", "Narrator Line:"], temperature=0.3)
+        raw_text = out["choices"][0]["text"]
+        
+        tone = "neutral"
+        intensity = 0.5
+        
+        pred_tone = self._parse_key_value(raw_text, "TONE")
+        pred_int = self._parse_key_value(raw_text, "INTENSITY")
+        
+        if pred_tone:
+            clean_tone = pred_tone.lower().strip()
+            if clean_tone not in self.FORBIDDEN_LABELS and len(clean_tone) > 2:
+                tone = clean_tone
+                
+        if pred_int:
+             try:
+                val = float(pred_int)
+                intensity = min(max(val, 0.1), 1.0)
+             except ValueError:
+                intensity = 0.5
+                
+        return {"label": tone, "intensity": intensity}
 
 
 
@@ -221,61 +260,74 @@ Response:
         if b_type == 'dialogue':
             speaker = beat_data.get('speaker', 'Unknown')
             
-            # Robust lookup
-            char_desc = self.character_visuals.get(speaker, "")
-            if not char_desc:
-                # If lookup fails, fallback to name+noir text
-                char_desc = f"{speaker}, a noir character in detective attire"
-            
-            # Strict Template
-            # ensure no empty description
-            if not char_desc.strip(): char_desc = f"{speaker}, a noir character"
+            # Robust lookup with Visual DNA
+            vis_data = self.character_visuals.get(speaker, {})
+            if isinstance(vis_data, dict):
+                char_dna = vis_data.get("full_desc", f"{speaker}, noir character")
+            else:
+                char_dna = str(vis_data) # Fallback
 
-            # "Cinematic close up shot of <character> with <emotion> expression with blurry backround of dimly lit dinner"
-            prompt = f"Cinematic close up shot of {char_desc} with {emotion} expression with blurry background of {location}"
+            # "High quality color cinematic shot of [Physical], wearing [Outfit]..."
+            # Precise, consistent structure + Speaking indicator
+            prompt = f"High quality color cinematic shot of {char_dna}, {emotion} expression, speaking with mouth slightly open, blurry background of {location} with dimly lit lights"
             return prompt
 
         # For Narration
         else:
-            # Construct context of who is visible
-            visible_people = ", ".join([f"{c} ({self.character_visuals.get(c, 'Noir figure')})" for c in active_cast])
-            if not visible_people: visible_people = "No specific characters, focus on environment"
+            # 1. Identify which characters are actually in this specific narration line
+            relevant_chars = []
+            lower_text = text.lower()
+            for c in active_cast:
+                # Case-insensitive check + basic pronoun check (risky, so just sticking to names for now)
+                if c.lower() in lower_text: 
+                     relevant_chars.append(c)
+            
+            # If no specific char found but scene has them, default to all active cast
+            # This ensures we don't lose context in vague sentences
+            if not relevant_chars:
+                 relevant_chars = active_cast
 
-            prompt = f"""Task: Convert the Narration into a precise Visual Description for Video Generation.
-Narration: "{text}"
-Location: {location}
-Characters: {visible_people}
+            # 2. Build Context with Visual DNA
+            vis_context = []
+            for c in relevant_chars:
+                vis = self.character_visuals.get(c, {})
+                # Handle both dict and string cases matching previous logic
+                if isinstance(vis, dict):
+                    desc = vis.get("full_desc", "noir figure")
+                else:
+                    desc = str(vis)
+                vis_context.append(f"{c} is {desc}")
+            
+            vis_block = ". ".join(vis_context)
 
-Instructions:
-1. Elloborate the text visually for a video generation model.
-2. DO NOT add "looking around", "heart pounding", "placing items" unless explicitly in the text.
-3. Start with a camera angle (e.g., "Close up shot of...", "Wide shot of...").
-4. DO NOT add additional objects unless explicitly in the text.
-5. Give consistent prompts. Current prompt should be relatable and continuation of previous prompt.
-
-Narration: "{text}"
-Visual Description:"""
+            # Simplified Prompt for Phi-2 (Completion style)
+            # Detailed Extraction for Phi-2
+            # We want: [Character Visuals] [Action + Objects], blurry background...
             
-            out = self.llm(prompt, max_tokens=60, stop=["\n", "Narration:", "Task:"], temperature=0.0)
-            gen = out["choices"][0]["text"].strip()
+            prompt = f"""Task: Extract physical action AND objects. Keep it brief.
+Input: "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin."
+Output: digits dancing on tablet under napkin, rolling eyes
+Input: "{text}"
+Output:"""
             
-            # Clean
-            gen = self._clean_visual_output(gen)
+            # 1. Get Action
+            out = self.llm(prompt, max_tokens=35, stop=["\n", "Input:"], temperature=0.1)
+            action = out["choices"][0]["text"].strip()
+            if len(action) < 5: action = text # Fallback
             
-            # Improved Fallback
-            if not gen: 
-                 # Fallback: Use the text but dress it up visually
-                 clean_text = text
-                 for prefix in ["Inside, ", "Outside, ", "Suddenly, ", "Meanwhile, "]:
-                     if clean_text.startswith(prefix):
-                         clean_text = clean_text[len(prefix):]
-                 gen = f"Cinematic shot of {clean_text}"
+            # 2. Build Prompt
+            # format: "High quality color cinematic shot of [Visuals] [Action], blurry background of [Location] with dimly lit lights"
             
-            # Prefix check - Ensure it starts with a camera shot type or Cinematic
-            lower_gen = gen.lower()
-            if not any(x in lower_gen for x in ["cinematic", "shot", "close up", "wide", "view", "pan", "zoom"]):
-                 gen = f"Cinematic color shot of {gen}"
-                 
+            final_subject = ""
+            if vis_block:
+                 final_subject = f"{vis_block}, {action}"
+            else:
+                 final_subject = action
+            
+            gen = f"High quality color cinematic shot of {final_subject}, blurry background of {location} with dimly lit lights"
+            return gen
+            
+            # Prefix check
             return gen
 
     def analyze_beat_production(self, beat_data):

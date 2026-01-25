@@ -89,10 +89,11 @@ def main():
             beat['emotion'] = base_emotion 
             
             # 2. LLM Refinement (LOCKED)
+            # 2. LLM Refinement (Review Phase 1.5)
+            context_str = " | ".join(list(context_buffer)) if context_buffer else "Start of scene"
+            
             if beat['type'] == 'dialogue' and beat['speaker'] in cast_profiles:
-                context_str = " | ".join(list(context_buffer)) if context_buffer else "Start of scene"
                 archetype = cast_profiles[beat['speaker']]
-                
                 refined_emotion = llm.refine_dialogue_emotion(
                     speaker=beat['speaker'],
                     text=beat['text'],
@@ -102,6 +103,15 @@ def main():
                 )
                 beat['emotion'] = refined_emotion
                 context_buffer.append(f"{beat['speaker']}: {beat['text']}")
+
+            elif beat['type'] == 'narration':
+                # New Path for Narration
+                tone_data = llm.analyze_narration_tone(
+                    text=beat['text'],
+                    context_window=context_str
+                )
+                beat['emotion'] = tone_data
+                context_buffer.append(f"Narrator: {beat['text']}")
 
             # 3. Attributes
             beat['semantic'] = nlp.extract_svo(beat['text'], context_subject=current_active_char)

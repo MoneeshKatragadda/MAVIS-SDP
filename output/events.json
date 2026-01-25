@@ -2,8 +2,8 @@
   "project_meta": {
     "title": "MAVIS_Project",
     "fps": 24,
-    "total_duration": 252.0,
-    "total_beats": 50,
+    "total_duration": 96.2,
+    "total_beats": 16,
     "validation_status": "Passed"
   },
   "global_assets": {
@@ -12,13 +12,11 @@
     ],
     "props": [
       "Adam",
-      "Formica",
       "The Rusty Anchor"
     ],
     "cast": [
       "Julian",
       "Lena",
-      "Marcus",
       "Silas"
     ]
   },
@@ -27,25 +25,19 @@
       "voice_model_id": "en_us_generic_julian",
       "archetype": "Noir Character, Stoic",
       "gender": "Male",
-      "clothing_style": "Trench Coat & Fedora"
+      "clothing_style": "Brown Trench Coat"
     },
     "Lena": {
       "voice_model_id": "en_us_generic_lena",
       "archetype": "Noir Character, Nervous",
       "gender": "Female",
-      "clothing_style": "Evening Gown"
-    },
-    "Marcus": {
-      "voice_model_id": "en_us_generic_marcus",
-      "archetype": "Noir Character, Femme Fatale",
-      "gender": "Male",
-      "clothing_style": "Crumpled Suit"
+      "clothing_style": "Red Evening Gown"
     },
     "Silas": {
       "voice_model_id": "en_us_generic_silas",
-      "archetype": "Noir Character, Enforcer",
+      "archetype": "Noir Character, Femme Fatale",
       "gender": "Male",
-      "clothing_style": "Leather Jacket"
+      "clothing_style": "Grey Suit"
     }
   },
   "timeline": [
@@ -62,7 +54,7 @@
         "active_cast": []
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [
         {
@@ -77,17 +69,17 @@
           "text": "The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl",
           "duration": 12.5,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.812
+            "label": "ominous",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "rain",
             "action": "drum",
             "object": "rhythm"
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.812",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_001_01",
-          "visual_prompt": "Cinematic shot of The rain drummed a relentless rhythm against the fogged windows of The Rusty Anchor, a small diner that smelled of burnt coffee and old vinyl",
+          "visual_prompt": "High quality color cinematic shot of drumming against windows, Rusty Anchor, small diner, burnt coffee, old vinyl., blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
@@ -139,7 +131,7 @@
         "active_cast": []
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [],
       "beats": [
@@ -148,21 +140,21 @@
           "text": "Inside, three people sat at the corner booth, the air between them thick with unspoken tension",
           "duration": 8.0,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.938
+            "label": "ominous",
+            "intensity": 0.7
           },
           "semantic": {
             "subject": "people",
             "action": "sit",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.938",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
           "sub_scene_id": "SC_002_01",
-          "visual_prompt": "Cinematic shot of three people sat at the corner booth, the air between them thick with unspoken tension",
+          "visual_prompt": "High quality color cinematic shot of people, air, tension, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.11
+              "volume": 0.15
             },
             "sfx": []
           },
@@ -190,7 +182,7 @@
         ]
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [],
       "beats": [
@@ -199,23 +191,31 @@
           "text": "Silas took a slow sip of his black coffee, his gaze fixed on the briefcase",
           "duration": 7.5,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.935
+            "label": "ominous",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "take",
             "object": "sip"
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.935",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_003_01",
-          "visual_prompt": "Cinematic shot of Silas took a slow sip of his black coffee, his gaze fixed on the briefcase",
+          "visual_prompt": "High quality color cinematic shot of Silas is clean shaven face, sharp jawline, 20s, wearing Grey Suit, sipping black coffee, gaze fixed on briefcase, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
+              "style": "[BGM]",
+              "volume": 0.11
             },
-            "sfx": []
+            "sfx": [
+              {
+                "name": "[SFX]",
+                "timing": {
+                  "start": 0.1,
+                  "end": 0.9
+                }
+              }
+            ]
           },
           "timing": {
             "rel_start": 0.0,
@@ -240,7 +240,7 @@
           },
           "audio_prompt": "Silas, tone=annoyance, intensity=0.8",
           "sub_scene_id": "SC_003_02",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with annoyance expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of clean shaven face, sharp jawline, 20s, wearing Grey Suit, annoyance expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -272,7 +272,7 @@
         ]
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [
         {
@@ -287,21 +287,21 @@
           "text": "Julian swallowed hard, his Adam's apple bobbing",
           "duration": 3.5,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.942
+            "label": "ominous",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Julian",
             "action": "swallow",
             "object": "bobbing"
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.942",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.5",
           "sub_scene_id": "SC_004_01",
-          "visual_prompt": "Cinematic shot of Julian swallowed hard, his Adam's apple bobbing",
+          "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, swallowing hard, Adam's apple bobbing, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.14
+              "volume": 0.11
             },
             "sfx": [
               {
@@ -340,7 +340,7 @@
           "text": "I took three different subways and walked through a department store. I'm clean, Silas. I swear.",
           "duration": 6.4,
           "emotion": {
-            "label": "defensive",
+            "label": "approval",
             "intensity": 0.8
           },
           "semantic": {
@@ -348,9 +348,9 @@
             "action": "take",
             "object": "subways"
           },
-          "audio_prompt": "Julian, tone=defensive, intensity=0.8",
+          "audio_prompt": "Julian, tone=approval, intensity=0.8",
           "sub_scene_id": "SC_004_02",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with defensive expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, approval expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -382,7 +382,7 @@
         ]
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [
         {
@@ -397,17 +397,17 @@
           "text": "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin",
           "duration": 9.5,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.903
+            "label": "ominous",
+            "intensity": 0.5
           },
           "semantic": {
             "subject": "Lena",
             "action": "roll",
             "object": "eyes"
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.903",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.5",
           "sub_scene_id": "SC_005_01",
-          "visual_prompt": "Cinematic shot of Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin",
+          "visual_prompt": "High quality color cinematic shot of Lena is red wavy hair, green eyes, 20s, wearing Red Evening Gown, digits dancing on tablet under napkin, rolling eyes, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
@@ -450,7 +450,7 @@
           "text": "He's mostly clean. You did trigger a geo-fence near the 4th Street station, but I scrambled the signal. You're welcome.",
           "duration": 8.0,
           "emotion": {
-            "label": "defensive",
+            "label": "gratitude",
             "intensity": 0.8
           },
           "semantic": {
@@ -458,9 +458,9 @@
             "action": "is/are",
             "object": "clean"
           },
-          "audio_prompt": "Lena, tone=defensive, intensity=0.8",
+          "audio_prompt": "Lena, tone=gratitude, intensity=0.8",
           "sub_scene_id": "SC_005_02",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with defensive expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of red wavy hair, green eyes, 20s, wearing Red Evening Gown, gratitude expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -492,7 +492,7 @@
         ]
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "desperate lighting"
       },
       "entities": [],
       "beats": [
@@ -502,7 +502,7 @@
           "text": "See?",
           "duration": 1.0,
           "emotion": {
-            "label": "neutral",
+            "label": "desperate",
             "intensity": 0.8
           },
           "semantic": {
@@ -510,9 +510,9 @@
             "action": "react",
             "object": null
           },
-          "audio_prompt": "Julian, tone=neutral, intensity=0.8",
+          "audio_prompt": "Julian, tone=desperate, intensity=0.8",
           "sub_scene_id": "SC_006_01",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with neutral expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, desperate expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -532,21 +532,21 @@
           "text": "Julian hissed, leaning in",
           "duration": 2.0,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.969
+            "label": "ominous",
+            "intensity": 0.7
           },
           "semantic": {
             "subject": "Julian",
             "action": "hiss",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.969",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
           "sub_scene_id": "SC_006_02",
-          "visual_prompt": "Cinematic shot of Julian hissed, leaning in",
+          "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, hissing, leaning in, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.13
+              "volume": 0.15
             },
             "sfx": []
           },
@@ -564,16 +564,16 @@
           "duration": 8.0,
           "emotion": {
             "label": "disapproval",
-            "intensity": 0.8
+            "intensity": 0.3
           },
           "semantic": {
             "subject": "Lena",
             "action": "get",
             "object": null
           },
-          "audio_prompt": "Julian, tone=disapproval, intensity=0.8",
+          "audio_prompt": "Julian, tone=disapproval, intensity=0.3",
           "sub_scene_id": "SC_006_03",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with disapproval expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, disapproval expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -605,7 +605,7 @@
         ]
       },
       "production": {
-        "lighting": "neutral lighting"
+        "lighting": "ominous lighting"
       },
       "entities": [],
       "beats": [
@@ -614,21 +614,21 @@
           "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
           "duration": 10.0,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.927
+            "label": "ominous",
+            "intensity": 0.3
           },
           "semantic": {
             "subject": "Silas",
             "action": "glance",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.927",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.3",
           "sub_scene_id": "SC_007_01",
-          "visual_prompt": "Cinematic shot of Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
+          "visual_prompt": "High quality color cinematic shot of Silas is clean shaven face, sharp jawline, 20s, wearing Grey Suit, man flipping burgers, counter, Greasy apron, Aggression., blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "[BGM]",
-              "volume": 0.13
+              "volume": 0.1
             },
             "sfx": [
               {
@@ -653,17 +653,17 @@
           "text": "The cook is looking at you because you're sweating enough to fill a bucket. Lean back. Breathe.",
           "duration": 6.8,
           "emotion": {
-            "label": "sarcastic",
-            "intensity": 0.2
+            "label": "neutral",
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "cook",
             "action": "look",
             "object": null
           },
-          "audio_prompt": "Silas, tone=sarcastic, intensity=0.2",
+          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
           "sub_scene_id": "SC_007_02",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with sarcastic expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of clean shaven face, sharp jawline, 20s, wearing Grey Suit, neutral expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -689,7 +689,7 @@
         "transition_to_next": "Hard Cut"
       },
       "script": {
-        "text": "\"I can't breathe!\" Julian whispered. \"Do you have any idea what's in here? If the Board finds out I took these files—\"",
+        "text": "\"I can't breathe!\" Julian whispered. \"Do you have any idea what's in here? If the Board finds out I took these files\"",
         "active_cast": [
           "Julian"
         ]
@@ -712,16 +712,16 @@
           "duration": 1.2,
           "emotion": {
             "label": "sadness",
-            "intensity": 0.8
+            "intensity": 0.6
           },
           "semantic": {
             "subject": "Julian",
             "action": "breathe",
             "object": null
           },
-          "audio_prompt": "Julian, tone=sadness, intensity=0.8",
+          "audio_prompt": "Julian, tone=sadness, intensity=0.6",
           "sub_scene_id": "SC_008_01",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with sadness expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, sadness expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -741,21 +741,21 @@
           "text": "Julian whispered",
           "duration": 1.0,
           "emotion": {
-            "label": "neutral",
-            "intensity": 0.967
+            "label": "ominous",
+            "intensity": 0.3
           },
           "semantic": {
             "subject": "Julian",
             "action": "whisper",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.3",
           "sub_scene_id": "SC_008_02",
-          "visual_prompt": "Cinematic shot of Julian whispered",
+          "visual_prompt": "High quality color cinematic shot of Julian is short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, whispering, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Suspenseful Drone",
-              "volume": 0.12
+              "volume": 0.14
             },
             "sfx": [
               {
@@ -791,7 +791,7 @@
         {
           "type": "dialogue",
           "speaker": "Julian",
-          "text": "Do you have any idea what's in here? If the Board finds out I took these files—",
+          "text": "Do you have any idea what's in here? If the Board finds out I took these files",
           "duration": 6.8,
           "emotion": {
             "label": "curiosity",
@@ -804,7 +804,7 @@
           },
           "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
           "sub_scene_id": "SC_008_03",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
+          "visual_prompt": "High quality color cinematic shot of short black hair, blue eyes, clean shaven, 20s, wearing Brown Trench Coat, curiosity expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": null,
@@ -817,1592 +817,6 @@
             "rel_end": 9.0,
             "global_start": 89.4,
             "global_end": 96.2
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_009",
-      "meta": {
-        "global_start": 96.2,
-        "global_end": 107.9,
-        "duration": 11.7,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "\"If the Board finds out,\" Lena interrupted without looking up, \"we're all moving to a very small island with no internet. Now, stop talking and slide it over.\"",
-        "active_cast": [
-          "Lena"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [
-        {
-          "name": "Board",
-          "type": "organization",
-          "role": "background"
-        }
-      ],
-      "beats": [
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "If the Board finds out,",
-          "duration": 2.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Board",
-            "action": "find",
-            "object": null
-          },
-          "audio_prompt": "Lena, tone=neutral, intensity=0.8",
-          "sub_scene_id": "SC_009_01",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with neutral expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 2.0,
-            "global_start": 96.2,
-            "global_end": 98.2
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Lena interrupted without looking up",
-          "duration": 2.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.949
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "interrupt",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
-          "sub_scene_id": "SC_009_02",
-          "visual_prompt": "Cinematic shot of Lena interrupted without looking up",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.11
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 2.0,
-            "rel_end": 4.5,
-            "global_start": 98.2,
-            "global_end": 100.7
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "we're all moving to a very small island with no internet. Now, stop talking and slide it over.",
-          "duration": 7.2,
-          "emotion": {
-            "label": "annoyance",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "move",
-            "object": null
-          },
-          "audio_prompt": "Lena, tone=annoyance, intensity=0.8",
-          "sub_scene_id": "SC_009_03",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with annoyance expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 4.5,
-            "rel_end": 11.7,
-            "global_start": 100.7,
-            "global_end": 107.9
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_010",
-      "meta": {
-        "global_start": 107.9,
-        "global_end": 110.5,
-        "duration": 2.6,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Julian hesitated. \"Is the money ready?\"",
-        "active_cast": [
-          "Julian"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Julian hesitated",
-          "duration": 1.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.949
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "hesitate",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.949",
-          "sub_scene_id": "SC_010_01",
-          "visual_prompt": "Cinematic shot of Julian hesitated",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 1.0,
-            "global_start": 107.9,
-            "global_end": 108.9
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Julian",
-          "text": "Is the money ready?",
-          "duration": 1.6,
-          "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "money",
-            "action": "be",
-            "object": "ready"
-          },
-          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
-          "sub_scene_id": "SC_010_02",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 1.0,
-            "rel_end": 2.6,
-            "global_start": 108.9,
-            "global_end": 110.5
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_011",
-      "meta": {
-        "global_start": 110.5,
-        "global_end": 126.5,
-        "duration": 16.0,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Silas reached into his coat and pulled out a plain white envelope. He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it.",
-        "active_cast": [
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Silas reached into his coat and pulled out a plain white envelope",
-          "duration": 6.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.961
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "reach",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
-          "sub_scene_id": "SC_011_01",
-          "visual_prompt": "Cinematic shot of Silas reached into his coat and pulled out a plain white envelope",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 6.0,
-            "global_start": 110.5,
-            "global_end": 116.5
-          }
-        },
-        {
-          "type": "narration",
-          "text": "He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it",
-          "duration": 10.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.957
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "hand",
-            "object": "it"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.957",
-          "sub_scene_id": "SC_011_02",
-          "visual_prompt": "Cinematic shot of He didn't hand it over; he simply placed it on the table, keeping his hand firmly on top of it",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.14
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 6.0,
-            "rel_end": 16.0,
-            "global_start": 116.5,
-            "global_end": 126.5
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_012",
-      "meta": {
-        "global_start": 126.5,
-        "global_end": 146.6,
-        "duration": 20.1,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "\"Life is a series of trades, kid,\" Silas said, his voice dropping to a low gravel. \"Information for security. Risk for reward. But the moment you let go of that handle, there's no going back. Are you sure you want to be on this side of the line?\"",
-        "active_cast": [
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "Life is a series of trades, kid,",
-          "duration": 2.8,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Life",
-            "action": "be",
-            "object": "series"
-          },
-          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
-          "sub_scene_id": "SC_012_01",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 2.8,
-            "global_start": 126.5,
-            "global_end": 129.3
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Silas said, his voice dropping to a low gravel",
-          "duration": 4.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.93
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "say",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.93",
-          "sub_scene_id": "SC_012_02",
-          "visual_prompt": "Cinematic shot of Silas said, his voice dropping to a low gravel",
-          "production": {
-            "bgm": {
-              "style": "[BGM]",
-              "volume": 0.11
-            },
-            "sfx": [
-              {
-                "name": "[SFX]",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 2.8,
-            "rel_end": 7.3,
-            "global_start": 129.3,
-            "global_end": 133.8
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "Information for security. Risk for reward. But the moment you let go of that handle, there's no going back. Are you sure you want to be on this side of the line?",
-          "duration": 12.8,
-          "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "moment",
-            "action": "go",
-            "object": null
-          },
-          "audio_prompt": "Silas, tone=curiosity, intensity=0.8",
-          "sub_scene_id": "SC_012_03",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with curiosity expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 7.3,
-            "rel_end": 20.1,
-            "global_start": 133.8,
-            "global_end": 146.6
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_013",
-      "meta": {
-        "global_start": 146.6,
-        "global_end": 164.4,
-        "duration": 17.8,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Julian looked at Lena, who finally looked up from her tablet. Her expression softened, just for a second. \"It's a one-way door, Julian. But it's better than working for people who view you as a line item on a spreadsheet.\"",
-        "active_cast": [
-          "Julian",
-          "Lena"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Julian looked at Lena, who finally looked up from her tablet",
-          "duration": 5.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.96
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "look",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
-          "sub_scene_id": "SC_013_01",
-          "visual_prompt": "Cinematic shot of Julian looked at Lena, who finally looked up from her tablet",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 5.5,
-            "global_start": 146.6,
-            "global_end": 152.1
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Her expression softened, just for a second",
-          "duration": 3.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.619
-          },
-          "semantic": {
-            "subject": "expression",
-            "action": "soften",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.619",
-          "sub_scene_id": "SC_013_02",
-          "visual_prompt": "Cinematic shot of Her expression softened, just for a second",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 5.5,
-            "rel_end": 9.0,
-            "global_start": 152.1,
-            "global_end": 155.6
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "It's a one-way door, Julian. But it's better than working for people who view you as a line item on a spreadsheet.",
-          "duration": 8.8,
-          "emotion": {
-            "label": "relief",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "is/are",
-            "object": "door"
-          },
-          "audio_prompt": "Lena, tone=relief, intensity=0.8",
-          "sub_scene_id": "SC_013_03",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with relief expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 9.0,
-            "rel_end": 17.8,
-            "global_start": 155.6,
-            "global_end": 164.4
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_014",
-      "meta": {
-        "global_start": 164.4,
-        "global_end": 177.4,
-        "duration": 13.0,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop. Silas swapped it for the envelope with the grace of a card shark.",
-        "active_cast": [
-          "Julian",
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [
-        {
-          "name": "Formica",
-          "type": "prop",
-          "role": "background"
-        }
-      ],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop",
-          "duration": 6.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.954
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "slide",
-            "object": "briefcase"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.954",
-          "sub_scene_id": "SC_014_01",
-          "visual_prompt": "Cinematic shot of With a shaky breath, Julian slid the briefcase across the cracked Formica tabletop",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 6.5,
-            "global_start": 164.4,
-            "global_end": 170.9
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Silas swapped it for the envelope with the grace of a card shark",
-          "duration": 6.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.951
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "swap",
-            "object": "it"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.951",
-          "sub_scene_id": "SC_014_02",
-          "visual_prompt": "Cinematic shot of Silas swapped it for the envelope with the grace of a card shark",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 6.5,
-            "rel_end": 13.0,
-            "global_start": 170.9,
-            "global_end": 177.4
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_015",
-      "meta": {
-        "global_start": 177.4,
-        "global_end": 188.0,
-        "duration": 10.6,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "\"Go out the back,\" Silas commanded. \"There's a blue sedan with the engine running. The driver's name is Marcus. He'll take you to the safe house.\"",
-        "active_cast": [
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "Go out the back,",
-          "duration": 1.6,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "react",
-            "object": null
-          },
-          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
-          "sub_scene_id": "SC_015_01",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 1.6,
-            "global_start": 177.4,
-            "global_end": 179.0
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Silas commanded",
-          "duration": 1.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.96
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "command",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.96",
-          "sub_scene_id": "SC_015_02",
-          "visual_prompt": "Cinematic shot of Silas commanded",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.11
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 1.6,
-            "rel_end": 2.6,
-            "global_start": 179.0,
-            "global_end": 180.0
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "There's a blue sedan with the engine running. The driver's name is Marcus. He'll take you to the safe house.",
-          "duration": 8.0,
-          "emotion": {
-            "label": "relief",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "engine",
-            "action": "run",
-            "object": null
-          },
-          "audio_prompt": "Silas, tone=relief, intensity=0.8",
-          "sub_scene_id": "SC_015_03",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with relief expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 2.6,
-            "rel_end": 10.6,
-            "global_start": 180.0,
-            "global_end": 188.0
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_016",
-      "meta": {
-        "global_start": 188.0,
-        "global_end": 197.5,
-        "duration": 9.5,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Julian grabbed the envelope and stood up, his legs looking like they might give way. \"What happens to the files?\"",
-        "active_cast": [
-          "Julian"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Julian grabbed the envelope and stood up, his legs looking like they might give way",
-          "duration": 7.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.963
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "grab",
-            "object": "envelope"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.963",
-          "sub_scene_id": "SC_016_01",
-          "visual_prompt": "Cinematic shot of Julian grabbed the envelope and stood up, his legs looking like they might give way",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 7.5,
-            "global_start": 188.0,
-            "global_end": 195.5
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Julian",
-          "text": "What happens to the files?",
-          "duration": 2.0,
-          "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "happen",
-            "object": null
-          },
-          "audio_prompt": "Julian, tone=curiosity, intensity=0.8",
-          "sub_scene_id": "SC_016_02",
-          "visual_prompt": "Cinematic close up shot of Julian, wearing a trench coat and fedora, sharp facial features, 30s with curiosity expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 7.5,
-            "rel_end": 9.5,
-            "global_start": 195.5,
-            "global_end": 197.5
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_017",
-      "meta": {
-        "global_start": 197.5,
-        "global_end": 210.1,
-        "duration": 12.6,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Lena snapped her tablet shut and offered a grim smile. \"By the time you reach the safe house, they won't exist anymore. And neither will the Board's bank accounts.\"",
-        "active_cast": [
-          "Lena"
-        ]
-      },
-      "production": {
-        "lighting": "amusement lighting"
-      },
-      "entities": [
-        {
-          "name": "Board",
-          "type": "organization",
-          "role": "background"
-        }
-      ],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Lena snapped her tablet shut and offered a grim smile",
-          "duration": 5.0,
-          "emotion": {
-            "label": "amusement",
-            "intensity": 0.135
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "snap",
-            "object": "tablet"
-          },
-          "audio_prompt": "Narrator, tone=amusement, intensity=0.135",
-          "sub_scene_id": "SC_017_01",
-          "visual_prompt": "Cinematic shot of Lena snapped her tablet shut and offered a grim smile",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 5.0,
-            "global_start": 197.5,
-            "global_end": 202.5
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "By the time you reach the safe house, they won't exist anymore. And neither will the Board's bank accounts.",
-          "duration": 7.6,
-          "emotion": {
-            "label": "disapproval",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "reach",
-            "object": "house"
-          },
-          "audio_prompt": "Lena, tone=disapproval, intensity=0.8",
-          "sub_scene_id": "SC_017_02",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with disapproval expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 5.0,
-            "rel_end": 12.6,
-            "global_start": 202.5,
-            "global_end": 210.1
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_018",
-      "meta": {
-        "global_start": 210.1,
-        "global_end": 221.1,
-        "duration": 11.0,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "As Julian disappeared through the kitchen doors, Silas opened the briefcase just an inch. A faint blue glow reflected in his eyes.",
-        "active_cast": [
-          "Julian",
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "As Julian disappeared through the kitchen doors",
-          "duration": 3.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.964
-          },
-          "semantic": {
-            "subject": "Julian",
-            "action": "disappear",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.964",
-          "sub_scene_id": "SC_018_01",
-          "visual_prompt": "Cinematic shot of As Julian disappeared through the kitchen doors",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 3.5,
-            "global_start": 210.1,
-            "global_end": 213.6
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Silas opened the briefcase just an inch",
-          "duration": 3.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.967
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "open",
-            "object": "briefcase"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.967",
-          "sub_scene_id": "SC_018_02",
-          "visual_prompt": "Cinematic shot of Silas opened the briefcase just an inch",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.14
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 3.5,
-            "rel_end": 7.0,
-            "global_start": 213.6,
-            "global_end": 217.1
-          }
-        },
-        {
-          "type": "narration",
-          "text": "A faint blue glow reflected in his eyes",
-          "duration": 4.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.884
-          },
-          "semantic": {
-            "subject": "glow",
-            "action": "reflect",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.884",
-          "sub_scene_id": "SC_018_03",
-          "visual_prompt": "Cinematic shot of A faint blue glow reflected in his eyes",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.13
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 7.0,
-            "rel_end": 11.0,
-            "global_start": 217.1,
-            "global_end": 221.1
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_019",
-      "meta": {
-        "global_start": 221.1,
-        "global_end": 227.0,
-        "duration": 5.9,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "\"Well?\" Lena asked, packing her gear. \"Was it worth the gray hairs?\"",
-        "active_cast": [
-          "Lena"
-        ]
-      },
-      "production": {
-        "lighting": "curiosity lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "Well?",
-          "duration": 1.0,
-          "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "react",
-            "object": null
-          },
-          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
-          "sub_scene_id": "SC_019_01",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 1.0,
-            "global_start": 221.1,
-            "global_end": 222.1
-          }
-        },
-        {
-          "type": "narration",
-          "text": "Lena asked, packing her gear",
-          "duration": 2.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.965
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "ask",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.965",
-          "sub_scene_id": "SC_019_02",
-          "visual_prompt": "Cinematic shot of Lena asked, packing her gear",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.12
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 1.0,
-            "rel_end": 3.5,
-            "global_start": 222.1,
-            "global_end": 224.6
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "Was it worth the gray hairs?",
-          "duration": 2.4,
-          "emotion": {
-            "label": "curiosity",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "be",
-            "object": "worth"
-          },
-          "audio_prompt": "Lena, tone=curiosity, intensity=0.8",
-          "sub_scene_id": "SC_019_03",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with curiosity expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 3.5,
-            "rel_end": 5.9,
-            "global_start": 224.6,
-            "global_end": 227.0
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_020",
-      "meta": {
-        "global_start": 227.0,
-        "global_end": 241.0,
-        "duration": 14.0,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Silas closed the lid with a satisfying click. \"Ask me again when we're on that island, Lena. For now, let's get out of here. I think the cook is actually a federal agent.\"",
-        "active_cast": [
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Silas closed the lid with a satisfying click",
-          "duration": 4.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.936
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "close",
-            "object": "lid"
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.936",
-          "sub_scene_id": "SC_020_01",
-          "visual_prompt": "Cinematic shot of Silas closed the lid with a satisfying click",
-          "production": {
-            "bgm": {
-              "style": "[BGM]",
-              "volume": 0.12
-            },
-            "sfx": [
-              {
-                "name": "[SFX]",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 4.0,
-            "global_start": 227.0,
-            "global_end": 231.0
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "Ask me again when we're on that island, Lena. For now, let's get out of here. I think the cook is actually a federal agent.",
-          "duration": 10.0,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "is/are",
-            "object": null
-          },
-          "audio_prompt": "Silas, tone=neutral, intensity=0.8",
-          "sub_scene_id": "SC_020_02",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with neutral expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 4.0,
-            "rel_end": 14.0,
-            "global_start": 231.0,
-            "global_end": 241.0
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_021",
-      "meta": {
-        "global_start": 241.0,
-        "global_end": 245.5,
-        "duration": 4.5,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Lena paused, her hand on her bag. \"Wait, really?\"",
-        "active_cast": [
-          "Lena"
-        ]
-      },
-      "production": {
-        "lighting": "neutral lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Lena paused, her hand on her bag",
-          "duration": 3.5,
-          "emotion": {
-            "label": "neutral",
-            "intensity": 0.961
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "pause",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=neutral, intensity=0.961",
-          "sub_scene_id": "SC_021_01",
-          "visual_prompt": "Cinematic shot of Lena paused, her hand on her bag",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.14
-            },
-            "sfx": [
-              {
-                "name": "Rain",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Sipping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              },
-              {
-                "name": "Tapping",
-                "timing": {
-                  "start": 0.1,
-                  "end": 0.9
-                }
-              }
-            ]
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 3.5,
-            "global_start": 241.0,
-            "global_end": 244.5
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Lena",
-          "text": "Wait, really?",
-          "duration": 1.0,
-          "emotion": {
-            "label": "surprise",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Lena",
-            "action": "react",
-            "object": null
-          },
-          "audio_prompt": "Lena, tone=surprise, intensity=0.8",
-          "sub_scene_id": "SC_021_02",
-          "visual_prompt": "Cinematic close up shot of Lena, wearing an elegant evening dress, wavy hair, 20s with surprise expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 3.5,
-            "rel_end": 4.5,
-            "global_start": 244.5,
-            "global_end": 245.5
-          }
-        }
-      ]
-    },
-    {
-      "id": "SC_022",
-      "meta": {
-        "global_start": 245.5,
-        "global_end": 252.0,
-        "duration": 6.5,
-        "transition_to_next": "Hard Cut"
-      },
-      "script": {
-        "text": "Silas stood up and winked. \"No. But he does make a terrible omelet. Let's go.\"",
-        "active_cast": [
-          "Silas"
-        ]
-      },
-      "production": {
-        "lighting": "joy lighting"
-      },
-      "entities": [],
-      "beats": [
-        {
-          "type": "narration",
-          "text": "Silas stood up and winked",
-          "duration": 2.5,
-          "emotion": {
-            "label": "joy",
-            "intensity": 0.221
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "stand",
-            "object": null
-          },
-          "audio_prompt": "Narrator, tone=joy, intensity=0.221",
-          "sub_scene_id": "SC_022_01",
-          "visual_prompt": "Cinematic shot of Silas stood up and winked",
-          "production": {
-            "bgm": {
-              "style": "Suspenseful Drone",
-              "volume": 0.1
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 0.0,
-            "rel_end": 2.5,
-            "global_start": 245.5,
-            "global_end": 248.0
-          }
-        },
-        {
-          "type": "dialogue",
-          "speaker": "Silas",
-          "text": "No. But he does make a terrible omelet. Let's go.",
-          "duration": 4.0,
-          "emotion": {
-            "label": "disapproval",
-            "intensity": 0.8
-          },
-          "semantic": {
-            "subject": "Silas",
-            "action": "make",
-            "object": "omelet"
-          },
-          "audio_prompt": "Silas, tone=disapproval, intensity=0.8",
-          "sub_scene_id": "SC_022_02",
-          "visual_prompt": "Cinematic close up shot of Silas, wearing a leather jacket, intense gaze, 30s with disapproval expression with blurry background of a dimly lit noir setting",
-          "production": {
-            "bgm": {
-              "style": null,
-              "volume": 0.0
-            },
-            "sfx": []
-          },
-          "timing": {
-            "rel_start": 2.5,
-            "rel_end": 6.5,
-            "global_start": 248.0,
-            "global_end": 252.0
           }
         }
       ]
