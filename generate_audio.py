@@ -8,6 +8,10 @@ import shutil
 import numpy as np
 from tqdm import tqdm
 
+# --- FORCE ONLINE MODE ---
+os.environ["HF_HUB_OFFLINE"] = "0"
+os.environ["TRANSFORMERS_OFFLINE"] = "0"
+
 # --- PYTORCH FIXES ---
 _original_load = torch.load
 def strict_load(*args, **kwargs):
@@ -18,7 +22,8 @@ torch.load = strict_load
 
 # --- CONFIGURATION ---
 FORCE_CPU_CASTING = False 
-CLEAN_SLATE = False  # Set to False now to save time (we don't need to re-cast everyone)
+CLEAN_SLATE = False
+SKIP_EXISTING = True # Speed up iterations if files exist
 
 # Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
@@ -165,6 +170,124 @@ class AudioProducer:
         except Exception as e:
             logger.error(f"XTTS Error {output_path}: {e}")
 
+# --- PHASE 3: SCORING (MusicGen) ---
+class MusicComposer:
+    def __init__(self):
+        self.model = None
+        self.processor = None
+        self.device = "cpu" if FORCE_CPU_CASTING else ("cuda" if torch.cuda.is_available() else "cpu")
+
+    def load(self):
+        logger.info(f"  > [Phase 3] Loading MusicGen on {self.device}...")
+        from transformers import AutoProcessor, MusicgenForConditionalGeneration
+        self.processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
+        self.model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small").to(self.device)
+
+    def compose_bgm(self, style, duration, output_path):
+        if not style or style.lower() == "none" or style.lower() == "silence":
+            return
+            
+        # Refined Prompts for Noir/Ambience
+        # MusicGen is better at "Music" so we mix musical terms with atmospheric ones.
+        prompt_map = {
+            "Rainy Noir Ambience": "Rain drops hitting glass window, loud, distinct water sounds and distant sounds of thunder.",
+            "Dark Suspense Drone": "Dark ambient drone, low synth textures, ominous, suspenseful, cinematic thriller soundtrack.",
+            "Tense Industrial Pulse": "Industrial rhythmic pulse, metallic texture, tense, anxious, slow tempo.",
+            "Suspenseful Drone": "Deep bass drone, suspenseful, minimal, scary movie atmosphere.",
+            "Low Hum / City Ambience": "Low frequency hum, ambient, night time.",
+            "Melancholic Saxophone & Rain": "Slow sad saxophone solo with rain in background, emotional, noir jazz.",
+            "Aggressive Bass Drone": "Distorted heavy bass drone, aggressive, dangerous, horror texture.",
+            "Smooth Jazz": "Smooth slow jazz, double bass, brushed drums, piano, relaxing, noir bar.",
+            "Mystery Piano": "Minimal mysterious piano melody, reverb, enigmatic, investigating."
+        }
+
+        # Fallback if style isn't in map
+        base_prompt = prompt_map.get(style, f"A {style} background music track, noir atmosphere, cinematic, high quality.")
+        
+        inputs = self.processor(
+            text=[base_prompt],
+            padding=True,
+            return_tensors="pt",
+        ).to(self.device)
+
+        # Calculate Duration
+        duration = min(duration, 30.0) 
+        max_tokens = int(duration * 50) + 10
+
+        with torch.no_grad():
+            audio_values = self.model.generate(
+                **inputs, 
+                max_new_tokens=max_tokens,
+                do_sample=True, 
+                guidance_scale=3.0,
+                temperature=1.0
+            )
+
+        # Save
+        sampling_rate = self.model.config.audio_encoder.sampling_rate
+        audio_data = audio_values[0, 0].cpu().numpy()
+        sf.write(output_path, audio_data, sampling_rate)
+        logger.info(f"    > Composed '{style}' ({duration}s) -> {output_path}")
+
+    def unload(self):
+        del self.model
+        del self.processor
+        flush_memory()
+
+# --- PHASE 4: FOLEY (AudioGen) ---
+class FoleyArtist:
+    def __init__(self):
+        self.model = None
+        self.processor = None
+        self.device = "cpu" if FORCE_CPU_CASTING else ("cuda" if torch.cuda.is_available() else "cpu")
+
+    def load(self):
+        logger.info(f"  > [Phase 4] Loading SFX Model on {self.device}...")
+        from transformers import AutoProcessor, MusicgenForConditionalGeneration
+        # Fallback to MusicGen-Small as AudioGen had loading issues. 
+        # We will prompt it carefully to produce sound attributes.
+        self.processor = AutoProcessor.from_pretrained("facebook/musicgen-small")
+        self.model = MusicgenForConditionalGeneration.from_pretrained("facebook/musicgen-small").to(self.device)
+
+    def generate_sfx(self, description, duration, output_path):
+        if not description or description.lower() == "none":
+            return
+
+        # Prompt engineering for short, precise SFX
+        # We explicitly ask for "Isolated" and "Short" to prevent musical drift
+        prompt = f"Isolated foley sound of {description}, short, distinct, high fidelity, realistic, no music."
+        
+        # Force short duration for precision
+        duration = min(duration, 2.0) 
+        
+        # 50 tokens ~ 1 second roughly. 
+        max_tokens = int(duration * 50) + 5
+
+        inputs = self.processor(
+            text=[prompt],
+            padding=True,
+            return_tensors="pt",
+        ).to(self.device)
+
+        with torch.no_grad():
+            audio_values = self.model.generate(
+                **inputs, 
+                max_new_tokens=max_tokens,
+                do_sample=True, 
+                guidance_scale=3.5, # Increased guidance to follow prompt strictly
+                temperature=1.0
+            )
+
+        sampling_rate = self.model.config.audio_encoder.sampling_rate
+        audio_data = audio_values[0, 0].cpu().numpy()
+        sf.write(output_path, audio_data, sampling_rate)
+        logger.info(f"    > Created SFX '{description}' ({duration}s) -> {output_path}")
+
+    def unload(self):
+        del self.model
+        del self.processor
+        flush_memory()
+
 def main():
     if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
     
@@ -209,10 +332,93 @@ def main():
                 emotion = MANUAL_OVERRIDES[beat_id]
 
             out_path = os.path.join(OUTPUT_DIR, f"{beat_id}.wav")
-            # Always overwrite to ensure overrides are applied
+            
+            if SKIP_EXISTING and os.path.exists(out_path):
+                continue
+                
+            # Always overwrite to ensure overrides are applied (if not skipping)
             if os.path.exists(out_path): os.remove(out_path)
 
             producer.generate_line(text, speaker, emotion, out_path)
+    
+    # Unload Producer to free VRAM for Scoring
+    del producer
+    flush_memory()
+    
+    # Phase 3: Scoring (BGM)
+    # We generate unique BGM tracks per unique style found in narration beats, or per scene?
+    # Logic: Look at beats, if they have BGM, generate it.
+    # To save time, we deduplicate by Style.
+    
+    composer = MusicComposer()
+    composer.load()
+    logger.info("--- SCORING SESSION ---")
+    
+    # Collect unique BGM requirements
+    bgm_registry = {} # style -> duration needed (max)
+    
+    for scene in data.get("timeline", []):
+        for beat in scene.get("beats", []):
+            prod = beat.get("production", {})
+            bgm = prod.get("bgm", {})
+            style = bgm.get("style", "None")
+            if style and style.lower() not in ["none", "silence"]:
+                # Use a sanitized filename key
+                key = style.replace(" ", "_").replace("/", "-").lower()
+                dur = beat.get("duration", 10.0)
+                if key not in bgm_registry:
+                    bgm_registry[key] = {"style": style, "duration": dur}
+                else:
+                    # Update max duration
+                    bgm_registry[key]["duration"] = max(bgm_registry[key]["duration"], dur)
+    
+    bgm_dir = os.path.join(OUTPUT_DIR, "bgm")
+    if not os.path.exists(bgm_dir): os.makedirs(bgm_dir)
+    
+    for key, info in tqdm(bgm_registry.items(), desc="Composing"):
+        out_path = os.path.join(bgm_dir, f"{key}.wav")
+        # Ensure we don't skip if updated? Assume SKIP_EXISTING applies globally
+        if SKIP_EXISTING and os.path.exists(out_path): continue
+        if os.path.exists(out_path): os.remove(out_path)
+
+        composer.compose_bgm(info["style"], info["duration"], out_path)
+            
+    composer.unload()
+
+    # Phase 4: Foley (SFX)
+    foley = FoleyArtist()
+    foley.load()
+    logger.info("--- FOLEY SESSION ---")
+    
+    sfx_dir = os.path.join(OUTPUT_DIR, "sfx")
+    if not os.path.exists(sfx_dir): os.makedirs(sfx_dir)
+    
+    # Collect deduplicated SFX
+    sfx_registry = {} # name -> max_duration
+    
+    for scene in data.get("timeline", []):
+        for beat in scene.get("beats", []):
+            prod = beat.get("production", {})
+            sfx_list = prod.get("sfx", [])
+            for s in sfx_list:
+                name = s.get("name", "None")
+                if name and name.lower() != "none":
+                    key = name.replace(" ", "_").replace("/", "-").lower()
+                    
+                    # Estimate Duration: Short and precise
+                    dur = 2.0 
+                    if key not in sfx_registry:
+                        sfx_registry[key] = {"name": name, "duration": dur}
+
+    for key, info in tqdm(sfx_registry.items(), desc="Foley"):
+        out_path = os.path.join(sfx_dir, f"{key}.wav")
+        if SKIP_EXISTING and os.path.exists(out_path):
+            continue
+        if os.path.exists(out_path): os.remove(out_path)
+        
+        foley.generate_sfx(info["name"], info["duration"], out_path)
+    
+    foley.unload()
 
     logger.info("Production Wrap!")
 
