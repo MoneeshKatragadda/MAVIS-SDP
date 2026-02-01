@@ -288,15 +288,18 @@ class FoleyArtist:
         del self.processor
         flush_memory()
 
-def main():
+def generate_audio(events_path="output/events.json"):
     if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
     
     if CLEAN_SLATE and os.path.exists(VOICES_DIR):
         shutil.rmtree(VOICES_DIR)
     if not os.path.exists(VOICES_DIR): os.makedirs(VOICES_DIR)
     
-    if not os.path.exists(EVENTS_FILE): return
-    with open(EVENTS_FILE, "r") as f: data = json.load(f)
+    if not os.path.exists(events_path): 
+        logger.error(f"Events file not found at {events_path}")
+        return
+
+    with open(events_path, "r") as f: data = json.load(f)
     
     registry = data.get("character_registry", {})
     if "Narrator" not in registry:
@@ -423,5 +426,7 @@ def main():
     logger.info("Production Wrap!")
 
 if __name__ == "__main__":
-    main()
+    import sys
+    path = sys.argv[1] if len(sys.argv) > 1 else "output/events.json"
+    generate_audio(path)
     
