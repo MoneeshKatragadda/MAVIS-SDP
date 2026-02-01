@@ -1,0 +1,17 @@
+torch
+numpy
+scipy
+transformers
+diffusers
+accelerate
+soundfile
+librosa
+llama-cpp-python
+spacy
+nltk
+PyYAML
+TTS
+parler-tts
+huggingface_hub
+protobuf
+sentencepiece

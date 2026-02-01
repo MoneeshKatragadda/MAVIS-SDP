@@ -143,7 +143,7 @@ Response:
         # Defaults - User Request: All 20s, No Beards
         default_looks = [
             ("Male", "short black hair, blue eyes, clean shaven, 20s", "Brown Trench Coat"),
-            ("Female", "red wavy hair, green eyes, 20s", "Red Evening Gown"),
+            ("Female", "red wavy hair, 20s", "White Blouse and High-Waisted Grey Trousers"),
             ("Male", "clean shaven face, sharp jawline, 20s", "Grey Suit"),
             ("Male", "buzz cut, clean shaven, 20s", "Black Leather Jacket")
         ]
@@ -267,9 +267,9 @@ Response:
             else:
                 char_dna = str(vis_data) # Fallback
 
-            # "High quality color cinematic shot of [Physical], wearing [Outfit]..."
+            # "High quality color cinematic shot of [Speaker], [Emotion], [Action]..."
             # Precise, consistent structure + Speaking indicator
-            prompt = f"High quality color cinematic shot of {char_dna}, {emotion} expression, speaking with mouth slightly open, blurry background of {location} with dimly lit lights"
+            prompt = f"High quality color cinematic shot of {speaker}, {emotion} expression, speaking with mouth slightly open, blurry background of {location} with dimly lit lights"
             return prompt
 
         # For Narration
@@ -302,29 +302,27 @@ Response:
 
             # Simplified Prompt for Phi-2 (Completion style)
             # Detailed Extraction for Phi-2
-            # We want: [Character Visuals] [Action + Objects], blurry background...
+            # We want: [Action + Objects], blurry background...
             
-            prompt = f"""Task: Extract physical action AND objects. Keep it brief.
-Input: "Lena rolled her eyes, her fingers dancing across the screen of a tablet she had hidden under a napkin."
-Output: digits dancing on tablet under napkin, rolling eyes
+            prompt = f"""Task: Extract visual subject, count, action and objects for an image prompt.
+Input: "Lena rolled her eyes, her fingers dancing across the screen of a tablet."
+Output: Lena rolling eyes, fingers tapping tablet screen
+Input: "Inside, three people sat at the corner booth."
+Output: Three people sitting at corner booth
+Input: "Silas took a slow sip of his black coffee."
+Output: Silas sipping black coffee
 Input: "{text}"
 Output:"""
             
             # 1. Get Action
-            out = self.llm(prompt, max_tokens=35, stop=["\n", "Input:"], temperature=0.1)
+            out = self.llm(prompt, max_tokens=45, stop=["\n", "Input:"], temperature=0.1)
             action = out["choices"][0]["text"].strip()
             if len(action) < 5: action = text # Fallback
             
-            # 2. Build Prompt
-            # format: "High quality color cinematic shot of [Visuals] [Action], blurry background of [Location] with dimly lit lights"
+            # 2. Build Prompt (CLEAN - No Physical DNA)
+            # format: "High quality color cinematic shot of [Action], blurry background of [Location] with dimly lit lights"
             
-            final_subject = ""
-            if vis_block:
-                 final_subject = f"{vis_block}, {action}"
-            else:
-                 final_subject = action
-            
-            gen = f"High quality color cinematic shot of {final_subject}, blurry background of {location} with dimly lit lights"
+            gen = f"High quality color cinematic shot of {action}, blurry background of {location} with dimly lit lights"
             return gen
             
             # Prefix check
@@ -410,6 +408,44 @@ Output:"""
             },
             "sfx": sfx_list
         }
+
+    def determine_shot_type(self, beat_data):
+        """
+        Determines the cinematic shot type.
+        Returns: CLOSE_UP, MEDIUM, WIDE, ESTABLISHING, or NONE.
+        """
+        text = beat_data['text']
+        b_type = beat_data['type']
+        
+        prompt = f"""Instruction: act as a Cinematographer. Choose the best Camera Shot.
+Scene Line: "{text}"
+Type: {b_type}
+
+Options:
+1. CLOSE_UP (Emotions, face details, crucial dialogue)
+2. MEDIUM (Actions, interactions, waist-up)
+3. WIDE (Movement, full body, multiple characters)
+4. ESTABLISHING (Setting the scene, narration about location)
+5. NONE (Minor beat, audio only, no visual change needed)
+
+Format:
+SHOT: [Option]
+
+Response:"""
+        
+        out = self.llm(prompt, max_tokens=15, stop=["Instruction:", "Scene Line:"], temperature=0.1)
+        raw = out["choices"][0]["text"]
+        
+        shot = "MEDIUM" # Default
+        if "SHOT:" in raw:
+            val = raw.split("SHOT:")[1].strip().upper()
+            if "CLOSE" in val: shot = "CLOSE_UP"
+            elif "WIDE" in val: shot = "WIDE"
+            elif "ESTABLISH" in val: shot = "ESTABLISHING"
+            elif "NONE" in val: shot = "NONE"
+            elif "MEDIUM" in val: shot = "MEDIUM"
+            
+        return shot
 
     def generate_rich_registry(self, characters, profiles):
         registry = {}

@@ -73,7 +73,7 @@ def patch_sfx_only():
         
     logger.info(f"SFX Patch Complete. Updated {updates} beats.")
 
-def main():
+def run_director():
     logger.info("Initializing MAVIS Pipeline 3.3 (Visual Hallucination Fix)")
     cfg = load_config()
     
@@ -171,6 +171,13 @@ def main():
             # 5. Production Attributes (Beat Level)
             prod_attrs = llm.analyze_beat_production(beat)
             beat['production'] = prod_attrs
+            
+            # 6. Shot Planning (Cinematographer)
+            beat['shot_type'] = llm.determine_shot_type(beat)
+            # Only generate visual prompt if it's a visual shot
+            if beat['shot_type'] != "NONE" and "visual_prompt" not in beat:
+                 # Logic ensures visual prompt is already generated above, but we can tag it.
+                 pass
 
             beat_dur = beat['duration']
             beat['timing'] = {
@@ -214,6 +221,19 @@ def main():
 
     logger.info("Generating Global Registry...")
     registry = llm.generate_rich_registry(characters, cast_profiles)
+    
+    # 1. Enrich Registry with Visual DNA for the Master JSON
+    for char in registry:
+        registry[char]["reference_image"] = f"characters/{char.lower()}.png"
+        # Ensure physical details are present for the image generator
+        if char in llm.character_visuals:
+            registry[char]["visual_details"] = llm.character_visuals[char]
+
+    # 2. Save Separate Characters JSON
+    char_json_path = os.path.join(os.path.dirname(cfg["paths"]["output_file"]), "characters.json")
+    with open(char_json_path, "w", encoding="utf-8") as f:
+        json.dump(registry, f, indent=2, ensure_ascii=False)
+    logger.info(f"Saved Character Registry to {char_json_path}")
 
     final_output = {
         "project_meta": {
@@ -228,7 +248,7 @@ def main():
             "props": sorted(list(global_assets['props'])),
             "cast": characters
         },
-        "character_registry": registry,
+        # "character_registry": registry, # Removed as per user request (separate file)
         "timeline": timeline
     }
 
@@ -242,4 +262,4 @@ if __name__ == "__main__":
     if "--patch-sfx" in sys.argv:
         patch_sfx_only()
     else:
-        main()
+        run_director()
