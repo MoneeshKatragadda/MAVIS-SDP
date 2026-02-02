@@ -202,12 +202,34 @@ class NLPExtractor:
                 if t.dep_ == "nsubj" and t.text in characters:
                     char_subjects.add(t.text)
             
-            if len(char_subjects) < 2:
-                final_splits.append(sent.text.strip())
-                continue
-
-            sub_segments = self._segment_multi_char_sentence(sent, characters)
-            final_splits.extend(sub_segments)
+            # If multi-character interaction, use rigorous subject-based splitting
+            if len(char_subjects) >= 2:
+                sub_segments = self._segment_multi_char_sentence(sent, characters)
+                final_splits.extend(sub_segments)
+            else:
+                # If single character (or none), still check for structural complexity (e.g., "where a man...", "while looking...")
+                # This fixes the "Silas ... cook" issue where secondary entities are important
+                structural_split = False
+                tokens = list(sent)
+                for i, t in enumerate(tokens):
+                    # Look for structural splitters that aren't just normal conjunctions
+                    if t.text.lower() in ["where", "while"] and i > 3 and (len(tokens) - i) > 4:
+                        # Ensure we don't split "where are you?" or short phrases
+                        
+                        # Split!
+                        seg1 = sent[:i].text.strip()
+                        seg2 = sent[i:].text.strip()
+                        
+                        # Clean trailing commas from seg1
+                        if seg1.endswith(","): seg1 = seg1[:-1].strip()
+                        
+                        final_splits.append(seg1)
+                        final_splits.append(seg2)
+                        structural_split = True
+                        break
+                
+                if not structural_split:
+                    final_splits.append(sent.text.strip())
             
         return [s.strip(" ,.") for s in final_splits if len(s.strip()) > 2]
 
@@ -232,23 +254,23 @@ class NLPExtractor:
             char_a = subj_map[idx_a]
             char_b = subj_map[idx_b]
 
-            if char_a != char_b:
-                best_split = -1
-                for k in range(idx_a + 1, idx_b):
-                    if tokens[k].text == "," or tokens[k].text == ";":
-                        best_split = k + 1 
-                        break
-                    elif tokens[k].pos_ == "CCONJ" or tokens[k].text.lower() in ["while", "as", "but"]:
-                        best_split = k 
-                        if k > 0 and tokens[k-1].text == ",":
-                            best_split = k-1
-                        break
-                
-                if best_split != -1:
-                    seg_text = sent[current_start:best_split].text.strip()
-                    if len(seg_text) > 2:
-                        segments.append(seg_text)
-                    current_start = best_split 
+            # Split only if subjects differ (interaction) or explicit disconnect
+            best_split = -1
+            for k in range(idx_a + 1, idx_b):
+                if tokens[k].text == "," or tokens[k].text == ";":
+                    best_split = k + 1 
+                    break
+                elif tokens[k].pos_ == "CCONJ" or tokens[k].text.lower() in ["while", "as", "but"]:
+                     best_split = k 
+                     if k > 0 and tokens[k-1].text == ",":
+                         best_split = k-1
+                     break
+            
+            if best_split != -1:
+                seg_text = sent[current_start:best_split].text.strip()
+                if len(seg_text) > 2:
+                    segments.append(seg_text)
+                current_start = best_split 
 
         last_seg = sent[current_start:].text.strip()
         if len(last_seg) > 2:

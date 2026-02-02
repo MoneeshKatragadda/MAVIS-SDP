@@ -201,22 +201,11 @@ def generate_images(events_path="output/events.json"):
                 except Exception as e:
                     logger.error(f"  Error {shot_id}: {e}")
             else:
-                # If skipping generation, we might still want to copy to the character folder if it wasn't there
-                # But without loading the image, we can't save it easily if using 'image.save'. 
-                # We can just use shutil.copy below.
-                pass
+                logger.info(f"Skipping {shot_id} (Exists)")
                 
-            # Copy to Character Folders (Even if skipped generation, ensure they exist in folders)
-            if os.path.exists(filepath):
-                for char_name in present_chars:
-                    char_folder = os.path.join(cfg["char_dir"], char_name)
-                    if not os.path.exists(char_folder):
-                        os.makedirs(char_folder)
-                    
-                    dest_path = os.path.join(char_folder, filename)
-                    if not os.path.exists(dest_path) or generated_new:
-                        shutil.copy(filepath, dest_path)
-                        # logger.info(f"  Saved copy to {dest_path}")
+            # Copy logic removed as per user request.
+            # Only keeping images in the main output/images directory.
+            pass
 
     logger.info("Generation Complete.")
 

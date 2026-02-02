@@ -324,9 +324,6 @@ Output:"""
             
             gen = f"High quality color cinematic shot of {action}, blurry background of {location} with dimly lit lights"
             return gen
-            
-            # Prefix check
-            return gen
 
     def analyze_beat_production(self, beat_data):
         """
@@ -364,7 +361,7 @@ Output:"""
                 bgm_style = "Rainy Noir Ambience"
 
             import random
-            bgm_vol = round(random.uniform(0.12, 0.18), 2)
+            bgm_vol = round(random.uniform(0.35, 0.40), 2)
 
             # --- SFX LOGIC ---
             # Strict few-shot prompt for Phi-2

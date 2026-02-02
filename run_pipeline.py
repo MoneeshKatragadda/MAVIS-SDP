@@ -32,13 +32,18 @@ def run_pipeline():
     logger.info("   MAVIS MULTIMODAL PIPELINE START")
     logger.info("========================================")
     
+    events_path = "output/events.json"
+    
     # Phase 1: Director Engine (LLM + NLP -> Visual DNA -> Events)
-    logger.info(">>> PHASE 1: DIRECTOR ENGINE")
-    try:
-        run_director()
-    except Exception as e:
-        logger.error(f"Director Phase Failed: {e}")
-        return
+    if os.path.exists(events_path):
+        logger.info(f"Events file found at {events_path}. Skipping Director Phase.")
+    else:
+        logger.info(">>> PHASE 1: DIRECTOR ENGINE")
+        try:
+            run_director()
+        except Exception as e:
+            logger.error(f"Director Phase Failed: {e}")
+            return
 
     events_path = "output/events.json"
     if not os.path.exists(events_path):
@@ -63,7 +68,15 @@ def run_pipeline():
     logger.info(">>> PHASE 2 COMPLETE")
     
     # Phase 3: Assembly
-    assemble_movie()
+    try:
+        from movie import generate_movie
+        generate_movie(events_path, "output/movie.mp4")
+    except ImportError:
+        try:
+            from phase1.movie import generate_movie
+            generate_movie(events_path, "output/movie.mp4")
+        except ImportError:
+             logger.error("Could not import generate_movie from movie.py")
     
     elapsed = time.time() - start_time
     logger.info(f"========================================")

@@ -3,7 +3,7 @@
     "title": "MAVIS_Project",
     "fps": 24,
     "total_duration": 96.2,
-    "total_beats": 16,
+    "total_beats": 17,
     "validation_status": "Passed"
   },
   "global_assets": {
@@ -63,7 +63,7 @@
           "production": {
             "bgm": {
               "style": "Rainy Noir Ambience",
-              "volume": 0.15
+              "volume": 0.24
             },
             "sfx": [
               {
@@ -142,7 +142,7 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.14
+              "volume": 0.2
             },
             "sfx": [
               {
@@ -216,7 +216,7 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.14
+              "volume": 0.25
             },
             "sfx": [
               {
@@ -328,7 +328,7 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.16
+              "volume": 0.25
             },
             "sfx": [
               {
@@ -426,7 +426,7 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.16
+              "volume": 0.25
             },
             "sfx": [
               {
@@ -550,7 +550,7 @@
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.17
+              "volume": 0.29
             },
             "sfx": [
               {
@@ -625,24 +625,55 @@
       "beats": [
         {
           "type": "narration",
-          "text": "Silas glanced toward the counter where a man in a greasy apron was flipping burgers with more aggression than necessary",
-          "duration": 10.0,
+          "text": "Silas glanced toward the counter",
+          "duration": 2.5,
           "emotion": {
             "label": "ominous",
-            "intensity": 0.7
+            "intensity": 0.8
           },
           "semantic": {
             "subject": "Silas",
             "action": "glance",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
           "sub_scene_id": "SC_007_01",
-          "visual_prompt": "High quality color cinematic shot of Silas glancing at counter, man flipping burgers aggressively, blurry background of a dimly lit noir setting with dimly lit lights",
+          "visual_prompt": "High quality color cinematic shot of Silas glancing at counter, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.12
+              "volume": 0.29
+            },
+            "sfx": []
+          },
+          "shot_type": "MEDIUM",
+          "timing": {
+            "rel_start": 0.0,
+            "rel_end": 2.5,
+            "global_start": 70.4,
+            "global_end": 72.9
+          }
+        },
+        {
+          "type": "narration",
+          "text": "where a man in a greasy apron was flipping burgers with more aggression than necessary",
+          "duration": 7.5,
+          "emotion": {
+            "label": "ominous",
+            "intensity": 0.8
+          },
+          "semantic": {
+            "subject": "man",
+            "action": "flip",
+            "object": "burgers"
+          },
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
+          "sub_scene_id": "SC_007_02",
+          "visual_prompt": "High quality color cinematic shot of Greasy apron man flipping burgers, blurry background of a dimly lit noir setting with dimly lit lights",
+          "production": {
+            "bgm": {
+              "style": "Dark Suspense Drone",
+              "volume": 0.24
             },
             "sfx": [
               {
@@ -656,9 +687,9 @@
           },
           "shot_type": "MEDIUM",
           "timing": {
-            "rel_start": 0.0,
+            "rel_start": 2.5,
             "rel_end": 10.0,
-            "global_start": 70.4,
+            "global_start": 72.9,
             "global_end": 80.4
           }
         },
@@ -677,7 +708,7 @@
             "object": null
           },
           "audio_prompt": "Silas, tone=neutral, intensity=0.8",
-          "sub_scene_id": "SC_007_02",
+          "sub_scene_id": "SC_007_03",
           "visual_prompt": "High quality color cinematic shot of Silas, neutral expression, speaking with mouth slightly open, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
@@ -759,20 +790,20 @@
           "duration": 1.0,
           "emotion": {
             "label": "ominous",
-            "intensity": 0.8
+            "intensity": 0.7
           },
           "semantic": {
             "subject": "Julian",
             "action": "whisper",
             "object": null
           },
-          "audio_prompt": "Narrator, tone=ominous, intensity=0.8",
+          "audio_prompt": "Narrator, tone=ominous, intensity=0.7",
           "sub_scene_id": "SC_008_02",
           "visual_prompt": "High quality color cinematic shot of Julian whispering, blurry background of a dimly lit noir setting with dimly lit lights",
           "production": {
             "bgm": {
               "style": "Dark Suspense Drone",
-              "volume": 0.16
+              "volume": 0.25
             },
             "sfx": [
               {
@@ -784,7 +815,7 @@
               }
             ]
           },
-          "shot_type": "CLOSE_UP",
+          "shot_type": "MEDIUM",
           "timing": {
             "rel_start": 1.2,
             "rel_end": 2.2,
