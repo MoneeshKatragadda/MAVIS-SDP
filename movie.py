@@ -133,7 +133,7 @@ def generate_movie(events_path=EVENTS_FILE, output_file=OUTPUT_VIDEO):
                     txt_clip = TextClip(
                         text=text,
                         font="C:/Windows/Fonts/arial.ttf", 
-                        font_size=20,
+                        font_size=30,
                         color='white',
                         stroke_color='black',
                         stroke_width=2,
