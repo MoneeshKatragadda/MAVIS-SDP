@@ -39,7 +39,7 @@ def generate_cast():
             torch_dtype=torch.float16 # Use the fixed FP16 VAE which is faster & doesn't break
         )
         
-        # Standard load
+
         pipe = StableDiffusionXLPipeline.from_pretrained(
             cfg["model_id"], 
             vae=vae, # Inject fixed VAE
@@ -48,6 +48,7 @@ def generate_cast():
             use_safetensors=True
         )
         
+
         if cfg["device"] == "cuda":
             logger.info("  Enabling Memory Optimizations (CPU Offload, Tiling)...")
             # Aggressive Memory Optimization
@@ -64,6 +65,7 @@ def generate_cast():
         else:
             logger.warning("  Running on CPU. Expect slow generation.")
             pipe.to(cfg["device"])
+
 
         # Optimize: Switch to DPMSolverMultistepScheduler (Faster convergence)
         from diffusers import DPMSolverMultistepScheduler
@@ -86,7 +88,6 @@ def generate_cast():
     logger.info("--- GENERATING 4-VIEW REFERENCE SHEETS (SDXL) ---")
 
 
-    
     for char_name, details in registry.items():
         logger.info(f"> Processing Character: {char_name}")
         
@@ -101,10 +102,8 @@ def generate_cast():
             os.makedirs(char_subdir)
             
         # Reordered prompt: Outfit BEFORE Physical to anchor clothing color and reduce bleeding from other features (like "green eyes")
-        base_prompt = (
-            f"photo, realistic, wearing {outfit}, {physical}, "
-            f"neutral background, studio lighting, 8k, ultra detailed, sharp focus, real skin texture"
-        )
+        # Added quality tokens
+        quality_tokens = "masterpiece, best quality, high resolution"
         
         neg_prompt = (
             "drawing, painting, illustration, anime, cartoon, 3d render, doll, "
@@ -114,8 +113,8 @@ def generate_cast():
         # Updated strict prompt instructions (Framing without style bias)
         views = {
             "waist_front": "Upper body medium shot, from waist up only, detailed torso and face, looking at camera",
-            "waist_back": "Upper body medium shot, from waist up only, back view, detailed back",
-            "waist_side": "Upper body medium shot, side profile view, from waist up only",
+            "waist_back": "Upper body medium shot, from waist up only, back view, from behind, back of head, facing away, no face",
+            "waist_side": "Upper body medium shot, side profile view, from waist up only, looking sideways",
             "full_front": "extreme wide full body shot, standing pose, displaying entire body from head to shoes, feet visible, front view, far away"
         }
 
@@ -131,19 +130,25 @@ def generate_cast():
             filepath = os.path.join(char_subdir, view_filename)
             
             # Dynamic Negative Prompting
+            current_neg_prompt = base_neg
             if "waist" in view_key:
                 # Force cut at waist by forbidding lower body features
-                current_neg_prompt = base_neg + ", full body, legs, feet, shoes, boots, knees, wide shot, long shot, far away"
-            else:
-                # Full body needs to allow feet, so we don't ban them
-                current_neg_prompt = base_neg
+                current_neg_prompt += ", full body, legs, feet, shoes, boots, knees, wide shot, long shot, far away"
+            
+            if "back" in view_key:
+                 # Strictly forbid face features for back view
+                 current_neg_prompt += ", face, eyes, mouth, nose, front view, looking at camera"
 
             # Reset generator seed for EACH view to ensure identical starting noise (better consistency)
             generator = torch.Generator(device=cfg["device"]).manual_seed(seed)
             
             # Construct the full prompt - framing FIRST
             # Prompt Structure: [View], [Character], [Outfit], [Physical], [Style/Lighting]
-            full_prompt = f"{view_prompt_prefix}, {char_name}, wearing {outfit}, {physical}, neutral background, studio lighting, 8k"
+            # Added weighting to outfit to prevent color bleeding
+            full_prompt = (
+                f"{view_prompt_prefix}, {char_name}, (wearing {outfit}:1.3), {physical}, "
+                f"{quality_tokens}, neutral background, studio lighting, 8k, ultra detailed, sharp focus, real skin texture"
+            )
             
             logger.info(f"  Generating {view_key}...")
             
@@ -153,7 +158,7 @@ def generate_cast():
                     negative_prompt=current_neg_prompt, # Use improved neg prompt
                     height=cfg["height"],
                     width=cfg["width"],
-                    num_inference_steps=cfg["steps"],
+                    num_inference_steps=30, # Increased steps for better quality
                     guidance_scale=cfg["guidance_scale"],
                     generator=generator
                 ).images[0]

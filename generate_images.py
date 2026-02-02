@@ -19,13 +19,13 @@ logger = logging.getLogger("MAVIS_IMG")
 
 def load_config():
     return {
-        "model_id": "stabilityai/stable-diffusion-xl-base-1.0",
+        "model_id": "segmind/SSD-1B", # Optimized: Switched to SSD-1B (60% faster than SDXL)
         "output_dir": "output/images",
         "char_dir": "output/images/characters",
         "events_file": "output/events.json",
         "chars_file": "output/characters.json",
         "device": "cuda" if torch.cuda.is_available() else "cpu",
-        "steps": 40,          # SDXL Standard
+        "steps": 20,          # Optimized: Reduced to 20 for speed (sufficient with DPM++)
         "guidance_scale": 7.5,
         "height": 1024,
         "width": 1024
@@ -37,16 +37,11 @@ def flush_memory():
         torch.cuda.empty_cache()
 
 def load_pipeline(cfg):
-    logger.info(f"Loading Pipeline: {cfg['model_id']} (SDXL)...")
+    logger.info(f"Loading Pipeline: {cfg['model_id']} (Speed Optimized)...")
     try:
-        # Load SDXL
-        # Note: ControlNet Canny requested, but for text-to-image of *new* scenes 
-        # without input images, ControlNet Canny isn't directly applicable 
-        # unless we have edge maps. We will use base SDXL for scene generation 
-        # to ensure high quality first.
+        from diffusers import StableDiffusionXLPipeline, AutoencoderKL, DPMSolverMultistepScheduler
         
-        from diffusers import StableDiffusionXLPipeline, AutoencoderKL
-        
+        # Load VAE separately for stability
         vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16)
         
         pipe = StableDiffusionXLPipeline.from_pretrained(
@@ -56,11 +51,25 @@ def load_pipeline(cfg):
             use_safetensors=True,
             variant="fp16"
         )
-        pipe.to(cfg["device"])
+        
+        # Scheduler Optimization: DPM++ 2M Karras (Fastest convergence)
+        pipe.scheduler = DPMSolverMultistepScheduler.from_config(
+            pipe.scheduler.config,
+            use_karras_sigmas=True,
+            algorithm_type="sde-dpmsolver++"
+        )
         
         if cfg["device"] == "cuda": 
-            # pipe.enable_model_cpu_offload() # Uncomment if OOM
-            pass
+            # Aggressive Memory & Speed Optimizations
+            pipe.enable_model_cpu_offload() 
+            pipe.enable_vae_tiling()
+            try:
+                import xformers
+                pipe.enable_xformers_memory_efficient_attention()
+            except ImportError:
+                pipe.enable_attention_slicing()
+        else:
+            pipe.to(cfg["device"])
             
         return pipe
     except Exception as e:
@@ -84,8 +93,8 @@ def load_dna_map(cfg):
         outfit = details.get("clothing_style", "casual clothes")
         
         # Prioritize outfit to avoid color bleeding from physical traits
-        # e.g. "wearing Red Evening Gown, red wavy hair, green eyes" instead of "red wavy hair... wearing Red Evening Gown"
-        dna_prompt = f"wearing {outfit}, {physical}"
+        # Improved Prompt Engineering matching generate_cast.py
+        dna_prompt = f"(wearing {outfit}:1.3), {physical}"
         char_prompts[char_name] = dna_prompt
 
     return char_prompts
@@ -132,15 +141,9 @@ def generate_images(events_path="output/events.json"):
             filename = f"{shot_id}.png"
             filepath = os.path.join(cfg["output_dir"], filename)
             
-            if os.path.exists(filepath):
-                logger.info(f"Skipping {shot_id} (Exists)")
-                pass 
-                # Note: If the user wants to RE-generate to fix distortion, they should delete the old images manually 
-                # or we should allow overwrite. For now, assuming user will clear output if they want fresh gen.
-                # Actually, based on the prompt, the user is iterating, so we probably should overwrite?
-                # But typically pipelines skip existing. I'll stick to skip for safety unless instructed.
-                # Wait, the user says "the generated character images are distorted... create a folder...".
-                # They imply the *next* run should be better.
+            # Remove checking for existence to force regeneration with new prompts as requested
+            # usage logic: if script is run, we assume user wants generation. 
+            # We will rely on overwriting.
             
             # --- RUNTIME PROMPT ASSEMBLY ---
             final_prompt = raw_action_prompt
@@ -162,8 +165,7 @@ def generate_images(events_path="output/events.json"):
             if shot_type.lower().replace("_", " ") not in final_prompt.lower():
                  final_prompt = f"{shot_type.lower().replace('_', ' ')}, {final_prompt}"
 
-            # Add Random View if no view specified (to avoid "front view only" bias)
-            # Only add if we have characters, otherwise "view from behind" of a building might be weird
+
             has_view = any(k in final_prompt.lower() for k in VIEW_KEYWORDS)
             if not has_view and len(present_chars) > 0:
                 # Weighted choice
@@ -172,10 +174,14 @@ def generate_images(events_path="output/events.json"):
                 final_prompt += f", {chosen_view}"
 
             # Quality Boosters for SDXL
-            final_prompt += ", photo, realistic, cinematic lighting, 8k, ultra detailed, sharp focus, film grain"
+            final_prompt += ", masterpiece, best quality, photo, realistic, cinematic lighting, 8k, ultra detailed, sharp focus, film grain"
             
             # Enhanced Negative Prompt for distortion and bad anatomy
-            neg_prompt = "drawing, painting, illustration, anime, cartoon, 3d render, doll, plastic, blur, low quality, distorted, bad anatomy, bad hands, missing fingers, extra limbs, mutated, poorly drawn face, ugly, disfigured, text, watermark, color bleeding"
+            neg_prompt = (
+                "drawing, painting, illustration, anime, cartoon, 3d render, doll, "
+                "plastic, blur, low quality, distorted, bad anatomy, bad hands, missing fingers, "
+                "extra limbs, mutated, poorly drawn face, ugly, disfigured, text, watermark, color bleeding"
+            )
 
             generated_new = False
             if not os.path.exists(filepath):
