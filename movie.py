@@ -1,7 +1,7 @@
 import json
 import os
 import logging
-from moviepy import ImageClip, AudioFileClip, CompositeAudioClip, concatenate_videoclips, ColorClip
+from moviepy import ImageClip, AudioFileClip, CompositeAudioClip, concatenate_videoclips, ColorClip, TextClip, CompositeVideoClip
 import numpy as np
 
 # Configure Logging
@@ -124,6 +124,30 @@ def generate_movie(events_path=EVENTS_FILE, output_file=OUTPUT_VIDEO):
                 # Narrator audio defines the rigid timing usually.
                 final_audio = final_audio.with_duration(clip.duration)
                 clip = clip.with_audio(final_audio)
+            
+            # 4. SUBTITLES
+            if text:
+                try:
+                    # Basic style: White text, black stroke
+                    # method='caption' wraps text into 'size' box
+                    txt_clip = TextClip(
+                        text=text,
+                        font="C:/Windows/Fonts/arial.ttf", 
+                        font_size=20,
+                        color='white',
+                        stroke_color='black',
+                        stroke_width=2,
+                        method='caption',
+                        size=(int(1024 * 0.9), None), # Wrapped width
+                        text_align='center'
+                    )
+                    # Position at bottom with some margin (using 'bottom' aligns to edge, maybe too low?)
+                    # Let's try ('center', 'bottom')
+                    txt_clip = txt_clip.with_duration(clip.duration).with_position(('center', 'bottom'))
+                    
+                    clip = CompositeVideoClip([clip, txt_clip])
+                except Exception as e:
+                    logger.warning(f"  Subtitle Error {beat_id}: {e}")
             
             clips.append(clip)
 
